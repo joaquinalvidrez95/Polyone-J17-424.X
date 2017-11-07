@@ -1,0 +1,359 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020     @TRIS_C
+021     @CURRENT_TASK
+022-028 @TASKINFO1_2_2_0_0
+029-02F @TASKINFO2_2_2_0_0
+030-036 @TASKINFO3_2_2_0_0
+037-03D @TASKINFO4_2_2_0_0
+03E.0   showDisplayCompletely
+03E.1   Task_runStateMachine.startStopButtonState
+03E.2   Task_runStateMachine.menuButtonState
+03F     buttonStateStartStopReset
+040     buttonStateMenu
+041-06C myPolyoneDisplay
+06D     Task_runStateMachine.nextStateAfterWaitingForButtonBeingReleased
+06E     Task_checkIfStartStopResetButtonIsHeld.nextUpButtonCounter
+06F     Task_checkIfMenuButtonIsHeld.menuButtonCounter
+070     setupHardware.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+095     WPUB
+107.6   C1OUT
+108.6   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+131-132 PolyoneDisplay_updateRtc.polyoneDisplayPtr
+131-132 PolyoneDisplay_showCount.polyoneDisplayPtr
+131-132 PolyoneDisplay_isTimerDone.polyoneDisplayPtr
+131-132 PolyoneDisplay_updateTimer.polyoneDisplayPtr
+131-134 SeventSegmentDisplay_showHyphens.arrayToSend
+131     Task_runStateMachine.@SCRATCH1
+132     @delay_ms1.P1
+132     Task_runStateMachine.@SCRATCH2
+133     PolyoneDisplay_updateTimer.@SCRATCH1
+133     PolyoneDisplay_showCount.@SCRATCH1
+133     PolyoneDisplay_updateRtc.@SCRATCH1
+133     PolyoneDisplay_isTimerDone.@SCRATCH1
+133     Task_runStateMachine.@SCRATCH3
+134     PolyoneDisplay_updateTimer.@SCRATCH2
+134     PolyoneDisplay_showCount.@SCRATCH2
+134     PolyoneDisplay_updateRtc.@SCRATCH2
+134     PolyoneDisplay_isTimerDone.@SCRATCH2
+134     Task_runStateMachine.@SCRATCH4
+135-136 Timer_updateTimer.timerPtr
+135-136 Timer_showMinutesAndSecondsOfCountdownTime.timerPtr
+135-136 Timer_showHoursAndMinutesOfCountdownTime.timerPtr
+135-136 Timer_isTimerFinished.timerPtr
+135-136 Timer_updateRtc.timerPtr
+137-162 PolyoneDisplay_new.PolyoneDisplay
+137-138 Timer_updateCountdownTime.timerPtr
+137     Timer_showHoursAndMinutesOfCountdownTime.blink
+137-13A Timer_showMinutesAndSecondsOfCountdownTime.timeToSend
+137     Timer_updateRtc.@SCRATCH1
+137     Timer_updateTimer.@SCRATCH1
+137     Timer_isTimerFinished.@SCRATCH1
+138-13B Timer_showHoursAndMinutesOfCountdownTime.timeToSend
+138     Timer_updateRtc.@SCRATCH2
+138     Timer_updateTimer.@SCRATCH2
+138     Timer_isTimerFinished.@SCRATCH2
+139-13C Timer_updateCountdownTime.currentTimeInSeconds
+139-13A Time_isTimeZero.timePtr
+139-13A setClockTime.timePtr
+139     Timer_updateTimer.@SCRATCH3
+13A     Timer_updateTimer.@SCRATCH4
+13B-140 Timer_showMinutesAndSecondsOfCountdownTime.TimeInDigits
+13B     Time_isTimeZero.@SCRATCH1
+13B     setClockTime.@SCRATCH1
+13C-141 Timer_showHoursAndMinutesOfCountdownTime.TimeInDigits
+13C     setClockTime.@SCRATCH2
+13D-140 Timer_updateCountdownTime.limitTimeInSeconds
+13D     setClockTime.@SCRATCH3
+13E     setTime.hSet
+13F     setTime.mSet
+13F-144 Time_getCurrentTime.currentTime
+140     setTime.sSet
+141     decimal_to_bcd.d
+141-144 Timer_updateCountdownTime.countdownTimeInSeconds
+141     setTime.@SCRATCH1
+141     Timer_showMinutesAndSecondsOfCountdownTime.@SCRATCH1
+142     DS3231_Write.address
+142-143 SevenSegmentDisplay_showArrayOfNumbers.arrayOfNumbers
+142     decimal_to_bcd.@SCRATCH1
+142     Timer_showHoursAndMinutesOfCountdownTime.@SCRATCH1
+142     Timer_showMinutesAndSecondsOfCountdownTime.@SCRATCH2
+143     DS3231_Write.value
+143     decimal_to_bcd.@SCRATCH2
+143     Timer_showHoursAndMinutesOfCountdownTime.@SCRATCH2
+143     Timer_showMinutesAndSecondsOfCountdownTime.@SCRATCH3
+144     SevenSegmentDisplay_showArrayOfNumbers.arraySize
+144     Timer_showHoursAndMinutesOfCountdownTime.@SCRATCH3
+144     Timer_showMinutesAndSecondsOfCountdownTime.@SCRATCH4
+145     Time_getCurrentTime.currentHour
+145     SevenSegmentDisplay_showArrayOfNumbers.withDot
+145-148 Timer_updateCountdownTime.hour
+145     Timer_showHoursAndMinutesOfCountdownTime.@SCRATCH4
+146-147 SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.arrayOfNumbers
+146-147 ShiftRegister_sendData.charactersArray
+146-147 SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.arrayOfNumbers
+146     Time_getCurrentTime.currentMinute
+147     Time_getCurrentTime.currentSecond
+148     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.arraySize
+148     ShiftRegister_sendData.arraySize
+148     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.arraySize
+148     Time_getCurrentTime.@SCRATCH1
+149     ShiftRegister_sendData.i
+149-14C Timer_updateCountdownTime.minute
+149     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.i
+149     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.i
+149     Time_getCurrentTime.@SCRATCH2
+14A-14B Time_getTimeInDigits.timePtr
+14A     ShiftRegister_sendData.j
+14A     Time_getCurrentTime.@SCRATCH3
+14A     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.@SCRATCH1
+14A     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.@SCRATCH1
+14B     bcd_to_decimal.d
+14B     DS3231_Read.address
+14B     ShiftRegister_sendData.character
+14B     Time_getCurrentTime.@SCRATCH4
+14B     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.@SCRATCH2
+14B     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.@SCRATCH2
+14C     DS3231_Read.value
+14C     Time_getTimeInDigits.formatted
+14C     bcd_to_decimal.@SCRATCH1
+14C     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.@SCRATCH3
+14C     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.@SCRATCH3
+14D     @I2C_READ_1.P1
+14D-152 Time_getTimeInDigits.newTimeInDigits
+14D     @I2C_WRITE_1.P1
+14D     bcd_to_decimal.@SCRATCH2
+14D     Timer_updateCountdownTime.@SCRATCH1
+14E     createTime.hour
+14E     @I2C_READ_1.@SCRATCH1
+14E     bcd_to_decimal.@SCRATCH3
+14E     Timer_updateCountdownTime.@SCRATCH2
+14F     @MUL88.P1
+14F     createTime.minute
+14F-150 Time_changeTimeToSeconds.timePtr
+14F     @I2C_READ_1.@SCRATCH2
+14F     Timer_updateCountdownTime.@SCRATCH3
+150     createTime.second
+150     @MUL88.P1
+150     Timer_updateCountdownTime.@SCRATCH4
+151-156 createTime.time
+151-154 Time_changeTimeToSeconds.hoursInSeconds
+151     Timer_updateCountdownTime.@SCRATCH5
+152     Timer_updateCountdownTime.@SCRATCH6
+153     Time_getTimeInDigits.hour
+153     Timer_updateCountdownTime.@SCRATCH7
+154     Time_getTimeInDigits.@SCRATCH1
+154     Timer_updateCountdownTime.@SCRATCH8
+155-156 Array_splitNumberIntoDigits.number
+155-158 Time_changeTimeToSeconds.minutesInSeconds
+155     Timer_updateCountdownTime.@SCRATCH9
+156     Timer_updateCountdownTime.@SCRATCH10
+157-158 Array_splitNumberIntoDigits.digits
+157     Timer_updateCountdownTime.@SCRATCH11
+158     Timer_updateCountdownTime.@SCRATCH12
+159     Array_splitNumberIntoDigits.arraySize
+159-15C Time_changeTimeToSeconds.seconds
+159     Timer_updateCountdownTime.@SCRATCH13
+15A     Array_splitNumberIntoDigits.index
+15A     Timer_updateCountdownTime.@SCRATCH14
+15B     Array_splitNumberIntoDigits.digit
+15B     Timer_updateCountdownTime.@SCRATCH15
+15C-15D Array_clearArray.array
+15C-15D @DIV1616.P1
+15C     Array_splitNumberIntoDigits.@SCRATCH1
+15C     Timer_updateCountdownTime.@SCRATCH16
+15D     Array_splitNumberIntoDigits.@SCRATCH2
+15D     Time_changeTimeToSeconds.@SCRATCH1
+15D     Timer_updateCountdownTime.@SCRATCH17
+15E     Array_clearArray.arraySize
+15E-15F @DIV1616.P1
+15E     Time_changeTimeToSeconds.@SCRATCH2
+15E     Timer_updateCountdownTime.@SCRATCH18
+15F-162 @DIVS3232.P1
+15F     Array_clearArray.i
+15F     Time_changeTimeToSeconds.@SCRATCH3
+160     Array_clearArray.@SCRATCH1
+160     @DIV1616.@SCRATCH1
+160     Time_changeTimeToSeconds.@SCRATCH4
+161     Array_clearArray.@SCRATCH2
+161     Time_changeTimeToSeconds.@SCRATCH5
+162     Time_changeTimeToSeconds.@SCRATCH6
+163-166 @DIVS3232.P1
+163-166 @MUL3232.P2
+163     PolyoneDisplay_new.@SCRATCH1
+164     PolyoneDisplay_new.@SCRATCH2
+165     PolyoneDisplay_new.@SCRATCH3
+166     PolyoneDisplay_new.@SCRATCH4
+167-16A @MUL3232.P1
+167     @DIVS3232.@SCRATCH1
+168     @DIVS3232.@SCRATCH2
+169     Timer_new.maximumHours
+169     @DIVS3232.@SCRATCH3
+16A     Timer_new.maximumMinutes
+16A     @DIVS3232.@SCRATCH4
+16B-16C Timer_new.alarmHourAddress
+16B     @MUL3232.@SCRATCH1
+16B     @DIVS3232.@SCRATCH5
+16C     @MUL3232.@SCRATCH2
+16C     @DIVS3232.@SCRATCH6
+16D-16E Timer_new.alarmMinutesAddress
+16D     @MUL3232.@SCRATCH3
+16E     @MUL3232.@SCRATCH4
+16F     @MUL3232.@SCRATCH5
+190-191 Timer_new.isCounting
+192-193 Timer_new.rtcHour
+194-195 Timer_new.rtcMinutes
+196-197 Timer_new.rtcSeconds
+198-1C0 Timer_new.newTimer
+1C1     Timer_new.@SCRATCH1
+1C2     Timer_new.@SCRATCH2
+1C3     @DIV88.P1
+1C4     @DIV88.P1
+1C5     @DIV88.@SCRATCH1
+
+ROM Allocation:
+000004  SevenSegmentDisplay_characters.call
+000008  SevenSegmentDisplay_characters.data
+00001F  @const988.call
+00002B  @DIV88
+000044  decimal_to_bcd
+000064  @I2C_WRITE_1
+0000B0  DS3231_Write
+0000EF  setTime
+00011A  DS3231_Read
+000161  @I2C_READ_1
+0001CC  bcd_to_decimal
+0001DC  @MUL88
+000205  @MUL3232
+000231  Time_changeTimeToSeconds
+0002C8  @DIVS3232
+000344  PolyoneDisplay_updateTimer
+000351  Timer_updateTimer
+00035C  Time_getCurrentTime
+00035F  ds3231_get_Time
+00038F  createTime
+0003E1  Timer_updateCountdownTime
+00050C  @DIV1616
+000533  Array_splitNumberIntoDigits
+00053A  Array_clearArray
+000576  Time_getTimeInDigits
+0005E0  ShiftRegister_sendData
+00061D  ShiftRegister_closeStrobe
+000627  SevenSegmentDisplay_showArrayOfNumbers
+000631  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot
+000666  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers
+000694  PolyoneDisplay_showCount
+0006AE  Timer_showHoursAndMinutesOfCountdownTime
+00071D  Timer_showMinutesAndSecondsOfCountdownTime
+000767  Task_checkIfStartStopResetButtonIsHeld
+000786  Task_checkIfMenuButtonIsHeld
+0007A5  Task_blinkDisplay
+0007B6  setupHardware
+0007D1  @delay_ms1
+000800  Task_runStateMachine
+000806  PolyoneDisplay_new
+00081F  Timer_new
+0008DD  PolyoneDisplay_updateRtc
+0008E9  Timer_updateRtc
+0008F8  setClockTime
+000945  PolyoneDisplay_isTimerDone
+000951  Timer_isTimerFinished
+00095D  Time_isTimeZero
+00098F  SeventSegmentDisplay_showHyphens
+000A27  @goto11289
+000A35  @cinit1
+000A35  MAIN
+000A51  @cinit2
+000A57  Time_clearRtcTime
+
+Project Directory:
+    C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\
+
+Project Files:
+    src\main.c                                              [07-Nov-17 16:48  CRC=8A49B9D8]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h   [12-Nov-13 15:35  CRC=E3D32390]
+    src\polyonedisplay.h                                    [07-Nov-17 16:41  CRC=A4313B37]
+    src\JoaquinSupportAPI\timer.h                           [07-Nov-17 16:40  CRC=949A7A13]
+    src\JoaquinSupportAPI\tiempo.h                          [07-Nov-17 14:01  CRC=E5C7428E]
+    src\JoaquinSupportAPI\ds3231.h                          [29-Sep-17 14:56  CRC=94704CD8]
+    src\JoaquinSupportAPI\array.h                           [17-Oct-17 08:28  CRC=36309420]
+    src\JoaquinSupportAPI\sevensegmentdisplay.h             [07-Nov-17 15:08  CRC=5883CD48]
+    src\JoaquinSupportAPI\shiftregister.h                   [12-Oct-17 11:06  CRC=99A3CB98]
+    src\JoaquinSupportAPI\buttons.h                         [11-Oct-17 10:56  CRC=CA7F87E2]
+
+Source signature=DE775EDC
+
+Units:
+    src\main (main)
+
+Compiler Settings:
+    Processor:      PIC16F886
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Predefined symbols:
+       #define __16F886 1
+
+Task Info:
+    Ticks: 100 ns
+    Cycle: 10 ms
+
+Tasks:
+    Task_checkIfStartStopResetButtonIsHeld
+    Task_checkIfMenuButtonIsHeld
+    Task_runStateMachine
+    Task_blinkDisplay
+
+Task Schedule:
+       1 ms  974:Task_checkIfStartStopResetButtonIsHeld
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       1 ms  976:Task_checkIfMenuButtonIsHeld
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+       1 ms  980:Task_blinkDisplay
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       1 ms  974:Task_checkIfStartStopResetButtonIsHeld
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       1 ms  976:Task_checkIfMenuButtonIsHeld
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+       5 ms  978:Task_runStateMachine
+    Sync to next 10 ms
+
+Output Files:
+    XREF file:   build\default\production\src\main.xsym
+    Errors:      build\default\production\src\main.err
+    Ext Symbols: build\default\production\src\main.esym
+    INHX8:       build\default\production\src\main.hex
+    Symbols:     build\default\production\src\main.sym
+    List:        build\default\production\src\main.lst
+    Debug/COFF:  build\default\production\src\main.cof
+    Project:     main.ccspjt
+    Call Tree:   build\default\production\src\main.tre
+    Statistics:  build\default\production\src\main.STA
