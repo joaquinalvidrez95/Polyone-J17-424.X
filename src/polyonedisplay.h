@@ -27,7 +27,7 @@ typedef enum {
 } TypeOfCount;
 
 typedef enum {
-    STATE_IDLE,
+    STATE_IDLE=0,
     STATE_COUNTING_UP,
     STATE_COUNTING_DOWN,
     STATE_INIT,

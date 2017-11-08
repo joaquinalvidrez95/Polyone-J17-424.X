@@ -1,7 +1,7 @@
 D G "__PCM__" 0 0 ""5.015""
 D G "__DEVICE__" 0 0 ""
 D G "__DATE__" 0 0 ""08-Nov-17""
-D G "__TIME__" 0 0 ""14:35:50""
+D G "__TIME__" 0 0 ""16:15:13""
 D G "__16F886" 0 0 "1" "* File:   main.c"
 C G "" 0 1 1 "*"
 C G "" 0 1 1 "*"
@@ -940,7 +940,7 @@ V L "digit" 6 26 "int8" `688
 E G "FORMAT_24" 4 16 "0" `693 
 E G "FORMAT_12" 4 17 "1" `694 
 T G "Format" 4 17 "" `695 
-T G "time" 4 25 "{int8 hour,int8 minute,int8 second,int1 Format,__EEADDRESS__ formatAddress}" `702 
+T G "time" 4 25 "{int8 hour,int8 minute,int8 second,int1 Format,int8 formatAddress}" `702 
 T G "TimeInDigits" 4 31 "{int8[2] hour,int8[2] minute,int8[2] second}" `707 
 V L "hour" 4 33 "int8" `709 
 V L "minute" 4 33 "int8" `710 
@@ -1277,47 +1277,66 @@ F G "PolyoneDisplay_resume" 2 225 "void(*PolyoneDisplay polyoneDisplayPtr)" `105
 V L "currentState" 2 227 "PolyoneDisplayState" `1056 
 V L "polyoneDisplayPtr" 2 233 "*PolyoneDisplay" `1058 
 F G "PolyoneDisplay_isTimerDone" 2 233 "int8(*PolyoneDisplay polyoneDisplayPtr)" `1057 
-D G "TIMEOUT_MENU_BUTTON_MILISECONDS" 0 21 "2000"
-D G "TIMEOUT_RESET_TIMER_MILISECONDS" 0 22 "3000"
-D G "TIMEOUT_HYPHENS_MILISECONDS" 0 23 "2000"
-D G "DELAY_INCREASE_NUMBER_MILISECONDS" 0 25 "300"
-D G "BUTTON_START_STOP_RESET" 0 28 "PIN_B1"
-D G "BUTTON_MENU" 0 29 "PIN_B0"
-E G "EEPROM_CURRENT_STATE" 0 33 "0" `1060 
-E G "EEPROM_PREVIOUS_STATE" 0 34 "1" `1061 
-E G "EEPROM_FORMAT" 0 35 "2" `1062 
-E G "EEPROM_FIRST_NUMBER" 0 36 "3" `1063 
-E G "EEPROM_SECOND_NUMBER" 0 37 "4" `1064 
-E G "EEPROM_RTC_HOURS" 0 38 "5" `1065 
-E G "EEPROM_RTC_MINUTES" 0 39 "6" `1066 
-E G "EEPROM_RTC_SECONDS" 0 40 "7" `1067 
-T G "EEPROM_ADDRESS" 0 40 "" `1068 
-T G "*StateMachineFunction" 0 42 "void()" `1069  "-------------------------FUNCTION PROTOTYPE----------------------------------"
-f G "setupHardware" 0 46 "void()" `1071  "-------------------------RTOS TASKS------------------------------------------"
-f G "Task_checkIfStartStopResetButtonIsHeld" 0 49 "void()" `1073 
-f G "Task_checkIfMenuButtonIsHeld" 0 52 "void()" `1075 
-f G "Task_runStateMachine" 0 55 "void()" `1077 
-f G "Task_blinkDisplay" 0 58 "void()" `1079  "----------------------------GLOBAL VARIABLES---------------------------------"
-V G "showDisplayCompletely" 0 61 "int1" `1080 
-V G "buttonStateStartStopReset" 0 62 "ButtonState" `1081 
-V G "buttonStateMenu" 0 63 "ButtonState" `1082 
-V G "myPolyoneDisplay" 0 64 "PolyoneDisplay" `1083 
-V G "startStopButtonState" 0 66 "int1" `1084 
-V G "menuButtonState" 0 67 "int1" `1085 
-V G "nextStateAfterWaitingForButtonBeingReleased" 0 68 "PolyoneDisplayState" `1086 
-V G "numberOfMenuButtonHasBeenReleased" 0 69 "int8" `1087 
-F G "StateMachine_init" 0 71 "void()" `1088 
-F G "StateMachine_idle" 0 85 "void()" `1089 
-V G "functions" 0 98 "StateMachineFunction[10]" `1090 
-F G "MAIN" 0 103 "void()" `1091 
-F G "Task_runStateMachine" 0 109 "void()" `1077  "static BOOLEAN startStopButtonState = TRUE;"
-C L "Task_runStateMachine" 0 20 3 "FUNCTION"
-F G "Task_checkIfStartStopResetButtonIsHeld" 0 257 "void()" `1073 
-V L "nextUpButtonCounter" 0 258 "int8" `1096 
-F G "Task_checkIfMenuButtonIsHeld" 0 272 "void()" `1075 
-V L "menuButtonCounter" 0 273 "int8" `1097 
-F G "Task_blinkDisplay" 0 288 "void()" `1079 
-F G "setupHardware" 0 293 "void()" `1071 
+D G "TIMEOUT_MENU_BUTTON_MILISECONDS" 0 22 "2000"
+D G "TIMEOUT_RESET_TIMER_MILISECONDS" 0 23 "3000"
+D G "TIMEOUT_HYPHENS_MILISECONDS" 0 24 "2000"
+D G "DELAY_INCREASE_NUMBER_MILISECONDS" 0 26 "300"
+D G "BUTTON_START_STOP_RESET" 0 29 "PIN_B1"
+D G "BUTTON_MENU" 0 30 "PIN_B0"
+E G "EEPROM_CURRENT_STATE" 0 34 "0" `1060 
+E G "EEPROM_PREVIOUS_STATE" 0 35 "1" `1061 
+E G "EEPROM_FORMAT" 0 36 "2" `1062 
+E G "EEPROM_FIRST_NUMBER" 0 37 "3" `1063 
+E G "EEPROM_SECOND_NUMBER" 0 38 "4" `1064 
+E G "EEPROM_RTC_HOURS" 0 39 "5" `1065 
+E G "EEPROM_RTC_MINUTES" 0 40 "6" `1066 
+E G "EEPROM_RTC_SECONDS" 0 41 "7" `1067 
+T G "EEPROM_ADDRESS" 0 41 "" `1068 
+T G "*StateMachineFunction" 0 43 "void()" `1069  "-------------------------FUNCTION PROTOTYPE----------------------------------"
+f G "setupHardware" 0 47 "void()" `1071 
+f G "StateMachine_idle" 0 48 "void()" `1072 
+f G "StateMachine_countingUp" 0 49 "void()" `1073 
+f G "StateMachine_countingDown" 0 50 "void()" `1074 
+f G "StateMachine_init" 0 51 "void()" `1075 
+f G "StateMachine_resetting" 0 52 "void()" `1076 
+f G "StateMachine_ready" 0 53 "void()" `1077 
+f G "StateMachine_settingFirstNumber" 0 54 "void()" `1078 
+f G "StateMachine_settingSecondNumber" 0 55 "void()" `1079 
+f G "StateMachine_settingFormat" 0 56 "void()" `1080 
+f G "StateMachine_waitingForButtonBeingReleased" 0 57 "void()" `1081  "-------------------------RTOS TASKS------------------------------------------"
+f G "Task_checkIfStartStopResetButtonIsHeld" 0 60 "void()" `1083 
+f G "Task_checkIfMenuButtonIsHeld" 0 63 "void()" `1085 
+f G "Task_runStateMachine" 0 66 "void()" `1087 
+f G "Task_blinkDisplay" 0 69 "void()" `1089  "----------------------------GLOBAL VARIABLES---------------------------------"
+V G "showDisplayCompletely" 0 72 "int1" `1090 
+V G "buttonStateStartStopReset" 0 73 "ButtonState" `1091 
+V G "buttonStateMenu" 0 74 "ButtonState" `1092 
+V G "myPolyoneDisplay" 0 75 "PolyoneDisplay" `1093 
+V G "startStopButtonState" 0 77 "int1" `1094 
+V G "menuButtonState" 0 78 "int1" `1095 
+V G "nextStateAfterWaitingForButtonBeingReleased" 0 79 "PolyoneDisplayState" `1096 
+V G "numberOfMenuButtonHasBeenReleased" 0 80 "int8" `1097 
+f G "*functionPtr" 0 82 "void()" `1098 
+F G "MAIN" 0 84 "void()" `1100 
+C L "MAIN" 0 21 1 "FUNCTION"
+F G "x" 0 93 "void()" `1104 
+F G "Task_runStateMachine" 0 121 "void()" `1087 
+F G "Task_checkIfStartStopResetButtonIsHeld" 0 147 "void()" `1083 
+V L "nextUpButtonCounter" 0 148 "int8" `1107 
+F G "Task_checkIfMenuButtonIsHeld" 0 162 "void()" `1085 
+V L "menuButtonCounter" 0 163 "int8" `1108 
+F G "Task_blinkDisplay" 0 178 "void()" `1089 
+F G "setupHardware" 0 183 "void()" `1071 
+F G "StateMachine_init" 0 192 "void()" `1075 
+F G "StateMachine_idle" 0 208 "void()" `1072 
+F G "StateMachine_countingUp" 0 222 "void()" `1073 
+F G "StateMachine_countingDown" 0 226 "void()" `1074 
+F G "StateMachine_resetting" 0 246 "void()" `1076 
+F G "StateMachine_ready" 0 258 "void()" `1077 
+F G "StateMachine_settingFirstNumber" 0 273 "void()" `1078 
+F G "StateMachine_settingSecondNumber" 0 296 "void()" `1079 
+F G "StateMachine_settingFormat" 0 314 "void()" `1080 
+F G "StateMachine_waitingForButtonBeingReleased" 0 324 "void()" `1081 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

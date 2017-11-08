@@ -21,7 +21,7 @@ typedef struct {
     int minute;
     int second;
     Format format;
-    __EEADDRESS__ formatAddress;
+    char formatAddress;
 } Time;
 
 typedef struct {

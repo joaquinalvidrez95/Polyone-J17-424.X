@@ -11,6 +11,8 @@ Include=C:\Program Files (x86)\PICC\Devices\;C:\Users\Diseno4\MPLABXProjects\Pol
 Type=4
 [mru-list]
 1=build\default\production\src\main.c
+[build\default\debug\src\main.c]
+Type=4
 [Units]
 Count=1
 1=src\main (main)
