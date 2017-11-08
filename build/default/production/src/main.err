@@ -1,4 +1,3 @@
-C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\src\main.c:82:26:  Warning#202  Variable never used:   functionPtr
-      Memory usage:   ROM=57%      RAM=20% - 83%
-      0 Errors,  1 Warnings.
+      Memory usage:   ROM=61%      RAM=19% - 83%
+      0 Errors,  0 Warnings.
 Build Successful.

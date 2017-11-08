@@ -27,12 +27,12 @@ typedef enum {
 } TypeOfCount;
 
 typedef enum {
-    STATE_IDLE=0,
+    STATE_IDLE = 0,
     STATE_COUNTING_UP,
     STATE_COUNTING_DOWN,
     STATE_INIT,
     STATE_RESETTING,
-    STATE_READY,   
+    STATE_READY,
     STATE_SETTING_FIRST_NUMBER,
     STATE_SETTING_SECOND_NUMBER,
     STATE_SETTING_FORMAT,
@@ -187,17 +187,32 @@ void PolyoneDisplay_increaseSecondNumber(PolyoneDisplay *polyoneDisplayPtr) {
 }
 
 void PolyoneDisplay_swapFormat(PolyoneDisplay *polyoneDisplayPtr) {
-    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
-        polyoneDisplayPtr->timer.limitTime.second = polyoneDisplayPtr->timer.limitTime.minute;
-        polyoneDisplayPtr->timer.limitTime.minute = polyoneDisplayPtr->timer.limitTime.hour;
-        polyoneDisplayPtr->format = FORMAT_MINUTES_SECONDS;
+    polyoneDisplayPtr->format = !polyoneDisplayPtr->format;
 
-    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
         polyoneDisplayPtr->timer.limitTime.hour = polyoneDisplayPtr->timer.limitTime.minute;
         polyoneDisplayPtr->timer.limitTime.minute = polyoneDisplayPtr->timer.limitTime.second;
-         polyoneDisplayPtr->format = FORMAT_HOURS_MINUTES;
+        polyoneDisplayPtr->timer.limitTime.second = 0;
+        polyoneDisplayPtr->timer.hoursUpperBound = FIRST_NUMBER_UPPER_BOUND;
+        polyoneDisplayPtr->timer.minutesUpperBound = SECOND_NUMBER_UPPER_BOUND;
+
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        polyoneDisplayPtr->timer.limitTime.second = polyoneDisplayPtr->timer.limitTime.minute;
+        polyoneDisplayPtr->timer.limitTime.minute = polyoneDisplayPtr->timer.limitTime.hour;
+        polyoneDisplayPtr->timer.limitTime.hour = 0;
+        polyoneDisplayPtr->timer.hoursUpperBound = 0;
+        polyoneDisplayPtr->timer.minutesUpperBound = FIRST_NUMBER_UPPER_BOUND;
+
     }
-    //    polyoneDisplayPtr->format = !polyoneDisplayPtr->format;
+}
+
+BOOLEAN PolyoneDisplay_isAlarmOkay(PolyoneDisplay *polyoneDisplayPtr) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        return (polyoneDisplayPtr->timer.limitTime.hour != 0) || (polyoneDisplayPtr->timer.limitTime.minute != 0);
+
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        return (polyoneDisplayPtr->timer.limitTime.minute != 0) || (polyoneDisplayPtr->timer.limitTime.second != 0);
+    }
 }
 
 void PolyoneDisplay_saveRtcCurrentTime(PolyoneDisplay *polyoneDisplayPtr) {

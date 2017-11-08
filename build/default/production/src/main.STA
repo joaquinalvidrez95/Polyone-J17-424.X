@@ -1,11 +1,11 @@
 
-ROM used:   4710/8192 (57%)
-            5205/8192 (64%) including unused fragments
+ROM used:   4983/8192 (61%)
+            5402/8192 (66%) including unused fragments
 
-            2.0 Average locations per line
-            9.7 Average locations per statement
+            2.1 Average locations per line
+            9.8 Average locations per statement
 
-RAM used:   73/368 (20%) at main() level
+RAM used:   71/368 (19%) at main() level
             307/368 (83%) worst case
 
 Stack used: 8 worst case (2 in main + 6 for interrupts)
@@ -13,29 +13,29 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  330   149  31  src\main.c
+  290   151  30  src\main.c
   751     0   0  ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h
-  238    93  19  src\polyonedisplay.h
-  356   109  22  src\JoaquinSupportAPI\timer.h
-  243    73  15  src\JoaquinSupportAPI\tiempo.h
-  132    48  10  src\JoaquinSupportAPI\ds3231.h
+  253   104  20  src\polyonedisplay.h
+  373   119  23  src\JoaquinSupportAPI\timer.h
+  243    73  14  src\JoaquinSupportAPI\tiempo.h
+  132    48   9  src\JoaquinSupportAPI\ds3231.h
    35     0   0  src\JoaquinSupportAPI\array.h
   213     0   0  src\JoaquinSupportAPI\sevensegmentdisplay.h
    46    13   3  src\JoaquinSupportAPI\shiftregister.h
    18     0   0  src\JoaquinSupportAPI\buttons.h
 ----- -----
- 2362   485 Total
+ 2354   508 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     20   0    1             @delay_ms1
+1     20   0    1             @delay_ms1
  Inline         3             @I2C_READ_1
 0     76   2    1             @I2C_WRITE_1
-0     61   1    4    92  3.2  bcd_to_decimal
- Inline         2             @MUL88
+0     25   1    4    92  3.2  bcd_to_decimal
+0     41   1    2             @MUL88
 0     32   1    3   104  3.7  decimal_to_bcd
 0     25   1    3             @DIV88
-0    184   4    2   253  3.8  DS3231_Read
+0    178   4    2   253  3.8  DS3231_Read
 0     63   1    2   136  2.8  DS3231_Write
  Inline         3   258  3.0  ds3231_get_Time
 0     43   1    4   183  2.5  setTime
@@ -51,7 +51,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     46   1   13             @MUL3232
 0      7   0    0    33  1.3  Time_clearRtcTime
  Inline         0    32  1.0  ShiftRegister_closeStrobe
-0     71   2    5   466  6.3  ShiftRegister_sendData
+0     71   1    5   466  6.3  ShiftRegister_sendData
 0     31   1    0             @const819
  Inline         7   169  4.5  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers
  Inline         7   218  5.0  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot
@@ -69,7 +69,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
  Inline         4   197  3.3  Timer_saveRtcCurrentTime
  Inline         4    48  2.9  Timer_isTimerFinished
  Inline        17   659  7.2  Timer_showHoursAndMinutesOfCountdownTime
- Inline        16   493  5.7  Timer_showMinutesAndSecondsOfCountdownTime
+ Inline        21   644  6.3  Timer_showMinutesAndSecondsOfCountdownTime
  Inline        16   400  6.1  Timer_hideHoursAndShowMinutesOfLimitTime
  Inline        16   400  6.1  Timer_hideMinutesAndShowSecondsOfLimitTime
  Inline        16   493  5.7  Timer_showHoursAndMinutesOfLimitTime
@@ -79,59 +79,51 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     60   1    4    43  2.5  PolyoneDisplay_updateRtc
 0    485  10    4    44  2.1  PolyoneDisplay_updateTimer
  Inline        59  1204  8.3  PolyoneDisplay_new
-0    210   4    5   197  4.7  PolyoneDisplay_showCount
+0    233   5    5   197  4.7  PolyoneDisplay_showCount
 1    207   4    4   165  4.2  PolyoneDisplay_showLimitTime
  Inline         4   165  4.2  PolyoneDisplay_showFirstNumber
  Inline         4   165  4.2  PolyoneDisplay_showSecondNumber
  Inline         7   727  6.7  PolyoneDisplay_showFormat
  Inline         4   165  4.2  PolyoneDisplay_increaseFirstNumber
  Inline         4   165  4.2  PolyoneDisplay_increaseSecondNumber
- Inline         5   572  4.9  PolyoneDisplay_swapFormat
+ Inline         5   937  5.3  PolyoneDisplay_swapFormat
+ Inline         3   367  5.6  PolyoneDisplay_isAlarmOkay
  Inline         4    43  2.5  PolyoneDisplay_saveRtcCurrentTime
- Inline         6    93  3.2  PolyoneDisplay_setState
+1     37   1    6    93  3.2  PolyoneDisplay_setState
  Inline         5    76  2.7  PolyoneDisplay_stop
 1     83   2    4   106  2.8  PolyoneDisplay_saveState
  Inline         6   123  2.8  PolyoneDisplay_resume
  Inline         4    55  1.5  PolyoneDisplay_isTimerDone
 1    159   3    0    54  2.1  MAIN
-0     12   0    0             @const1103
-1    932  20    0   244  3.7  x
-1     17   0    0             @goto11429
-2   1101  23    0   290  4.1  Task_runStateMachine
-2      8   0    0             @goto11442
+0     12   0    0             @const1101
+1    954  19    4  1621  7.3  x
+1     14   0    0             @goto11477
+2   1298  26    1  2286  9.3  Task_runStateMachine
+2      8   0    0             @goto11578
 1     30   1    0   257  4.6  Task_checkIfStartStopResetButtonIsHeld
 1     30   1    0   257  4.6  Task_checkIfMenuButtonIsHeld
 1     17   0    0    37  2.0  Task_blinkDisplay
-1     42   1    1   129  2.6  setupHardware
- Inline         4   156  2.7  StateMachine_init
- Inline         1   214  4.5  StateMachine_idle
- Inline         1   412  5.2  StateMachine_countingDown
- Inline         1   200  3.1  StateMachine_resetting
- Inline         1   307  5.1  StateMachine_ready
- Inline         1   404  6.1  StateMachine_settingFirstNumber
- Inline         1   318  5.0  StateMachine_settingSecondNumber
- Inline         0   176  3.9  StateMachine_settingFormat
- Inline         0    78  2.8  StateMachine_waitingForButtonBeingReleased
+1     40   1    1   129  2.6  setupHardware
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               72
-    Statements              485
-    Comments                343
-    Volume (V)              39476
-    Difficulty (D)          300.8
-    Effort to implement (E) 11874638
-    Time to implement (T)   183 hours, 15 minutes
+    Functions               64
+    Statements              508
+    Comments                340
+    Volume (V)              41003
+    Difficulty (D)          278.5
+    Effort to implement (E) 11419927
+    Time to implement (T)   176 hours, 14 minutes
     Est Delivered Bugs (B)  17
-    Cyclomatic Complexity   62
-    Maintainability (MI)    95
+    Cyclomatic Complexity   66
+    Maintainability (MI)    83
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
-00004-007FF  2030  14  
-00800-00FFF  1567  481  
-01000-017FF  1109  939  
+00004-007FF  2032  12  
+00800-00FFF  1641  407  
+01000-017FF  1306  742  
 01800-01FFF     0  2048  
 
 

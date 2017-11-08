@@ -128,13 +128,26 @@ void Timer_updateCountdownTime(Timer *timerPtr) {
     int32 minute = (countdownTimeInSeconds % 3600) / 60;
     timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
 
-    //    if ((minute + 60) <= 99 && (hour > 0)) {
-    //        hour -= 1;
-    //        minute += 60;
-    //    }
     timerPtr->countdownTime.hour = hour;
     timerPtr->countdownTime.minute = minute;
+}
 
+void Timer_updateCountdownTimeMinutesSeconds(Timer *timerPtr) {
+    signed int32 currentTimeInSeconds;
+    signed int32 limitTimeInSeconds;
+    signed int32 countdownTimeInSeconds;
+    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
+    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->limitTime);
+    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
+
+    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
+
+    int32 hour = (countdownTimeInSeconds / 3600);
+    int32 minute = (countdownTimeInSeconds % 3600) / 60;
+    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
+
+    timerPtr->countdownTime.hour = hour;
+    timerPtr->countdownTime.minute = minute;
 }
 
 void Timer_updateTimerFromEeprom(Timer *timerPtr) {
@@ -249,8 +262,12 @@ void Timer_showHoursAndMinutesOfCountdownTime(Timer *timerPtr, BOOLEAN blink) {
 void Timer_showMinutesAndSecondsOfCountdownTime(Timer *timerPtr) {
     int timeToSend[4] = {0};
     TimeInDigits timeInDigits;
-
-    timeInDigits = Time_getTimeInDigits(&timerPtr->countdownTime, FALSE);
+    Time time;
+    
+    time = timerPtr->countdownTime;
+    time.minute = time.minute + time.hour * 60;
+    timeInDigits = Time_getTimeInDigits(&time, FALSE);
+    //    timeInDigits = Time_getTimeInDigits(&timerPtr->countdownTime, FALSE);
     timeToSend[0] = timeInDigits.second[0];
     timeToSend[1] = timeInDigits.second[1];
     timeToSend[2] = timeInDigits.minute[0];
