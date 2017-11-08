@@ -17,7 +17,7 @@
 #define SECOND_NUMBER_UPPER_BOUND   59
 
 typedef enum {
-    FORMAT_MINUTES_SECONDS,
+    FORMAT_MINUTES_SECONDS = 0,
     FORMAT_HOURS_MINUTES
 } PolyoneDisplayFormat;
 
@@ -32,8 +32,7 @@ typedef enum {
     STATE_COUNTING_DOWN,
     STATE_INIT,
     STATE_RESETTING,
-    STATE_READY,
-    STATE_OVERFLOWED,
+    STATE_READY,   
     STATE_SETTING_FIRST_NUMBER,
     STATE_SETTING_SECOND_NUMBER,
     STATE_SETTING_FORMAT,
@@ -147,6 +146,58 @@ void PolyoneDisplay_showSecondNumber(PolyoneDisplay *polyoneDisplayPtr) {
     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
         Timer_hideMinutesAndShowSecondsOfLimitTime(&polyoneDisplayPtr->timer);
     }
+}
+
+void PolyoneDisplay_showFormat(PolyoneDisplay *polyoneDisplayPtr) {
+    int numbersToSend[4] = {0};
+
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+
+        numbersToSend[0] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N];
+        numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N] |
+                SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
+        numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_CAPS_H];
+        numbersToSend[3] = SevenSegmentDisplay_characters[INDEX_CAPS_H];
+
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        numbersToSend[0] = SevenSegmentDisplay_characters[5];
+        numbersToSend[1] = SevenSegmentDisplay_characters[5] |
+                SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
+        numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N];
+        numbersToSend[3] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N];
+    }
+
+    ShiftRegister_sendData(numbersToSend, getArraySize(numbersToSend));
+}
+
+void PolyoneDisplay_increaseFirstNumber(PolyoneDisplay *polyoneDisplayPtr) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        Timer_increaseTimerHours(&polyoneDisplayPtr->timer);
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        Timer_increaseTimerMinutes(&polyoneDisplayPtr->timer);
+    }
+}
+
+void PolyoneDisplay_increaseSecondNumber(PolyoneDisplay *polyoneDisplayPtr) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        Timer_increaseTimerMinutes(&polyoneDisplayPtr->timer);
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        Timer_increaseTimerSeconds(&polyoneDisplayPtr->timer);
+    }
+}
+
+void PolyoneDisplay_swapFormat(PolyoneDisplay *polyoneDisplayPtr) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        polyoneDisplayPtr->timer.limitTime.second = polyoneDisplayPtr->timer.limitTime.minute;
+        polyoneDisplayPtr->timer.limitTime.minute = polyoneDisplayPtr->timer.limitTime.hour;
+        polyoneDisplayPtr->format = FORMAT_MINUTES_SECONDS;
+
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        polyoneDisplayPtr->timer.limitTime.hour = polyoneDisplayPtr->timer.limitTime.minute;
+        polyoneDisplayPtr->timer.limitTime.minute = polyoneDisplayPtr->timer.limitTime.second;
+         polyoneDisplayPtr->format = FORMAT_HOURS_MINUTES;
+    }
+    //    polyoneDisplayPtr->format = !polyoneDisplayPtr->format;
 }
 
 void PolyoneDisplay_saveRtcCurrentTime(PolyoneDisplay *polyoneDisplayPtr) {

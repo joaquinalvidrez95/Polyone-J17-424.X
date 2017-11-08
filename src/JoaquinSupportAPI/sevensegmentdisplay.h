@@ -13,7 +13,17 @@
 
 typedef enum {
     INDEX_SEVEN_SEGMENT_HYPHEN = 10,
-    INDEX_SEVEN_SEGMENT_DOT
+    INDEX_SEVEN_SEGMENT_DOT,
+    INDEX_CAPS_A,
+    INDEX_CAPS_C,
+    INDEX_CAPS_E,
+    INDEX_CAPS_F,
+    INDEX_CAPS_H,
+    INDEX_LOWERCASE_B,
+    INDEX_LOWERCASE_C,
+    INDEX_LOWERCASE_D,
+    INDEX_LOWERCASE_N,
+    INDEX_LOWERCASE_U,
 } SEVEN_SEGMENT_DISPLAY_INDEX;
 
 const int SevenSegmentDisplay_characters[] = {
@@ -28,18 +38,22 @@ const int SevenSegmentDisplay_characters[] = {
     0b11110111, // 8
     0b11110011, // 9
     0b00000001, // -
-    0b00001000 // .   
-    0b11100111, // A
-    0b01110101, // a
+    0b00001000, // .   
+    0b11100111, // A 
+    0b10010110, // C
+    0b10010111, // E
+    0b10000111, // F
+    0b01100111, //H    
+    0b00110111, //b    
+    0b10010110, //c    
+    0b01110101, //d    
+    0b00100101, //n    
+    0b01110110, //u     
     0b00010111,
     0b00000100,
-    0b10000111, // F
     0b01100100,
-    0b10010110, // C
-    0b11000011,
+    0b11000011, //° 
     0b00110101,
-    0b00110101,
-    0b10010111, // E
 };
 
 void SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers(int arrayOfNumbers[], int arraySize) {

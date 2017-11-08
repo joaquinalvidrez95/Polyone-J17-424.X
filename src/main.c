@@ -22,6 +22,8 @@
 #define TIMEOUT_RESET_TIMER_MILISECONDS 3000
 #define TIMEOUT_HYPHENS_MILISECONDS     2000
 
+#define DELAY_INCREASE_NUMBER_MILISECONDS 300
+
 // Buttons
 #define  BUTTON_START_STOP_RESET    PIN_B1
 #define  BUTTON_MENU                PIN_B0
@@ -58,6 +60,11 @@ ButtonState buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
 ButtonState buttonStateMenu = BUTTON_STATE_NOT_PUSHED;
 PolyoneDisplay myPolyoneDisplay;
 
+BOOLEAN startStopButtonState = TRUE;
+BOOLEAN menuButtonState = TRUE;
+PolyoneDisplayState nextStateAfterWaitingForButtonBeingReleased;
+int numberOfMenuButtonHasBeenReleased = 0;
+
 void main(void) {
     setupHardware();
     myPolyoneDisplay.currentState = STATE_INIT;
@@ -65,10 +72,10 @@ void main(void) {
 }
 
 void Task_runStateMachine(void) {
-    static BOOLEAN startStopButtonState = TRUE;
-    static BOOLEAN menuButtonState = TRUE;
-    static PolyoneDisplayState nextStateAfterWaitingForButtonBeingReleased;
-    static int numberOfMenuButtonHasBeenReleased = 0;
+    //    static BOOLEAN startStopButtonState = TRUE;
+    //    static BOOLEAN menuButtonState = TRUE;
+    //    static PolyoneDisplayState nextStateAfterWaitingForButtonBeingReleased;
+    //    static int numberOfMenuButtonHasBeenReleased = 0;
 
     switch (myPolyoneDisplay.currentState) {
         case STATE_INIT:
@@ -82,20 +89,10 @@ void Task_runStateMachine(void) {
                     EEPROM_RTC_MINUTES,
                     EEPROM_RTC_SECONDS
                     );
-
-            //            if (myPolyoneDisplay.currentState == STATE_IDLE) {
-            //                PolyoneDisplay_updateTimer(&myPolyoneDisplay);
-            //                PolyoneDisplay_updateRtc(&myPolyoneDisplay);
-            //            } else {
-            //                PolyoneDisplay_updateTimer(&myPolyoneDisplay);
-            //            }
-
             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
-
             break;
 
         case STATE_IDLE:
-            output_high(PIN_B3);
             if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
                 PolyoneDisplay_resume(&myPolyoneDisplay);
                 PolyoneDisplay_saveState(&myPolyoneDisplay);
@@ -173,12 +170,11 @@ void Task_runStateMachine(void) {
             }
             if (!input(BUTTON_START_STOP_RESET)) {
                 while (!input(BUTTON_START_STOP_RESET)) {
-                    //                    Timer_increaseTimerHours(&myTimer);
-                    //                    SevenSegmentDisplay_showHoursAndMinutesOfLimitTime(&myTimer);
-                    //                    delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
+                    PolyoneDisplay_increaseFirstNumber(&myPolyoneDisplay);
+                    PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
+                    delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
                 }
             }
-
 
             if (!menuButtonState && input(BUTTON_MENU)) {
                 numberOfMenuButtonHasBeenReleased++;
@@ -197,18 +193,25 @@ void Task_runStateMachine(void) {
             }
             if (!input(BUTTON_START_STOP_RESET)) {
                 while (!input(BUTTON_START_STOP_RESET)) {
-                    //                    Timer_increaseTimerHours(&myTimer);
-                    //                    SevenSegmentDisplay_showHoursAndMinutesOfLimitTime(&myTimer);
-                    //                    delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
+                    PolyoneDisplay_increaseSecondNumber(&myPolyoneDisplay);
+                    PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
+                    delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
                 }
             }
             if (!menuButtonState && input(BUTTON_MENU)) {
                 myPolyoneDisplay.currentState = STATE_SETTING_FORMAT;
             }
             break;
-        case STATE_SETTING_FORMAT:
-            break;
 
+        case STATE_SETTING_FORMAT:
+            PolyoneDisplay_showFormat(&myPolyoneDisplay);
+            if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+                PolyoneDisplay_swapFormat(&myPolyoneDisplay);
+            }
+            if (!menuButtonState && input(BUTTON_MENU)) {
+                myPolyoneDisplay.currentState = STATE_READY;
+            }
+            break;
 
     }
     startStopButtonState = input(BUTTON_START_STOP_RESET);
