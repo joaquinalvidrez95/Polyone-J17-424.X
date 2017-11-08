@@ -68,9 +68,6 @@ BOOLEAN menuButtonState = TRUE;
 PolyoneDisplayState nextStateAfterWaitingForButtonBeingReleased;
 int numberOfMenuButtonHasBeenReleased = 0;
 
-
-
-
 void StateMachine_init(void) {
     myPolyoneDisplay = PolyoneDisplay_new(
             EEPROM_CURRENT_STATE,
@@ -85,8 +82,22 @@ void StateMachine_init(void) {
     PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
 }
 
-StateMachineFunction functions[NUMBER_OF_STATES]={
+void StateMachine_idle(void) {
+    if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+        PolyoneDisplay_resume(&myPolyoneDisplay);
+        PolyoneDisplay_saveState(&myPolyoneDisplay);
+        PolyoneDisplay_updateRtc(&myPolyoneDisplay);
+
+    }
+    if (buttonStateStartStopReset == BUTTON_STATE_HELD) {
+        buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
+        myPolyoneDisplay.currentState = STATE_RESETTING;
+    }
+}
+
+StateMachineFunction functions[NUMBER_OF_STATES] = {
     StateMachine_init,
+    StateMachine_idle
 };
 
 void main(void) {

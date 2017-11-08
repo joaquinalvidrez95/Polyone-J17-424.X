@@ -1,5 +1,5 @@
-C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\src\main.c:88:22:  Warning#202  Variable never used:   functions
-C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\src\main.c:289:1:  Error#71  Out of ROM, A segment or the program is too large    Task_runStateMachine
+C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\src\main.c:98:22:  Warning#202  Variable never used:   functions
+C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\src\main.c:300:1:  Error#71  Out of ROM, A segment or the program is too large    Task_runStateMachine
   Seg 00800-00FFF, 0698 left, need 007E8
   Seg 01000-017FF, 0800 left, need 00818
   Seg 01800-01FFF, 0800 left, need 00818

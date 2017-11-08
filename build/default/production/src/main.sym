@@ -32,21 +32,21 @@
 095     WPUB
 107.6   C1OUT
 108.6   C2OUT
-10D-10E @READ_PROGRAM_MEMORY8.P1
-10D-10E @WRITE_PROGRAM_MEMORY8.P2
-137-13A SeventSegmentDisplay_showHyphens.arrayToSend
-137-138 PolyoneDisplay_swapFormat.polyoneDisplayPtr
-137-138 PolyoneDisplay_saveRtcCurrentTime.polyoneDisplayPtr
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
 137-138 PolyoneDisplay_resume.polyoneDisplayPtr
-137-138 PolyoneDisplay_isTimerDone.polyoneDisplayPtr
-137-138 PolyoneDisplay_stop.polyoneDisplayPtr
-137-138 PolyoneDisplay_increaseSecondNumber.polyoneDisplayPtr
+137-138 PolyoneDisplay_swapFormat.polyoneDisplayPtr
+137-13A SeventSegmentDisplay_showHyphens.arrayToSend
 137-138 PolyoneDisplay_showFormat.polyoneDisplayPtr
-137-138 PolyoneDisplay_showSecondNumber.polyoneDisplayPtr
-137-138 PolyoneDisplay_increaseFirstNumber.polyoneDisplayPtr
-137-138 PolyoneDisplay_setState.polyoneDisplayPtr
-137-138 PolyoneDisplay_saveState.polyoneDisplayPtr
+137-138 PolyoneDisplay_saveRtcCurrentTime.polyoneDisplayPtr
+137-138 PolyoneDisplay_stop.polyoneDisplayPtr
+137-138 PolyoneDisplay_isTimerDone.polyoneDisplayPtr
 137-138 PolyoneDisplay_showFirstNumber.polyoneDisplayPtr
+137-138 PolyoneDisplay_increaseSecondNumber.polyoneDisplayPtr
+137-138 PolyoneDisplay_increaseFirstNumber.polyoneDisplayPtr
+137-138 PolyoneDisplay_showSecondNumber.polyoneDisplayPtr
+137-138 PolyoneDisplay_saveState.polyoneDisplayPtr
+137-138 PolyoneDisplay_setState.polyoneDisplayPtr
 137-138 PolyoneDisplay_showLimitTime.polyoneDisplayPtr
 137-138 PolyoneDisplay_showCount.polyoneDisplayPtr
 137     Task_runStateMachine.@SCRATCH1
@@ -81,17 +81,17 @@
 13A     PolyoneDisplay_resume.@SCRATCH1
 13A     PolyoneDisplay_isTimerDone.@SCRATCH2
 13A     Task_runStateMachine.@SCRATCH4
-13B-13C Timer_hideSecondsAndShowMinutesOfLimitTime.timerPtr
+13B-13C Timer_hideHoursAndShowMinutesOfLimitTime.timerPtr
 13B-13C Timer_showMinutesAndSecondsOfLimitTime.timerPtr
 13B-13C Timer_isTimerFinished.timerPtr
 13B-13C Timer_increaseTimerMinutes.timerPtr
-13B-13C Timer_increaseTimerHours.timerPtr
+13B-13C Timer_hideSecondsAndShowMinutesOfLimitTime.timerPtr
 13B-13C Timer_hideMinutesAndShowSecondsOfLimitTime.timerPtr
 13B-13C Timer_saveRtcCurrentTime.timerPtr
-13B-13C Timer_hideHoursAndShowMinutesOfLimitTime.timerPtr
-13B-13C Timer_increaseTimerSeconds.timerPtr
-13B-13C Timer_hideMinutesAndShowHoursOfLimitTime.timerPtr
 13B-13C Timer_showHoursAndMinutesOfLimitTime.timerPtr
+13B-13C Timer_increaseTimerHours.timerPtr
+13B-13C Timer_hideMinutesAndShowHoursOfLimitTime.timerPtr
+13B-13C Timer_increaseTimerSeconds.timerPtr
 13B     PolyoneDisplay_showCount.@SCRATCH2
 13B     PolyoneDisplay_swapFormat.@SCRATCH3
 13B     PolyoneDisplay_setState.@SCRATCH2
@@ -101,13 +101,13 @@
 13C-13D Timer_showHoursAndMinutesOfCountdownTime.timerPtr
 13C     PolyoneDisplay_setState.@SCRATCH3
 13C     PolyoneDisplay_resume.@SCRATCH3
-13D-140 Timer_hideHoursAndShowMinutesOfLimitTime.numbersToSend
-13D-13E PolyoneDisplay_new.addressCurrentState
-13D-140 Timer_showHoursAndMinutesOfLimitTime.numbersToSend
 13D-140 Timer_hideMinutesAndShowHoursOfLimitTime.numbersToSend
+13D-13E PolyoneDisplay_new.addressCurrentState
+13D-140 Timer_showMinutesAndSecondsOfLimitTime.numbersToSend
+13D-140 Timer_hideHoursAndShowMinutesOfLimitTime.numbersToSend
+13D-140 Timer_showHoursAndMinutesOfLimitTime.numbersToSend
 13D-140 Timer_hideMinutesAndShowSecondsOfLimitTime.numbersToSend
 13D-140 Timer_hideSecondsAndShowMinutesOfLimitTime.numbersToSend
-13D-140 Timer_showMinutesAndSecondsOfLimitTime.numbersToSend
 13D     Timer_increaseTimerHours.@SCRATCH1
 13D     Timer_increaseTimerMinutes.@SCRATCH1
 13D     Timer_increaseTimerSeconds.@SCRATCH1
@@ -127,17 +127,17 @@
 13F     Timer_increaseTimerHours.@SCRATCH3
 13F     Timer_increaseTimerMinutes.@SCRATCH3
 13F     Timer_increaseTimerSeconds.@SCRATCH3
-141-146 Timer_showMinutesAndSecondsOfLimitTime.displayableTime
 141-146 Timer_hideHoursAndShowMinutesOfLimitTime.displayableTime
+141-146 Timer_showMinutesAndSecondsOfLimitTime.displayableTime
+141-146 Timer_hideSecondsAndShowMinutesOfLimitTime.displayableTime
 141-142 PolyoneDisplay_new.addressFormat
 141-146 Timer_showHoursAndMinutesOfLimitTime.displayableTime
-141-146 Timer_hideSecondsAndShowMinutesOfLimitTime.displayableTime
 141-146 Timer_hideMinutesAndShowSecondsOfLimitTime.displayableTime
 141-146 Timer_hideMinutesAndShowHoursOfLimitTime.displayableTime
 141     Time_isTimeZero.@SCRATCH1
 142-147 Timer_showMinutesAndSecondsOfCountdownTime.TimeInDigits
-143-148 Timer_showHoursAndMinutesOfCountdownTime.TimeInDigits
 143-144 PolyoneDisplay_new.addressFirstNumberAlarm
+143-148 Timer_showHoursAndMinutesOfCountdownTime.TimeInDigits
 145-146 PolyoneDisplay_new.addressSecondNumberAlarm
 147-148 PolyoneDisplay_new.addressRtcHours
 147     Timer_hideHoursAndShowMinutesOfLimitTime.@SCRATCH1
@@ -177,9 +177,9 @@
 14B     Timer_showMinutesAndSecondsOfCountdownTime.@SCRATCH4
 14C     SevenSegmentDisplay_showArrayOfNumbers.withDot
 14C     Timer_showHoursAndMinutesOfCountdownTime.@SCRATCH4
+14D-16E PolyoneDisplay_new.PolyoneDisplay
 14D-14E SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.arrayOfNumbers
 14D-14E ShiftRegister_sendData.charactersArray
-14D-16E PolyoneDisplay_new.PolyoneDisplay
 14D-14E SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.arrayOfNumbers
 14F     ShiftRegister_sendData.arraySize
 14F     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.arraySize
@@ -187,8 +187,8 @@
 150     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.i
 150     ShiftRegister_sendData.i
 150     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.i
-151-152 Time_getTimeInDigits.timePtr
 151     ShiftRegister_sendData.j
+151-152 Time_getTimeInDigits.timePtr
 151     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers.@SCRATCH1
 151     SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot.@SCRATCH1
 152     ShiftRegister_sendData.character
@@ -225,8 +225,8 @@
 193     PolyoneDisplay_updateRtc.@SCRATCH2
 193     PolyoneDisplay_updateTimer.@SCRATCH2
 193     PolyoneDisplay_new.@SCRATCH4
-194-195 Timer_updateTimer.timerPtr
 194-195 Timer_updateRtc.timerPtr
+194-195 Timer_updateTimer.timerPtr
 194     PolyoneDisplay_new.@SCRATCH5
 195     PolyoneDisplay_new.@SCRATCH6
 196-197 Timer_updateCountdownTime.timerPtr
@@ -249,19 +249,19 @@
 19C-19F Timer_updateCountdownTime.limitTimeInSeconds
 19C     Time_setClockTime.@SCRATCH3
 19D     setTime.hSet
-19E     Timer_newMinutesSeconds.maximumMinutes
-19E     Timer_newHoursMinutes.maximumHours
 19E-1A3 Time_getCurrentTime.currentTime
+19E     Timer_newHoursMinutes.maximumHours
+19E     Timer_newMinutesSeconds.maximumMinutes
 19E     setTime.mSet
-19F     Timer_newHoursMinutes.maximumMinutes
 19F-1A0 Timer_newMinutesSeconds.alarmMinutesAddress
 19F     setTime.sSet
+19F     Timer_newHoursMinutes.maximumMinutes
 1A0-1A1 Timer_newHoursMinutes.alarmHourAddress
 1A0-1A3 Timer_updateCountdownTime.countdownTimeInSeconds
 1A0     decimal_to_bcd.d
 1A0     setTime.@SCRATCH1
-1A1-1A2 Timer_newMinutesSeconds.addressAlarmSeconds
 1A1     DS3231_Write.address
+1A1-1A2 Timer_newMinutesSeconds.addressAlarmSeconds
 1A1     decimal_to_bcd.@SCRATCH1
 1A2     DS3231_Write.value
 1A2-1A3 Timer_newHoursMinutes.alarmMinutesAddress
@@ -270,8 +270,8 @@
 1A4-1A5 Timer_newHoursMinutes.rtcHour
 1A4-1A7 Timer_updateCountdownTime.hour
 1A4     Time_getCurrentTime.currentHour
-1A5     Time_getCurrentTime.currentMinute
 1A5-1A6 Timer_newMinutesSeconds.rtcMinutes
+1A5     Time_getCurrentTime.currentMinute
 1A6     Time_getCurrentTime.currentSecond
 1A6-1A7 Timer_newHoursMinutes.rtcMinutes
 1A7-1A8 Timer_newMinutesSeconds.rtcSeconds
@@ -303,8 +303,8 @@
 1AF     createTime.second
 1AF     @MUL88.P1
 1AF     Timer_updateCountdownTime.@SCRATCH4
-1B0-1B3 Time_changeTimeToSeconds.hoursInSeconds
 1B0-1B5 createTime.time
+1B0-1B3 Time_changeTimeToSeconds.hoursInSeconds
 1B0     Timer_updateCountdownTime.@SCRATCH5
 1B1     Timer_updateCountdownTime.@SCRATCH6
 1B2     Timer_updateCountdownTime.@SCRATCH7
@@ -353,7 +353,7 @@
 ROM Allocation:
 000004  SevenSegmentDisplay_characters.call
 000008  SevenSegmentDisplay_characters.data
-000023  @const1093.call
+000023  @const1094.call
 00002F  @DIV88
 000048  @I2C_WRITE_1
 000094  DS3231_Read
@@ -399,7 +399,7 @@ Project Directory:
     C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\
 
 Project Files:
-    src\main.c                                              [08-Nov-17 14:32  CRC=ABB85AA2]
+    src\main.c                                              [08-Nov-17 14:35  CRC=04F237B8]
     ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h   [12-Nov-13 15:35  CRC=E3D32390]
     src\polyonedisplay.h                                    [08-Nov-17 14:23  CRC=8626146A]
     src\JoaquinSupportAPI\timer.h                           [08-Nov-17 12:14  CRC=157DA3CC]
@@ -410,7 +410,7 @@ Project Files:
     src\JoaquinSupportAPI\shiftregister.h                   [12-Oct-17 11:06  CRC=99A3CB98]
     src\JoaquinSupportAPI\buttons.h                         [07-Nov-17 18:20  CRC=CA7F87E2]
 
-Source signature=3E6C49B1
+Source signature=97A626C7
 
 Units:
     src\main (main)
