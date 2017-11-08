@@ -173,7 +173,7 @@ void Time_resetSeconds(Time *timePtr) {
 }
 ////////
 
-void setClockTime(Time *timePtr) {
+void Time_setClockTime(Time *timePtr) {
     setTime(
             timePtr->hour,
             timePtr->minute,
@@ -224,12 +224,12 @@ int getYear(void) {
 
 void Time_fixTimeToSummerDayLightSavingTime(Time *timePtr) {
     timePtr->hour = 3;
-    setClockTime(timePtr);
+    Time_setClockTime(timePtr);
 }
 
 void Time_fixTimeToWinterDayLightSavingTime(Time *timePtr) {
     timePtr->hour = 1;
-    setClockTime(timePtr);
+    Time_setClockTime(timePtr);
 }
 
 BOOLEAN Time_isTimeToStartDayLightSavingTime(Time *timePtr) {
@@ -237,22 +237,6 @@ BOOLEAN Time_isTimeToStartDayLightSavingTime(Time *timePtr) {
             (timePtr->minute == 0)&&
             (timePtr->second == 0);
 }
-
-//TimeInDigits Time_getTimeInDigits(Time *timePtr) {
-//    TimeInDigits displayableTime;
-//    
-//    Array_splitNumberIntoDigits(timePtr->hour, displayableTime.hour,
-//            getArraySize(displayableTime.hour));
-//    
-//    Array_splitNumberIntoDigits(timePtr->minute, displayableTime.minute,
-//            getArraySize(displayableTime.hour));
-//  
-//    Array_splitNumberIntoDigits(timePtr->second, displayableTime.second,
-//            getArraySize(displayableTime.hour));
-//  
-//    return displayableTime;
-//}
-
 
 #endif	/* TIME_H */
 

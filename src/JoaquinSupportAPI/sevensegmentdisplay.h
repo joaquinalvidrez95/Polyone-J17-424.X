@@ -11,10 +11,10 @@
 #include "array.h"
 #include "shiftregister.h"
 
-#define SEVENT_SEGMENT_HYPHEN 10
-
-
-const int SevenSegmentDisplay_DOT = 0b00001000;
+typedef enum {
+    INDEX_SEVEN_SEGMENT_HYPHEN = 10,
+    INDEX_SEVEN_SEGMENT_DOT
+} SEVEN_SEGMENT_DISPLAY_INDEX;
 
 const int SevenSegmentDisplay_characters[] = {
     0b11110110, // 0   
@@ -28,6 +28,7 @@ const int SevenSegmentDisplay_characters[] = {
     0b11110111, // 8
     0b11110011, // 9
     0b00000001, // -
+    0b00001000 // .   
     0b11100111, // A
     0b01110101, // a
     0b00010111,
@@ -39,7 +40,6 @@ const int SevenSegmentDisplay_characters[] = {
     0b00110101,
     0b00110101,
     0b10010111, // E
-    0b00001000 // .   
 };
 
 void SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers(int arrayOfNumbers[], int arraySize) {
@@ -136,7 +136,7 @@ void SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot(int arrayOfN
     int i = 0;
     for (i = 0; i < arraySize; i++) {
         arrayOfNumbers[i] = SevenSegmentDisplay_characters[arrayOfNumbers[i]];
-        arrayOfNumbers[i] |= SevenSegmentDisplay_DOT;
+        arrayOfNumbers[i] |= SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
     }
 }
 
@@ -153,10 +153,10 @@ void SevenSegmentDisplay_showArrayOfNumbers(int arrayOfNumbers[], int arraySize,
 void SeventSegmentDisplay_showHyphens(void) {
     int arrayToSend[4] = {0};
 
-    arrayToSend[0] = SevenSegmentDisplay_characters[SEVENT_SEGMENT_HYPHEN];
-    arrayToSend[1] = SevenSegmentDisplay_characters[SEVENT_SEGMENT_HYPHEN] | 0b00001000;
-    arrayToSend[2] = SevenSegmentDisplay_characters[SEVENT_SEGMENT_HYPHEN];
-    arrayToSend[3] = SevenSegmentDisplay_characters[SEVENT_SEGMENT_HYPHEN];
+    arrayToSend[0] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN];
+    arrayToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN] | 0b00001000;
+    arrayToSend[2] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN];
+    arrayToSend[3] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN];
     ShiftRegister_sendData(arrayToSend, getArraySize(arrayToSend));
 }
 

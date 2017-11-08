@@ -1,103 +1,119 @@
 
-ROM used:   2770/8192 (34%)
-            2782/8192 (34%) including unused fragments
+ROM used:   4191/8192 (51%)
+            4260/8192 (52%) including unused fragments
 
-            1.4 Average locations per line
-            9.1 Average locations per statement
+            1.9 Average locations per line
+            9.8 Average locations per statement
 
-RAM used:   85/368 (23%) at main() level
-            326/368 (89%) worst case
+RAM used:   74/368 (20%) at main() level
+            315/368 (86%) worst case
 
-Stack used: 8 worst case (3 in main + 5 for interrupts)
+Stack used: 7 worst case (2 in main + 5 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  189    88  29  src\main.c
+  265   125  29  src\main.c
   751     0   0  ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h
-   84    14   5  src\polyonedisplay.h
-  264    69  23  src\JoaquinSupportAPI\timer.h
-  259    73  24  src\JoaquinSupportAPI\tiempo.h
-  132    48  16  src\JoaquinSupportAPI\ds3231.h
+  187    58  14  src\polyonedisplay.h
+  356   109  26  src\JoaquinSupportAPI\timer.h
+  243    73  17  src\JoaquinSupportAPI\tiempo.h
+  132    48  11  src\JoaquinSupportAPI\ds3231.h
    35     0   0  src\JoaquinSupportAPI\array.h
   199     0   0  src\JoaquinSupportAPI\sevensegmentdisplay.h
-   46    13   4  src\JoaquinSupportAPI\shiftregister.h
-   20     0   0  src\JoaquinSupportAPI\buttons.h
+   46    13   3  src\JoaquinSupportAPI\shiftregister.h
+   18     0   0  src\JoaquinSupportAPI\buttons.h
 ----- -----
- 1979   305 Total
+ 2232   426 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
- Inline         1             @delay_ms1
+1     20   0    1             @delay_ms1
  Inline         3             @I2C_READ_1
-0     76   3    1             @I2C_WRITE_1
-0     57   2    4    92  3.2  bcd_to_decimal
+0     76   2    1             @I2C_WRITE_1
+0     59   1    4    92  3.2  bcd_to_decimal
  Inline         2             @MUL88
 0     32   1    3   104  3.7  decimal_to_bcd
 0     25   1    3             @DIV88
-0    178   6    2   253  3.8  DS3231_Read
-0     63   2    2   136  2.8  DS3231_Write
+0    188   4    2   253  3.8  DS3231_Read
+0     67   2    2   136  2.8  DS3231_Write
  Inline         3   258  3.0  ds3231_get_Time
-0     43   2    4   183  2.5  setTime
+0     43   1    4   183  2.5  setTime
  Inline         6   147  4.5  Array_clearArray
 0     67   2    7   244  5.7  Array_splitNumberIntoDigits
 0     39   1    5             @DIV1616
  Inline         9   158  3.5  createTime
  Inline        13   197  2.9  Time_getCurrentTime
-0    106   4   11   878  8.2  Time_getTimeInDigits
+0    106   3   11   878  8.2  Time_getTimeInDigits
  Inline         3   120  3.1  Time_isTimeZero
- Inline         5    76  2.7  setClockTime
-0    151   5   20   231  4.4  Time_changeTimeToSeconds
-0     44   2   13             @MUL3232
- Inline         0    33  1.3  Time_clearRtcTime
+ Inline         5    76  2.7  Time_setClockTime
+0    157   4   20   231  4.4  Time_changeTimeToSeconds
+0     46   1   13             @MUL3232
+0      7   0    0    33  1.3  Time_clearRtcTime
  Inline         0    32  1.0  ShiftRegister_closeStrobe
-0     71   3    5   468  6.2  ShiftRegister_sendData
-0     27   1    0             @const807
+0     71   2    5   466  6.3  ShiftRegister_sendData
+0     27   1    0             @const809
  Inline         7   169  4.5  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbers
- Inline         7   206  5.0  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot
-0    109   4    4   158  3.5  SevenSegmentDisplay_showArrayOfNumbers
+ Inline         7   218  5.0  SevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot
+0    109   3    4   158  3.5  SevenSegmentDisplay_showArrayOfNumbers
  Inline         4   325  4.2  SeventSegmentDisplay_showHyphens
- Inline        57   764  4.4  Timer_new
+ Inline        42   699  4.4  Timer_newHoursMinutes
+ Inline        41   693  4.3  Timer_newMinutesSeconds
  Inline         4    43  2.5  Timer_updateRtc
  Inline        32   579  7.6  Timer_updateCountdownTime
-0    124   4   14             @DIVS3232
+0    126   3   14             @DIVS3232
  Inline         6    61  2.6  Timer_updateTimer
+ Inline         4   197  3.3  Timer_saveRtcCurrentTime
  Inline         4    48  2.9  Timer_isTimerFinished
- Inline        17   692  7.2  Timer_showHoursAndMinutesOfCountdownTime
- Inline        16   495  5.6  Timer_showMinutesAndSecondsOfCountdownTime
- Inline        48   169  3.1  PolyoneDisplay_new
-0    456  16    4    43  2.5  PolyoneDisplay_updateTimer
-0    211   8    4   181  4.4  PolyoneDisplay_showCount
- Inline         4    43  2.5  PolyoneDisplay_updateRtc
+ Inline        17   659  7.2  Timer_showHoursAndMinutesOfCountdownTime
+ Inline        16   493  5.7  Timer_showMinutesAndSecondsOfCountdownTime
+ Inline        16   400  6.1  Timer_hideHoursAndShowMinutesOfLimitTime
+ Inline        16   400  6.1  Timer_hideMinutesAndShowSecondsOfLimitTime
+ Inline        16   493  5.7  Timer_showHoursAndMinutesOfLimitTime
+ Inline        16   493  5.7  Timer_showMinutesAndSecondsOfLimitTime
+ Inline        16   424  5.7  Timer_hideMinutesAndShowHoursOfLimitTime
+ Inline        16   427  5.5  Timer_hideSecondsAndShowMinutesOfLimitTime
+0     60   1    4    43  2.5  PolyoneDisplay_updateRtc
+0    514  12    4    44  2.1  PolyoneDisplay_updateTimer
+ Inline        62  1204  8.3  PolyoneDisplay_new
+0    210   5    5   197  4.7  PolyoneDisplay_showCount
+1    207   5    4   165  4.2  PolyoneDisplay_showLimitTime
+ Inline         4   165  4.2  PolyoneDisplay_showFirstNumber
+ Inline         4   165  4.2  PolyoneDisplay_showSecondNumber
+ Inline         4    43  2.5  PolyoneDisplay_saveRtcCurrentTime
+ Inline         6    93  3.2  PolyoneDisplay_setState
+ Inline         5    76  2.7  PolyoneDisplay_stop
+1     83   2    4   106  2.8  PolyoneDisplay_saveState
+ Inline         6   123  2.8  PolyoneDisplay_resume
  Inline         4    54  1.6  PolyoneDisplay_isTimerDone
-1    169   6    0    67  2.2  MAIN
-0     12   0    0             @const988
-1    551  20    4  1912  7.1  Task_runStateMachine
-1     14   1    0             @goto11289
-0     31   1    0   257  4.6  Task_checkIfStartStopResetButtonIsHeld
-0     31   1    0   257  4.6  Task_checkIfMenuButtonIsHeld
-0     17   1    0    37  2.0  Task_blinkDisplay
-0     62   2    1   129  2.6  setupHardware
+2    164   4    0    54  2.1  MAIN
+0     12   0    0             @const1067
+1   1540  37    4  3458  9.6  Task_runStateMachine
+1     15   0    0             @goto11460
+1     30   1    0   257  4.6  Task_checkIfStartStopResetButtonIsHeld
+1     30   1    0   257  4.6  Task_checkIfMenuButtonIsHeld
+1     17   0    0    37  2.0  Task_blinkDisplay
+1     40   1    1   129  2.6  setupHardware
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               39
-    Statements              305
-    Comments                400
-    Volume (V)              19431
-    Difficulty (D)          152.3
-    Effort to implement (E) 2959891
-    Time to implement (T)   45 hours, 41 minutes
-    Est Delivered Bugs (B)  7
-    Cyclomatic Complexity   33
-    Maintainability (MI)    57
+    Functions               55
+    Statements              426
+    Comments                353
+    Volume (V)              33183
+    Difficulty (D)          230.4
+    Effort to implement (E) 7646445
+    Time to implement (T)   118 hours, 0 minutes
+    Est Delivered Bugs (B)  13
+    Cyclomatic Complexity   52
+    Maintainability (MI)    69
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
-00004-007FF  2032  12  
-00800-00FFF   734  1314  
-01000-017FF     0  2048  
+00004-007FF  2041  3  
+00800-00FFF  1982  66  
+01000-017FF   164  1884  
 01800-01FFF     0  2048  
 
 

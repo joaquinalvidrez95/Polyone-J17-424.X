@@ -10,9 +10,7 @@
 
 typedef enum {
     BUTTON_STATE_HELD,
-    BUTTON_STATE_NOT_PUSHED,
-    BUTTON_STATE_RELEASED,
-    BUTTON_STATE_DISABLED
+    BUTTON_STATE_NOT_PUSHED   
 } ButtonState;
 
 #endif   /* BUTTONS_H */
