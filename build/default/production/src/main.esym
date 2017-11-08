@@ -1,7 +1,7 @@
 D G "__PCM__" 0 0 ""5.015""
 D G "__DEVICE__" 0 0 ""
 D G "__DATE__" 0 0 ""08-Nov-17""
-D G "__TIME__" 0 0 ""14:26:34""
+D G "__TIME__" 0 0 ""14:32:45""
 D G "__16F886" 0 0 "1" "* File:   main.c"
 C G "" 0 1 1 "*"
 C G "" 0 1 1 "*"
@@ -1291,29 +1291,32 @@ E G "EEPROM_SECOND_NUMBER" 0 37 "4" `1064
 E G "EEPROM_RTC_HOURS" 0 38 "5" `1065 
 E G "EEPROM_RTC_MINUTES" 0 39 "6" `1066 
 E G "EEPROM_RTC_SECONDS" 0 40 "7" `1067 
-T G "EEPROM_ADDRESS" 0 40 "" `1068  "-------------------------FUNCTION PROTOTYPE----------------------------------"
-f G "setupHardware" 0 43 "void()" `1069  "-------------------------RTOS TASKS------------------------------------------"
-f G "Task_checkIfStartStopResetButtonIsHeld" 0 46 "void()" `1071 
-f G "Task_checkIfMenuButtonIsHeld" 0 49 "void()" `1073 
-f G "Task_runStateMachine" 0 52 "void()" `1075 
-f G "Task_blinkDisplay" 0 55 "void()" `1077  "----------------------------GLOBAL VARIABLES---------------------------------"
-V G "showDisplayCompletely" 0 58 "int1" `1078 
-V G "buttonStateStartStopReset" 0 59 "ButtonState" `1079 
-V G "buttonStateMenu" 0 60 "ButtonState" `1080 
-V G "myPolyoneDisplay" 0 61 "PolyoneDisplay" `1081 
-V G "startStopButtonState" 0 63 "int1" `1082 
-V G "menuButtonState" 0 64 "int1" `1083 
-V G "nextStateAfterWaitingForButtonBeingReleased" 0 65 "PolyoneDisplayState" `1084 
-V G "numberOfMenuButtonHasBeenReleased" 0 66 "int8" `1085 
-F G "MAIN" 0 68 "void()" `1086 
-F G "Task_runStateMachine" 0 74 "void()" `1075  "static BOOLEAN startStopButtonState = TRUE;"
+T G "EEPROM_ADDRESS" 0 40 "" `1068 
+T G "*StateMachineFunction" 0 42 "void()" `1069  "-------------------------FUNCTION PROTOTYPE----------------------------------"
+f G "setupHardware" 0 46 "void()" `1071  "-------------------------RTOS TASKS------------------------------------------"
+f G "Task_checkIfStartStopResetButtonIsHeld" 0 49 "void()" `1073 
+f G "Task_checkIfMenuButtonIsHeld" 0 52 "void()" `1075 
+f G "Task_runStateMachine" 0 55 "void()" `1077 
+f G "Task_blinkDisplay" 0 58 "void()" `1079  "----------------------------GLOBAL VARIABLES---------------------------------"
+V G "showDisplayCompletely" 0 61 "int1" `1080 
+V G "buttonStateStartStopReset" 0 62 "ButtonState" `1081 
+V G "buttonStateMenu" 0 63 "ButtonState" `1082 
+V G "myPolyoneDisplay" 0 64 "PolyoneDisplay" `1083 
+V G "startStopButtonState" 0 66 "int1" `1084 
+V G "menuButtonState" 0 67 "int1" `1085 
+V G "nextStateAfterWaitingForButtonBeingReleased" 0 68 "PolyoneDisplayState" `1086 
+V G "numberOfMenuButtonHasBeenReleased" 0 69 "int8" `1087 
+F G "StateMachine_init" 0 74 "void()" `1088 
+V G "functions" 0 88 "StateMachineFunction[10]" `1089 
+F G "MAIN" 0 92 "void()" `1090 
+F G "Task_runStateMachine" 0 98 "void()" `1077  "static BOOLEAN startStopButtonState = TRUE;"
 C L "Task_runStateMachine" 0 20 3 "FUNCTION"
-F G "Task_checkIfStartStopResetButtonIsHeld" 0 222 "void()" `1071 
-V L "nextUpButtonCounter" 0 223 "int8" `1091 
-F G "Task_checkIfMenuButtonIsHeld" 0 237 "void()" `1073 
-V L "menuButtonCounter" 0 238 "int8" `1092 
-F G "Task_blinkDisplay" 0 253 "void()" `1077 
-F G "setupHardware" 0 258 "void()" `1069 
+F G "Task_checkIfStartStopResetButtonIsHeld" 0 246 "void()" `1073 
+V L "nextUpButtonCounter" 0 247 "int8" `1095 
+F G "Task_checkIfMenuButtonIsHeld" 0 261 "void()" `1075 
+V L "menuButtonCounter" 0 262 "int8" `1096 
+F G "Task_blinkDisplay" 0 277 "void()" `1079 
+F G "setupHardware" 0 282 "void()" `1071 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

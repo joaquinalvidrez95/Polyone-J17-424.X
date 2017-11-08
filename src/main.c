@@ -39,6 +39,9 @@ typedef enum {
     EEPROM_RTC_SECONDS,
 } EEPROM_ADDRESS;
 
+typedef void (*StateMachineFunction)(void);
+
+
 // -------------------------FUNCTION PROTOTYPE----------------------------------
 void setupHardware(void);
 // -------------------------RTOS TASKS------------------------------------------
@@ -64,6 +67,27 @@ BOOLEAN startStopButtonState = TRUE;
 BOOLEAN menuButtonState = TRUE;
 PolyoneDisplayState nextStateAfterWaitingForButtonBeingReleased;
 int numberOfMenuButtonHasBeenReleased = 0;
+
+
+
+
+void StateMachine_init(void) {
+    myPolyoneDisplay = PolyoneDisplay_new(
+            EEPROM_CURRENT_STATE,
+            EEPROM_PREVIOUS_STATE,
+            EEPROM_FORMAT,
+            EEPROM_FIRST_NUMBER,
+            EEPROM_SECOND_NUMBER,
+            EEPROM_RTC_HOURS,
+            EEPROM_RTC_MINUTES,
+            EEPROM_RTC_SECONDS
+            );
+    PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
+}
+
+StateMachineFunction functions[NUMBER_OF_STATES]={
+    StateMachine_init,
+};
 
 void main(void) {
     setupHardware();
