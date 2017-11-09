@@ -300,7 +300,6 @@ void PolyoneDisplay_saveAlarm(PolyoneDisplay *polyoneDisplayPtr) {
 }
 
 void PolyoneDisplay_resume(PolyoneDisplay *polyoneDisplayPtr) {
-
     PolyoneDisplayState currentState;
     currentState = polyoneDisplayPtr->currentState;
     polyoneDisplayPtr->currentState = polyoneDisplayPtr->previousState;

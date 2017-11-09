@@ -442,52 +442,52 @@ ROM Allocation:
 000A94  PolyoneDisplay_new
 000B1C  Timer_newHoursMinutes
 000BF7  Timer_newMinutesSeconds
-000D25  PolyoneDisplay_resume
-000DB1  PolyoneDisplay_isTimerDone
-000DBD  Timer_isTimerFinished
-000DC9  Time_isTimeZero
-000DF6  turnOnBuzzer
-000E88  SeventSegmentDisplay_showHyphens
-000EE1  @goto11575
-000EF0  PolyoneDisplay_showLimitTime
-000F08  Timer_showHoursAndMinutesOfLimitTime
-000F6E  Timer_showMinutesAndSecondsOfLimitTime
-000FBF  Timer_increaseTimerMinutes
-001000  PolyoneDisplay_showBrightness
-001044  Task_runStateMachine
-001098  PolyoneDisplay_showSecondNumber
-0010AF  Timer_hideHoursAndShowMinutesOfLimitTime
-00111B  Timer_hideMinutesAndShowSecondsOfLimitTime
-00117F  PolyoneDisplay_increaseFirstNumber
-001196  Timer_increaseTimerHours
-001231  PolyoneDisplay_showFirstNumber
-001248  Timer_hideMinutesAndShowHoursOfLimitTime
-0012B6  Timer_hideSecondsAndShowMinutesOfLimitTime
-00131C  PolyoneDisplay_increaseSecondNumber
-001350  Timer_increaseTimerSeconds
-0013A3  PolyoneDisplay_isAlarmOkay
-001402  PolyoneDisplay_showFormat
-00143F  PolyoneDisplay_swapFormat
-001516  PolyoneDisplay_saveAlarm
-001525  Timer_saveAlarmHoursMinutes
-00158E  Timer_saveAlarmMinutesSeconds
-0015E3  PolyoneDisplay_saveFormat
-001610  PolyoneDisplay_saveBrightness
-001657  PolyoneDisplay_hideBrightness
-001676  PolyoneDisplay_increaseBrightness
-0016EE  @goto11700
-0016F7  Task_checkIfStartStopResetButtonIsHeld
-001715  Task_checkIfMenuButtonIsHeld
-001733  setupHardware
-00175D  @cinit1
-00175D  MAIN
-001779  @cinit2
+000D2C  PolyoneDisplay_resume
+000DBE  PolyoneDisplay_isTimerDone
+000DCA  Timer_isTimerFinished
+000DD6  Time_isTimeZero
+000E03  turnOnBuzzer
+000EA8  SeventSegmentDisplay_showHyphens
+000F00  @goto11593
+000F0F  PolyoneDisplay_showLimitTime
+000F27  Timer_showHoursAndMinutesOfLimitTime
+000F8D  Timer_showMinutesAndSecondsOfLimitTime
+000FDE  Task_checkIfStartStopResetButtonIsHeld
+001000  Timer_increaseTimerMinutes
+00102E  PolyoneDisplay_showBrightness
+001072  Task_runStateMachine
+0010C9  PolyoneDisplay_showSecondNumber
+0010E0  Timer_hideHoursAndShowMinutesOfLimitTime
+00114C  Timer_hideMinutesAndShowSecondsOfLimitTime
+0011B0  PolyoneDisplay_increaseFirstNumber
+0011C7  Timer_increaseTimerHours
+00125E  PolyoneDisplay_showFirstNumber
+001275  Timer_hideMinutesAndShowHoursOfLimitTime
+0012E3  Timer_hideSecondsAndShowMinutesOfLimitTime
+001349  PolyoneDisplay_increaseSecondNumber
+001379  Timer_increaseTimerSeconds
+0013CC  PolyoneDisplay_isAlarmOkay
+00142B  PolyoneDisplay_showFormat
+001468  PolyoneDisplay_swapFormat
+00153F  PolyoneDisplay_saveAlarm
+00154E  Timer_saveAlarmHoursMinutes
+0015B7  Timer_saveAlarmMinutesSeconds
+00160C  PolyoneDisplay_saveFormat
+001654  PolyoneDisplay_hideBrightness
+001673  PolyoneDisplay_increaseBrightness
+0016CC  PolyoneDisplay_saveBrightness
+00172C  @goto11729
+001735  Task_checkIfMenuButtonIsHeld
+001753  setupHardware
+001800  @cinit1
+001800  MAIN
+00181C  @cinit2
 
 Project Directory:
     C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\
 
 Project Files:
-    src\main.c                                              [09-Nov-17 11:40  CRC=618D27EA]
+    src\main.c                                              [09-Nov-17 13:53  CRC=9404C592]
     ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h   [12-Nov-13 15:35  CRC=E3D32390]
     src\polyonedisplay.h                                    [09-Nov-17 11:43  CRC=7403E5C2]
     src\JoaquinSupportAPI\timer.h                           [09-Nov-17 11:18  CRC=70470922]
@@ -498,7 +498,7 @@ Project Files:
     src\JoaquinSupportAPI\shiftregister.h                   [12-Oct-17 11:06  CRC=99A3CB98]
     src\JoaquinSupportAPI\buttons.h                         [07-Nov-17 18:20  CRC=CA7F87E2]
 
-Source signature=6B356193
+Source signature=9DACFF3B
 
 Units:
     src\main (main)

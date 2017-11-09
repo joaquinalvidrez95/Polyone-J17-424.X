@@ -1,18 +1,18 @@
-CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
+CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 13:53
 
                Filename:   C:\Users\Diseno4\MPLABXProjects\Polyone J17-424.X\build\default\production\src\main.lst
 
-               ROM used:   6123 words (75%)
-                           Largest free fragment is 2048
+               ROM used:   6172 words (75%)
+                           Largest free fragment is 1883
                RAM used:   71 (19%) at main() level
                            307 (83%) worst case
                Stack used: 8 locations (2 in main + 6 for interrupts)
                Stack size: 8
 
 *
-0000:  MOVLW  17
+0000:  MOVLW  18
 0001:  MOVWF  0A
-0002:  GOTO   75D
+0002:  GOTO   000
 0003:  NOP
 .................... /*  
 ....................  * File:   main.c 
@@ -371,31 +371,31 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 05A5:  BCF    03.6
 05A6:  RETURN
 *
-0EE1:  BCF    0A.0
-0EE2:  BSF    0A.1
-0EE3:  BSF    0A.2
-0EE4:  ADDWF  02,F
-0EE5:  GOTO   51A
-0EE6:  GOTO   63A
-0EE7:  GOTO   56C
-0EE8:  GOTO   280
-0EE9:  GOTO   67C
-0EEA:  GOTO   6DE
-0EEB:  GOTO   6DE
-0EEC:  GOTO   6DE
-0EED:  GOTO   6DE
-0EEE:  GOTO   6DE
-0EEF:  GOTO   6C8
+0F00:  BSF    0A.0
+0F01:  BSF    0A.1
+0F02:  BSF    0A.2
+0F03:  ADDWF  02,F
+0F04:  GOTO   51A
+0F05:  GOTO   654
+0F06:  GOTO   580
+0F07:  GOTO   280
+0F08:  GOTO   69C
+0F09:  GOTO   6FD
+0F0A:  GOTO   6FD
+0F0B:  GOTO   6FD
+0F0C:  GOTO   6FD
+0F0D:  GOTO   6FD
+0F0E:  GOTO   6E7
 *
-16EE:  BCF    0A.0
-16EF:  BSF    0A.1
-16F0:  BSF    0A.2
-16F1:  ADDWF  02,F
-16F2:  GOTO   050
-16F3:  GOTO   087
-16F4:  GOTO   220
-16F5:  GOTO   3FE
-16F6:  GOTO   64E
+172C:  BSF    0A.0
+172D:  BSF    0A.1
+172E:  BSF    0A.2
+172F:  ADDWF  02,F
+1730:  GOTO   07E
+1731:  GOTO   0B8
+1732:  GOTO   24D
+1733:  GOTO   427
+1734:  GOTO   64B
 ....................  
 .................... #list 
 ....................  
@@ -1526,33 +1526,33 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void SeventSegmentDisplay_showHyphens(void) { 
 ....................     int arrayToSend[4] = {0}; 
 *
-0E88:  BSF    03.6
-0E89:  CLRF   17
-0E8A:  CLRF   18
-0E8B:  CLRF   19
-0E8C:  CLRF   1A
+0EA8:  BSF    03.6
+0EA9:  CLRF   17
+0EAA:  CLRF   18
+0EAB:  CLRF   19
+0EAC:  CLRF   1A
 ....................  
 ....................     arrayToSend[0] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN]; 
-0E8D:  MOVLW  01
-0E8E:  MOVWF  17
+0EAD:  MOVLW  01
+0EAE:  MOVWF  17
 ....................     arrayToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN] | 0b00001000; 
-0E8F:  MOVLW  09
-0E90:  MOVWF  18
+0EAF:  MOVLW  09
+0EB0:  MOVWF  18
 ....................     arrayToSend[2] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN]; 
-0E91:  MOVLW  01
-0E92:  MOVWF  19
+0EB1:  MOVLW  01
+0EB2:  MOVWF  19
 ....................     arrayToSend[3] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_HYPHEN]; 
-0E93:  MOVWF  1A
+0EB3:  MOVWF  1A
 ....................     ShiftRegister_sendData(arrayToSend, Array_getArraySize(arrayToSend)); 
-0E94:  MOVWF  31
-0E95:  MOVLW  17
-0E96:  MOVWF  30
-0E97:  MOVLW  04
-0E98:  MOVWF  32
-0E99:  BCF    0A.3
-0E9A:  BCF    03.6
-0E9B:  CALL   657
-0E9C:  BSF    0A.3
+0EB4:  MOVWF  31
+0EB5:  MOVLW  17
+0EB6:  MOVWF  30
+0EB7:  MOVLW  04
+0EB8:  MOVWF  32
+0EB9:  BCF    0A.3
+0EBA:  BCF    03.6
+0EBB:  CALL   657
+0EBC:  BSF    0A.3
 .................... } 
 ....................  
 .................... void SevenSegmentDisplay_clearDisplay(void) { 
@@ -1866,37 +1866,37 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... BOOLEAN Time_isTimeZero(Time *timePtr) { 
 ....................     return (timePtr->hour == 0)&&(timePtr->minute == 0)&&(timePtr->second == 0); 
 *
-0DC9:  MOVLW  01
-0DCA:  ADDWF  1F,W
-0DCB:  MOVWF  04
-0DCC:  BCF    03.7
-0DCD:  BTFSC  20.0
-0DCE:  BSF    03.7
-0DCF:  MOVF   00,F
-0DD0:  BTFSS  03.2
-0DD1:  GOTO   5E4
-0DD2:  MOVLW  02
-0DD3:  ADDWF  1F,W
-0DD4:  MOVWF  04
-0DD5:  BCF    03.7
-0DD6:  BTFSC  20.0
-0DD7:  BSF    03.7
-0DD8:  MOVF   00,F
-0DD9:  BTFSS  03.2
-0DDA:  GOTO   5E4
-0DDB:  MOVLW  03
-0DDC:  ADDWF  1F,W
-0DDD:  MOVWF  04
-0DDE:  BCF    03.7
-0DDF:  BTFSC  20.0
-0DE0:  BSF    03.7
-0DE1:  MOVF   00,F
-0DE2:  BTFSC  03.2
-0DE3:  GOTO   5E6
-0DE4:  MOVLW  00
-0DE5:  GOTO   5E7
-0DE6:  MOVLW  01
-0DE7:  MOVWF  78
+0DD6:  MOVLW  01
+0DD7:  ADDWF  1F,W
+0DD8:  MOVWF  04
+0DD9:  BCF    03.7
+0DDA:  BTFSC  20.0
+0DDB:  BSF    03.7
+0DDC:  MOVF   00,F
+0DDD:  BTFSS  03.2
+0DDE:  GOTO   5F1
+0DDF:  MOVLW  02
+0DE0:  ADDWF  1F,W
+0DE1:  MOVWF  04
+0DE2:  BCF    03.7
+0DE3:  BTFSC  20.0
+0DE4:  BSF    03.7
+0DE5:  MOVF   00,F
+0DE6:  BTFSS  03.2
+0DE7:  GOTO   5F1
+0DE8:  MOVLW  03
+0DE9:  ADDWF  1F,W
+0DEA:  MOVWF  04
+0DEB:  BCF    03.7
+0DEC:  BTFSC  20.0
+0DED:  BSF    03.7
+0DEE:  MOVF   00,F
+0DEF:  BTFSC  03.2
+0DF0:  GOTO   5F3
+0DF1:  MOVLW  00
+0DF2:  GOTO   5F4
+0DF3:  MOVLW  01
+0DF4:  MOVWF  78
 .................... } 
 ....................  
 .................... Time getInitialTime() { 
@@ -3508,53 +3508,53 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 ....................             timerPtr->alarmTime.hour == timerPtr->hoursUpperBound ? 
 ....................             0 : timerPtr->alarmTime.hour + 1; 
 *
-1196:  MOVLW  09
-1197:  ADDWF  1B,W
-1198:  MOVWF  78
-1199:  MOVF   1C,W
-119A:  MOVWF  7A
-119B:  BTFSC  03.0
-119C:  INCF   7A,F
-119D:  MOVF   78,W
-119E:  MOVWF  1D
-119F:  MOVF   7A,W
-11A0:  MOVWF  1E
-11A1:  MOVLW  09
-11A2:  ADDWF  1B,W
-11A3:  MOVWF  04
-11A4:  BCF    03.7
-11A5:  BTFSC  1C.0
-11A6:  BSF    03.7
-11A7:  MOVF   00,W
-11A8:  MOVWF  1F
-11A9:  MOVLW  13
-11AA:  ADDWF  1B,W
-11AB:  MOVWF  04
-11AC:  BCF    03.7
-11AD:  BTFSC  1C.0
-11AE:  BSF    03.7
-11AF:  MOVF   00,W
-11B0:  SUBWF  1F,W
-11B1:  BTFSS  03.2
-11B2:  GOTO   1B5
-11B3:  MOVLW  00
-11B4:  GOTO   1BD
-11B5:  MOVLW  09
-11B6:  ADDWF  1B,W
-11B7:  MOVWF  04
-11B8:  BCF    03.7
-11B9:  BTFSC  1C.0
-11BA:  BSF    03.7
-11BB:  MOVLW  01
-11BC:  ADDWF  00,W
-11BD:  MOVWF  1F
-11BE:  MOVF   1D,W
-11BF:  MOVWF  04
-11C0:  BCF    03.7
-11C1:  BTFSC  1E.0
-11C2:  BSF    03.7
-11C3:  MOVF   1F,W
-11C4:  MOVWF  00
+11C7:  MOVLW  09
+11C8:  ADDWF  1B,W
+11C9:  MOVWF  78
+11CA:  MOVF   1C,W
+11CB:  MOVWF  7A
+11CC:  BTFSC  03.0
+11CD:  INCF   7A,F
+11CE:  MOVF   78,W
+11CF:  MOVWF  1D
+11D0:  MOVF   7A,W
+11D1:  MOVWF  1E
+11D2:  MOVLW  09
+11D3:  ADDWF  1B,W
+11D4:  MOVWF  04
+11D5:  BCF    03.7
+11D6:  BTFSC  1C.0
+11D7:  BSF    03.7
+11D8:  MOVF   00,W
+11D9:  MOVWF  1F
+11DA:  MOVLW  13
+11DB:  ADDWF  1B,W
+11DC:  MOVWF  04
+11DD:  BCF    03.7
+11DE:  BTFSC  1C.0
+11DF:  BSF    03.7
+11E0:  MOVF   00,W
+11E1:  SUBWF  1F,W
+11E2:  BTFSS  03.2
+11E3:  GOTO   1E6
+11E4:  MOVLW  00
+11E5:  GOTO   1EE
+11E6:  MOVLW  09
+11E7:  ADDWF  1B,W
+11E8:  MOVWF  04
+11E9:  BCF    03.7
+11EA:  BTFSC  1C.0
+11EB:  BSF    03.7
+11EC:  MOVLW  01
+11ED:  ADDWF  00,W
+11EE:  MOVWF  1F
+11EF:  MOVF   1D,W
+11F0:  MOVWF  04
+11F1:  BCF    03.7
+11F2:  BTFSC  1E.0
+11F3:  BSF    03.7
+11F4:  MOVF   1F,W
+11F5:  MOVWF  00
 .................... } 
 ....................  
 .................... void Timer_decreaseTimerHours(Timer *timerPtr) { 
@@ -3568,56 +3568,52 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 ....................             timerPtr->alarmTime.minute == timerPtr->minutesUpperBound ? 
 ....................             0 : timerPtr->alarmTime.minute + 1; 
 *
-0FBF:  MOVLW  0A
-0FC0:  BSF    03.6
-0FC1:  ADDWF  1B,W
-0FC2:  MOVWF  78
-0FC3:  MOVF   1C,W
-0FC4:  MOVWF  7A
-0FC5:  BTFSC  03.0
-0FC6:  INCF   7A,F
-0FC7:  MOVF   78,W
-0FC8:  MOVWF  1D
-0FC9:  MOVF   7A,W
-0FCA:  MOVWF  1E
-0FCB:  MOVLW  0A
-0FCC:  ADDWF  1B,W
-0FCD:  MOVWF  04
-0FCE:  BCF    03.7
-0FCF:  BTFSC  1C.0
-0FD0:  BSF    03.7
-0FD1:  MOVF   00,W
-0FD2:  MOVWF  1F
-0FD3:  MOVLW  14
-0FD4:  ADDWF  1B,W
-0FD5:  MOVWF  04
-0FD6:  BCF    03.7
-0FD7:  BTFSC  1C.0
-0FD8:  BSF    03.7
-0FD9:  MOVF   00,W
-0FDA:  SUBWF  1F,W
-0FDB:  BTFSS  03.2
-0FDC:  GOTO   7DF
-0FDD:  MOVLW  00
-0FDE:  GOTO   7E7
-0FDF:  MOVLW  0A
-0FE0:  ADDWF  1B,W
-0FE1:  MOVWF  04
-0FE2:  BCF    03.7
-0FE3:  BTFSC  1C.0
-0FE4:  BSF    03.7
-0FE5:  MOVLW  01
-0FE6:  ADDWF  00,W
-0FE7:  MOVWF  1F
-0FE8:  MOVF   1D,W
-0FE9:  MOVWF  04
-0FEA:  BCF    03.7
-0FEB:  BTFSC  1E.0
-0FEC:  BSF    03.7
-0FED:  MOVF   1F,W
-0FEE:  MOVWF  00
-0FEF:  BCF    03.6
-0FF0:  RETURN
+1000:  MOVLW  0A
+1001:  BSF    03.6
+1002:  ADDWF  1B,W
+1003:  MOVWF  1D
+1004:  MOVF   1C,W
+1005:  MOVWF  1E
+1006:  BTFSC  03.0
+1007:  INCF   1E,F
+1008:  MOVLW  0A
+1009:  ADDWF  1B,W
+100A:  MOVWF  04
+100B:  BCF    03.7
+100C:  BTFSC  1C.0
+100D:  BSF    03.7
+100E:  MOVF   00,W
+100F:  MOVWF  1F
+1010:  MOVLW  14
+1011:  ADDWF  1B,W
+1012:  MOVWF  04
+1013:  BCF    03.7
+1014:  BTFSC  1C.0
+1015:  BSF    03.7
+1016:  MOVF   00,W
+1017:  SUBWF  1F,W
+1018:  BTFSS  03.2
+1019:  GOTO   01C
+101A:  MOVLW  00
+101B:  GOTO   024
+101C:  MOVLW  0A
+101D:  ADDWF  1B,W
+101E:  MOVWF  04
+101F:  BCF    03.7
+1020:  BTFSC  1C.0
+1021:  BSF    03.7
+1022:  MOVLW  01
+1023:  ADDWF  00,W
+1024:  MOVWF  1F
+1025:  MOVF   1D,W
+1026:  MOVWF  04
+1027:  BCF    03.7
+1028:  BTFSC  1E.0
+1029:  BSF    03.7
+102A:  MOVF   1F,W
+102B:  MOVWF  00
+102C:  BCF    03.6
+102D:  RETURN
 .................... } 
 ....................  
 .................... void Timer_decreaseTimerMinutes(Timer *timerPtr) { 
@@ -3631,54 +3627,54 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 ....................             timerPtr->alarmTime.second == timerPtr->secondsUpperBound ? 
 ....................             0 : timerPtr->alarmTime.second + 1; 
 *
-1350:  MOVLW  0B
-1351:  ADDWF  1B,W
-1352:  MOVWF  78
-1353:  MOVF   1C,W
-1354:  MOVWF  7A
-1355:  BTFSC  03.0
-1356:  INCF   7A,F
-1357:  MOVF   78,W
-1358:  MOVWF  1D
-1359:  MOVF   7A,W
-135A:  MOVWF  1E
-135B:  MOVLW  0B
-135C:  ADDWF  1B,W
-135D:  MOVWF  04
-135E:  BCF    03.7
-135F:  BTFSC  1C.0
-1360:  BSF    03.7
-1361:  MOVF   00,W
-1362:  MOVWF  1F
-1363:  MOVLW  15
-1364:  ADDWF  1B,W
-1365:  MOVWF  04
-1366:  BCF    03.7
-1367:  BTFSC  1C.0
-1368:  BSF    03.7
-1369:  MOVF   00,W
-136A:  SUBWF  1F,W
-136B:  BTFSS  03.2
-136C:  GOTO   36F
-136D:  MOVLW  00
-136E:  GOTO   377
-136F:  MOVLW  0B
-1370:  ADDWF  1B,W
-1371:  MOVWF  04
-1372:  BCF    03.7
-1373:  BTFSC  1C.0
-1374:  BSF    03.7
-1375:  MOVLW  01
-1376:  ADDWF  00,W
-1377:  MOVWF  1F
-1378:  MOVF   1D,W
-1379:  MOVWF  04
-137A:  BCF    03.7
-137B:  BTFSC  1E.0
-137C:  BSF    03.7
-137D:  MOVF   1F,W
-137E:  MOVWF  00
-137F:  BCF    03.6
+1379:  MOVLW  0B
+137A:  ADDWF  1B,W
+137B:  MOVWF  78
+137C:  MOVF   1C,W
+137D:  MOVWF  7A
+137E:  BTFSC  03.0
+137F:  INCF   7A,F
+1380:  MOVF   78,W
+1381:  MOVWF  1D
+1382:  MOVF   7A,W
+1383:  MOVWF  1E
+1384:  MOVLW  0B
+1385:  ADDWF  1B,W
+1386:  MOVWF  04
+1387:  BCF    03.7
+1388:  BTFSC  1C.0
+1389:  BSF    03.7
+138A:  MOVF   00,W
+138B:  MOVWF  1F
+138C:  MOVLW  15
+138D:  ADDWF  1B,W
+138E:  MOVWF  04
+138F:  BCF    03.7
+1390:  BTFSC  1C.0
+1391:  BSF    03.7
+1392:  MOVF   00,W
+1393:  SUBWF  1F,W
+1394:  BTFSS  03.2
+1395:  GOTO   398
+1396:  MOVLW  00
+1397:  GOTO   3A0
+1398:  MOVLW  0B
+1399:  ADDWF  1B,W
+139A:  MOVWF  04
+139B:  BCF    03.7
+139C:  BTFSC  1C.0
+139D:  BSF    03.7
+139E:  MOVLW  01
+139F:  ADDWF  00,W
+13A0:  MOVWF  1F
+13A1:  MOVF   1D,W
+13A2:  MOVWF  04
+13A3:  BCF    03.7
+13A4:  BTFSC  1E.0
+13A5:  BSF    03.7
+13A6:  MOVF   1F,W
+13A7:  MOVWF  00
+13A8:  BCF    03.6
 .................... } 
 ....................  
 .................... void Timer_decreaseTimerSeconds(Timer *timerPtr) { 
@@ -3828,49 +3824,7 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void Timer_saveAlarmHoursMinutes(Timer *timerPtr) { 
 ....................     write_eeprom(timerPtr->addressAlarmHours, timerPtr->alarmTime.hour); 
 *
-1525:  MOVLW  0F
-1526:  ADDWF  19,W
-1527:  MOVWF  04
-1528:  BCF    03.7
-1529:  BTFSC  1A.0
-152A:  BSF    03.7
-152B:  MOVF   00,W
-152C:  MOVWF  1B
-152D:  MOVLW  09
-152E:  ADDWF  19,W
-152F:  MOVWF  04
-1530:  BCF    03.7
-1531:  BTFSC  1A.0
-1532:  BSF    03.7
-1533:  MOVF   00,W
-1534:  MOVWF  1C
-1535:  BCF    03.6
-1536:  MOVF   0B,W
-1537:  MOVWF  77
-1538:  BCF    0B.7
-1539:  BSF    03.6
-153A:  MOVF   1B,W
-153B:  MOVWF  0D
-153C:  MOVF   1C,W
-153D:  MOVWF  0C
-153E:  BSF    03.5
-153F:  BCF    0C.7
-1540:  BSF    0C.2
-1541:  MOVLW  55
-1542:  MOVWF  0D
-1543:  MOVLW  AA
-1544:  MOVWF  0D
-1545:  BSF    0C.1
-1546:  BTFSC  0C.1
-1547:  GOTO   546
-1548:  BCF    0C.2
-1549:  MOVF   77,W
-154A:  BCF    03.5
-154B:  BCF    03.6
-154C:  IORWF  0B,F
-....................     write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);     
-154D:  MOVLW  0E
-154E:  BSF    03.6
+154E:  MOVLW  0F
 154F:  ADDWF  19,W
 1550:  MOVWF  04
 1551:  BCF    03.7
@@ -3878,7 +3832,7 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 1553:  BSF    03.7
 1554:  MOVF   00,W
 1555:  MOVWF  1B
-1556:  MOVLW  0A
+1556:  MOVLW  09
 1557:  ADDWF  19,W
 1558:  MOVWF  04
 1559:  BCF    03.7
@@ -3910,54 +3864,54 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 1573:  BCF    03.5
 1574:  BCF    03.6
 1575:  IORWF  0B,F
+....................     write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);     
+1576:  MOVLW  0E
+1577:  BSF    03.6
+1578:  ADDWF  19,W
+1579:  MOVWF  04
+157A:  BCF    03.7
+157B:  BTFSC  1A.0
+157C:  BSF    03.7
+157D:  MOVF   00,W
+157E:  MOVWF  1B
+157F:  MOVLW  0A
+1580:  ADDWF  19,W
+1581:  MOVWF  04
+1582:  BCF    03.7
+1583:  BTFSC  1A.0
+1584:  BSF    03.7
+1585:  MOVF   00,W
+1586:  MOVWF  1C
+1587:  BCF    03.6
+1588:  MOVF   0B,W
+1589:  MOVWF  77
+158A:  BCF    0B.7
+158B:  BSF    03.6
+158C:  MOVF   1B,W
+158D:  MOVWF  0D
+158E:  MOVF   1C,W
+158F:  MOVWF  0C
+1590:  BSF    03.5
+1591:  BCF    0C.7
+1592:  BSF    0C.2
+1593:  MOVLW  55
+1594:  MOVWF  0D
+1595:  MOVLW  AA
+1596:  MOVWF  0D
+1597:  BSF    0C.1
+1598:  BTFSC  0C.1
+1599:  GOTO   598
+159A:  BCF    0C.2
+159B:  MOVF   77,W
+159C:  BCF    03.5
+159D:  BCF    03.6
+159E:  IORWF  0B,F
 .................... } 
 ....................  
 .................... void Timer_saveAlarmMinutesSeconds(Timer *timerPtr) {   
 ....................     write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute); 
 *
-158E:  MOVLW  0E
-158F:  ADDWF  1B,W
-1590:  MOVWF  04
-1591:  BCF    03.7
-1592:  BTFSC  1C.0
-1593:  BSF    03.7
-1594:  MOVF   00,W
-1595:  MOVWF  1D
-1596:  MOVLW  0A
-1597:  ADDWF  1B,W
-1598:  MOVWF  04
-1599:  BCF    03.7
-159A:  BTFSC  1C.0
-159B:  BSF    03.7
-159C:  MOVF   00,W
-159D:  MOVWF  1E
-159E:  BCF    03.6
-159F:  MOVF   0B,W
-15A0:  MOVWF  77
-15A1:  BCF    0B.7
-15A2:  BSF    03.6
-15A3:  MOVF   1D,W
-15A4:  MOVWF  0D
-15A5:  MOVF   1E,W
-15A6:  MOVWF  0C
-15A7:  BSF    03.5
-15A8:  BCF    0C.7
-15A9:  BSF    0C.2
-15AA:  MOVLW  55
-15AB:  MOVWF  0D
-15AC:  MOVLW  AA
-15AD:  MOVWF  0D
-15AE:  BSF    0C.1
-15AF:  BTFSC  0C.1
-15B0:  GOTO   5AF
-15B1:  BCF    0C.2
-15B2:  MOVF   77,W
-15B3:  BCF    03.5
-15B4:  BCF    03.6
-15B5:  IORWF  0B,F
-....................     write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second); 
-15B6:  MOVLW  0D
-15B7:  BSF    03.6
+15B7:  MOVLW  0E
 15B8:  ADDWF  1B,W
 15B9:  MOVWF  04
 15BA:  BCF    03.7
@@ -3965,7 +3919,7 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 15BC:  BSF    03.7
 15BD:  MOVF   00,W
 15BE:  MOVWF  1D
-15BF:  MOVLW  0B
+15BF:  MOVLW  0A
 15C0:  ADDWF  1B,W
 15C1:  MOVWF  04
 15C2:  BCF    03.7
@@ -3997,26 +3951,68 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 15DC:  BCF    03.5
 15DD:  BCF    03.6
 15DE:  IORWF  0B,F
-15DF:  BSF    03.6
+....................     write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second); 
+15DF:  MOVLW  0D
+15E0:  BSF    03.6
+15E1:  ADDWF  1B,W
+15E2:  MOVWF  04
+15E3:  BCF    03.7
+15E4:  BTFSC  1C.0
+15E5:  BSF    03.7
+15E6:  MOVF   00,W
+15E7:  MOVWF  1D
+15E8:  MOVLW  0B
+15E9:  ADDWF  1B,W
+15EA:  MOVWF  04
+15EB:  BCF    03.7
+15EC:  BTFSC  1C.0
+15ED:  BSF    03.7
+15EE:  MOVF   00,W
+15EF:  MOVWF  1E
+15F0:  BCF    03.6
+15F1:  MOVF   0B,W
+15F2:  MOVWF  77
+15F3:  BCF    0B.7
+15F4:  BSF    03.6
+15F5:  MOVF   1D,W
+15F6:  MOVWF  0D
+15F7:  MOVF   1E,W
+15F8:  MOVWF  0C
+15F9:  BSF    03.5
+15FA:  BCF    0C.7
+15FB:  BSF    0C.2
+15FC:  MOVLW  55
+15FD:  MOVWF  0D
+15FE:  MOVLW  AA
+15FF:  MOVWF  0D
+1600:  BSF    0C.1
+1601:  BTFSC  0C.1
+1602:  GOTO   601
+1603:  BCF    0C.2
+1604:  MOVF   77,W
+1605:  BCF    03.5
+1606:  BCF    03.6
+1607:  IORWF  0B,F
+1608:  BSF    03.6
 .................... } 
 ....................  
 .................... BOOLEAN Timer_isTimerFinished(Timer *timerPtr) { 
 ....................     return Time_isTimeZero(&timerPtr->countdownTime); 
 *
-0DBD:  MOVF   1B,W
-0DBE:  MOVWF  78
-0DBF:  MOVF   1C,W
-0DC0:  MOVWF  7A
-0DC1:  MOVF   78,W
-0DC2:  MOVWF  1D
-0DC3:  MOVF   7A,W
-0DC4:  MOVWF  1E
-0DC5:  MOVF   1E,W
-0DC6:  MOVWF  20
-0DC7:  MOVF   1D,W
-0DC8:  MOVWF  1F
+0DCA:  MOVF   1B,W
+0DCB:  MOVWF  78
+0DCC:  MOVF   1C,W
+0DCD:  MOVWF  7A
+0DCE:  MOVF   78,W
+0DCF:  MOVWF  1D
+0DD0:  MOVF   7A,W
+0DD1:  MOVWF  1E
+0DD2:  MOVF   1E,W
+0DD3:  MOVWF  20
+0DD4:  MOVF   1D,W
+0DD5:  MOVWF  1F
 *
-0DE8:  MOVF   78,W
+0DF5:  MOVF   78,W
 .................... } 
 ....................  
 .................... BOOLEAN Timer_isLimitTimeZero(Timer *timerPtr) { 
@@ -4281,594 +4277,594 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void Timer_hideHoursAndShowMinutesOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-10AF:  CLRF   1D
-10B0:  CLRF   1E
-10B1:  CLRF   1F
-10B2:  CLRF   20
+10E0:  CLRF   1D
+10E1:  CLRF   1E
+10E2:  CLRF   1F
+10E3:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-10B3:  MOVLW  08
-10B4:  ADDWF  1B,W
-10B5:  MOVWF  78
-10B6:  MOVF   1C,W
-10B7:  MOVWF  7A
-10B8:  BTFSC  03.0
-10B9:  INCF   7A,F
-10BA:  MOVF   78,W
-10BB:  MOVWF  27
-10BC:  MOVF   7A,W
-10BD:  MOVWF  28
-10BE:  MOVWF  33
-10BF:  MOVF   27,W
-10C0:  MOVWF  32
-10C1:  CLRF   34
-10C2:  BCF    0A.4
-10C3:  BCF    03.6
-10C4:  CALL   5EA
-10C5:  BSF    0A.4
-10C6:  MOVF   79,W
-10C7:  MOVWF  7A
-10C8:  MOVF   78,W
-10C9:  BSF    03.6
-10CA:  MOVWF  27
-10CB:  MOVF   7A,W
-10CC:  MOVWF  28
-10CD:  MOVLW  01
-10CE:  MOVWF  2A
-10CF:  MOVLW  21
-10D0:  MOVWF  29
-10D1:  MOVLW  06
-10D2:  MOVWF  78
-10D3:  MOVF   27,W
-10D4:  MOVWF  04
-10D5:  BCF    03.7
-10D6:  BTFSC  28.0
-10D7:  BSF    03.7
-10D8:  MOVF   00,W
-10D9:  MOVWF  77
-10DA:  MOVF   29,W
-10DB:  MOVWF  04
-10DC:  BCF    03.7
-10DD:  BTFSC  2A.0
-10DE:  BSF    03.7
-10DF:  MOVF   77,W
-10E0:  MOVWF  00
-10E1:  INCF   29,F
-10E2:  BTFSC  03.2
-10E3:  INCF   2A,F
-10E4:  INCF   27,F
-10E5:  BTFSC  03.2
-10E6:  INCF   28,F
-10E7:  DECFSZ 78,F
-10E8:  GOTO   0D3
+10E4:  MOVLW  08
+10E5:  ADDWF  1B,W
+10E6:  MOVWF  78
+10E7:  MOVF   1C,W
+10E8:  MOVWF  7A
+10E9:  BTFSC  03.0
+10EA:  INCF   7A,F
+10EB:  MOVF   78,W
+10EC:  MOVWF  27
+10ED:  MOVF   7A,W
+10EE:  MOVWF  28
+10EF:  MOVWF  33
+10F0:  MOVF   27,W
+10F1:  MOVWF  32
+10F2:  CLRF   34
+10F3:  BCF    0A.4
+10F4:  BCF    03.6
+10F5:  CALL   5EA
+10F6:  BSF    0A.4
+10F7:  MOVF   79,W
+10F8:  MOVWF  7A
+10F9:  MOVF   78,W
+10FA:  BSF    03.6
+10FB:  MOVWF  27
+10FC:  MOVF   7A,W
+10FD:  MOVWF  28
+10FE:  MOVLW  01
+10FF:  MOVWF  2A
+1100:  MOVLW  21
+1101:  MOVWF  29
+1102:  MOVLW  06
+1103:  MOVWF  78
+1104:  MOVF   27,W
+1105:  MOVWF  04
+1106:  BCF    03.7
+1107:  BTFSC  28.0
+1108:  BSF    03.7
+1109:  MOVF   00,W
+110A:  MOVWF  77
+110B:  MOVF   29,W
+110C:  MOVWF  04
+110D:  BCF    03.7
+110E:  BTFSC  2A.0
+110F:  BSF    03.7
+1110:  MOVF   77,W
+1111:  MOVWF  00
+1112:  INCF   29,F
+1113:  BTFSC  03.2
+1114:  INCF   2A,F
+1115:  INCF   27,F
+1116:  BTFSC  03.2
+1117:  INCF   28,F
+1118:  DECFSZ 78,F
+1119:  GOTO   104
 ....................  
 ....................     numbersToSend[0] = SevenSegmentDisplay_characters[displayableTime.minute[0]]; 
-10E9:  MOVF   23,W
-10EA:  BCF    0A.4
-10EB:  BCF    03.6
-10EC:  CALL   004
-10ED:  BSF    0A.4
-10EE:  MOVWF  78
-10EF:  BSF    03.6
-10F0:  MOVWF  1D
+111A:  MOVF   23,W
+111B:  BCF    0A.4
+111C:  BCF    03.6
+111D:  CALL   004
+111E:  BSF    0A.4
+111F:  MOVWF  78
+1120:  BSF    03.6
+1121:  MOVWF  1D
 ....................     numbersToSend[1] = SevenSegmentDisplay_characters[displayableTime.minute[1]] | 
 ....................             SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-10F1:  MOVF   24,W
-10F2:  BCF    0A.4
-10F3:  BCF    03.6
-10F4:  CALL   004
-10F5:  BSF    0A.4
-10F6:  IORLW  08
-10F7:  BSF    03.6
-10F8:  MOVWF  1E
+1122:  MOVF   24,W
+1123:  BCF    0A.4
+1124:  BCF    03.6
+1125:  CALL   004
+1126:  BSF    0A.4
+1127:  IORLW  08
+1128:  BSF    03.6
+1129:  MOVWF  1E
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-10F9:  MOVLW  01
-10FA:  MOVWF  31
-10FB:  MOVLW  1D
-10FC:  MOVWF  30
-10FD:  MOVLW  04
-10FE:  MOVWF  32
-10FF:  BCF    0A.4
-1100:  BCF    03.6
-1101:  CALL   657
-1102:  BSF    0A.4
+112A:  MOVLW  01
+112B:  MOVWF  31
+112C:  MOVLW  1D
+112D:  MOVWF  30
+112E:  MOVLW  04
+112F:  MOVWF  32
+1130:  BCF    0A.4
+1131:  BCF    03.6
+1132:  CALL   657
+1133:  BSF    0A.4
 ....................  
 .................... } 
 ....................  
 .................... void Timer_hideMinutesAndShowSecondsOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-111B:  CLRF   1D
-111C:  CLRF   1E
-111D:  CLRF   1F
-111E:  CLRF   20
+114C:  CLRF   1D
+114D:  CLRF   1E
+114E:  CLRF   1F
+114F:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-111F:  MOVLW  08
-1120:  ADDWF  1B,W
-1121:  MOVWF  78
-1122:  MOVF   1C,W
-1123:  MOVWF  7A
-1124:  BTFSC  03.0
-1125:  INCF   7A,F
-1126:  MOVF   78,W
-1127:  MOVWF  27
-1128:  MOVF   7A,W
-1129:  MOVWF  28
-112A:  MOVWF  33
-112B:  MOVF   27,W
-112C:  MOVWF  32
-112D:  CLRF   34
-112E:  BCF    0A.4
-112F:  BCF    03.6
-1130:  CALL   5EA
-1131:  BSF    0A.4
-1132:  MOVF   79,W
-1133:  MOVWF  7A
-1134:  MOVF   78,W
-1135:  BSF    03.6
-1136:  MOVWF  27
-1137:  MOVF   7A,W
-1138:  MOVWF  28
-1139:  MOVLW  01
-113A:  MOVWF  2A
-113B:  MOVLW  21
-113C:  MOVWF  29
-113D:  MOVLW  06
-113E:  MOVWF  78
-113F:  MOVF   27,W
-1140:  MOVWF  04
-1141:  BCF    03.7
-1142:  BTFSC  28.0
-1143:  BSF    03.7
-1144:  MOVF   00,W
-1145:  MOVWF  77
-1146:  MOVF   29,W
-1147:  MOVWF  04
-1148:  BCF    03.7
-1149:  BTFSC  2A.0
-114A:  BSF    03.7
-114B:  MOVF   77,W
-114C:  MOVWF  00
-114D:  INCF   29,F
-114E:  BTFSC  03.2
-114F:  INCF   2A,F
-1150:  INCF   27,F
-1151:  BTFSC  03.2
-1152:  INCF   28,F
-1153:  DECFSZ 78,F
-1154:  GOTO   13F
+1150:  MOVLW  08
+1151:  ADDWF  1B,W
+1152:  MOVWF  78
+1153:  MOVF   1C,W
+1154:  MOVWF  7A
+1155:  BTFSC  03.0
+1156:  INCF   7A,F
+1157:  MOVF   78,W
+1158:  MOVWF  27
+1159:  MOVF   7A,W
+115A:  MOVWF  28
+115B:  MOVWF  33
+115C:  MOVF   27,W
+115D:  MOVWF  32
+115E:  CLRF   34
+115F:  BCF    0A.4
+1160:  BCF    03.6
+1161:  CALL   5EA
+1162:  BSF    0A.4
+1163:  MOVF   79,W
+1164:  MOVWF  7A
+1165:  MOVF   78,W
+1166:  BSF    03.6
+1167:  MOVWF  27
+1168:  MOVF   7A,W
+1169:  MOVWF  28
+116A:  MOVLW  01
+116B:  MOVWF  2A
+116C:  MOVLW  21
+116D:  MOVWF  29
+116E:  MOVLW  06
+116F:  MOVWF  78
+1170:  MOVF   27,W
+1171:  MOVWF  04
+1172:  BCF    03.7
+1173:  BTFSC  28.0
+1174:  BSF    03.7
+1175:  MOVF   00,W
+1176:  MOVWF  77
+1177:  MOVF   29,W
+1178:  MOVWF  04
+1179:  BCF    03.7
+117A:  BTFSC  2A.0
+117B:  BSF    03.7
+117C:  MOVF   77,W
+117D:  MOVWF  00
+117E:  INCF   29,F
+117F:  BTFSC  03.2
+1180:  INCF   2A,F
+1181:  INCF   27,F
+1182:  BTFSC  03.2
+1183:  INCF   28,F
+1184:  DECFSZ 78,F
+1185:  GOTO   170
 ....................  
 ....................     numbersToSend[0] = SevenSegmentDisplay_characters[displayableTime.second[0]]; 
-1155:  MOVF   25,W
-1156:  BCF    0A.4
-1157:  BCF    03.6
-1158:  CALL   004
-1159:  BSF    0A.4
-115A:  MOVWF  78
-115B:  BSF    03.6
-115C:  MOVWF  1D
+1186:  MOVF   25,W
+1187:  BCF    0A.4
+1188:  BCF    03.6
+1189:  CALL   004
+118A:  BSF    0A.4
+118B:  MOVWF  78
+118C:  BSF    03.6
+118D:  MOVWF  1D
 ....................     numbersToSend[1] = SevenSegmentDisplay_characters[displayableTime.second[1]] | 
 ....................             SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-115D:  MOVF   26,W
-115E:  BCF    0A.4
-115F:  BCF    03.6
-1160:  CALL   004
-1161:  BSF    0A.4
-1162:  IORLW  08
-1163:  BSF    03.6
-1164:  MOVWF  1E
+118E:  MOVF   26,W
+118F:  BCF    0A.4
+1190:  BCF    03.6
+1191:  CALL   004
+1192:  BSF    0A.4
+1193:  IORLW  08
+1194:  BSF    03.6
+1195:  MOVWF  1E
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-1165:  MOVLW  01
-1166:  MOVWF  31
-1167:  MOVLW  1D
-1168:  MOVWF  30
-1169:  MOVLW  04
-116A:  MOVWF  32
-116B:  BCF    0A.4
-116C:  BCF    03.6
-116D:  CALL   657
-116E:  BSF    0A.4
-116F:  BSF    03.6
+1196:  MOVLW  01
+1197:  MOVWF  31
+1198:  MOVLW  1D
+1199:  MOVWF  30
+119A:  MOVLW  04
+119B:  MOVWF  32
+119C:  BCF    0A.4
+119D:  BCF    03.6
+119E:  CALL   657
+119F:  BSF    0A.4
+11A0:  BSF    03.6
 .................... } 
 ....................  
 .................... void Timer_showHoursAndMinutesOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-0F08:  CLRF   1D
-0F09:  CLRF   1E
-0F0A:  CLRF   1F
-0F0B:  CLRF   20
+0F27:  CLRF   1D
+0F28:  CLRF   1E
+0F29:  CLRF   1F
+0F2A:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-0F0C:  MOVLW  08
-0F0D:  ADDWF  1B,W
-0F0E:  MOVWF  78
-0F0F:  MOVF   1C,W
-0F10:  MOVWF  7A
-0F11:  BTFSC  03.0
-0F12:  INCF   7A,F
-0F13:  MOVF   78,W
-0F14:  MOVWF  27
-0F15:  MOVF   7A,W
-0F16:  MOVWF  28
-0F17:  MOVWF  33
-0F18:  MOVF   27,W
-0F19:  MOVWF  32
-0F1A:  CLRF   34
-0F1B:  BCF    0A.3
-0F1C:  BCF    03.6
-0F1D:  CALL   5EA
-0F1E:  BSF    0A.3
-0F1F:  MOVF   79,W
-0F20:  MOVWF  7A
-0F21:  MOVF   78,W
-0F22:  BSF    03.6
-0F23:  MOVWF  27
-0F24:  MOVF   7A,W
-0F25:  MOVWF  28
-0F26:  MOVLW  01
-0F27:  MOVWF  2A
-0F28:  MOVLW  21
-0F29:  MOVWF  29
-0F2A:  MOVLW  06
-0F2B:  MOVWF  78
-0F2C:  MOVF   27,W
-0F2D:  MOVWF  04
-0F2E:  BCF    03.7
-0F2F:  BTFSC  28.0
-0F30:  BSF    03.7
-0F31:  MOVF   00,W
-0F32:  MOVWF  77
-0F33:  MOVF   29,W
-0F34:  MOVWF  04
-0F35:  BCF    03.7
-0F36:  BTFSC  2A.0
-0F37:  BSF    03.7
-0F38:  MOVF   77,W
-0F39:  MOVWF  00
-0F3A:  INCF   29,F
-0F3B:  BTFSC  03.2
-0F3C:  INCF   2A,F
-0F3D:  INCF   27,F
-0F3E:  BTFSC  03.2
-0F3F:  INCF   28,F
-0F40:  DECFSZ 78,F
-0F41:  GOTO   72C
+0F2B:  MOVLW  08
+0F2C:  ADDWF  1B,W
+0F2D:  MOVWF  78
+0F2E:  MOVF   1C,W
+0F2F:  MOVWF  7A
+0F30:  BTFSC  03.0
+0F31:  INCF   7A,F
+0F32:  MOVF   78,W
+0F33:  MOVWF  27
+0F34:  MOVF   7A,W
+0F35:  MOVWF  28
+0F36:  MOVWF  33
+0F37:  MOVF   27,W
+0F38:  MOVWF  32
+0F39:  CLRF   34
+0F3A:  BCF    0A.3
+0F3B:  BCF    03.6
+0F3C:  CALL   5EA
+0F3D:  BSF    0A.3
+0F3E:  MOVF   79,W
+0F3F:  MOVWF  7A
+0F40:  MOVF   78,W
+0F41:  BSF    03.6
+0F42:  MOVWF  27
+0F43:  MOVF   7A,W
+0F44:  MOVWF  28
+0F45:  MOVLW  01
+0F46:  MOVWF  2A
+0F47:  MOVLW  21
+0F48:  MOVWF  29
+0F49:  MOVLW  06
+0F4A:  MOVWF  78
+0F4B:  MOVF   27,W
+0F4C:  MOVWF  04
+0F4D:  BCF    03.7
+0F4E:  BTFSC  28.0
+0F4F:  BSF    03.7
+0F50:  MOVF   00,W
+0F51:  MOVWF  77
+0F52:  MOVF   29,W
+0F53:  MOVWF  04
+0F54:  BCF    03.7
+0F55:  BTFSC  2A.0
+0F56:  BSF    03.7
+0F57:  MOVF   77,W
+0F58:  MOVWF  00
+0F59:  INCF   29,F
+0F5A:  BTFSC  03.2
+0F5B:  INCF   2A,F
+0F5C:  INCF   27,F
+0F5D:  BTFSC  03.2
+0F5E:  INCF   28,F
+0F5F:  DECFSZ 78,F
+0F60:  GOTO   74B
 ....................  
 ....................     numbersToSend[0] = displayableTime.minute[0]; 
-0F42:  MOVF   23,W
-0F43:  MOVWF  1D
+0F61:  MOVF   23,W
+0F62:  MOVWF  1D
 ....................     numbersToSend[1] = displayableTime.minute[1]; 
-0F44:  MOVF   24,W
-0F45:  MOVWF  1E
+0F63:  MOVF   24,W
+0F64:  MOVWF  1E
 ....................     numbersToSend[2] = displayableTime.hour[0]; 
-0F46:  MOVF   21,W
-0F47:  MOVWF  1F
+0F65:  MOVF   21,W
+0F66:  MOVWF  1F
 ....................     numbersToSend[3] = displayableTime.hour[1]; 
-0F48:  MOVF   22,W
-0F49:  MOVWF  20
+0F67:  MOVF   22,W
+0F68:  MOVWF  20
 ....................  
 ....................     SevenSegmentDisplay_showArrayOfNumbers( 
 ....................             numbersToSend, 
 ....................             Array_getArraySize(numbersToSend), 
 ....................             TRUE); 
-0F4A:  MOVLW  01
-0F4B:  MOVWF  2D
-0F4C:  MOVLW  1D
-0F4D:  MOVWF  2C
-0F4E:  MOVLW  04
-0F4F:  MOVWF  2E
-0F50:  MOVLW  01
-0F51:  MOVWF  2F
-0F52:  BCF    0A.3
-0F53:  BCF    03.6
-0F54:  CALL   69E
-0F55:  BSF    0A.3
+0F69:  MOVLW  01
+0F6A:  MOVWF  2D
+0F6B:  MOVLW  1D
+0F6C:  MOVWF  2C
+0F6D:  MOVLW  04
+0F6E:  MOVWF  2E
+0F6F:  MOVLW  01
+0F70:  MOVWF  2F
+0F71:  BCF    0A.3
+0F72:  BCF    03.6
+0F73:  CALL   69E
+0F74:  BSF    0A.3
 .................... } 
 ....................  
 .................... void Timer_showMinutesAndSecondsOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-0F6E:  CLRF   1D
-0F6F:  CLRF   1E
-0F70:  CLRF   1F
-0F71:  CLRF   20
+0F8D:  CLRF   1D
+0F8E:  CLRF   1E
+0F8F:  CLRF   1F
+0F90:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-0F72:  MOVLW  08
-0F73:  ADDWF  1B,W
-0F74:  MOVWF  78
-0F75:  MOVF   1C,W
-0F76:  MOVWF  7A
-0F77:  BTFSC  03.0
-0F78:  INCF   7A,F
-0F79:  MOVF   78,W
-0F7A:  MOVWF  27
-0F7B:  MOVF   7A,W
-0F7C:  MOVWF  28
-0F7D:  MOVWF  33
-0F7E:  MOVF   27,W
-0F7F:  MOVWF  32
-0F80:  CLRF   34
-0F81:  BCF    0A.3
-0F82:  BCF    03.6
-0F83:  CALL   5EA
-0F84:  BSF    0A.3
-0F85:  MOVF   79,W
-0F86:  MOVWF  7A
-0F87:  MOVF   78,W
-0F88:  BSF    03.6
-0F89:  MOVWF  27
-0F8A:  MOVF   7A,W
-0F8B:  MOVWF  28
-0F8C:  MOVLW  01
-0F8D:  MOVWF  2A
-0F8E:  MOVLW  21
-0F8F:  MOVWF  29
-0F90:  MOVLW  06
-0F91:  MOVWF  78
-0F92:  MOVF   27,W
-0F93:  MOVWF  04
-0F94:  BCF    03.7
-0F95:  BTFSC  28.0
-0F96:  BSF    03.7
-0F97:  MOVF   00,W
-0F98:  MOVWF  77
-0F99:  MOVF   29,W
-0F9A:  MOVWF  04
-0F9B:  BCF    03.7
-0F9C:  BTFSC  2A.0
-0F9D:  BSF    03.7
-0F9E:  MOVF   77,W
-0F9F:  MOVWF  00
-0FA0:  INCF   29,F
-0FA1:  BTFSC  03.2
-0FA2:  INCF   2A,F
-0FA3:  INCF   27,F
-0FA4:  BTFSC  03.2
-0FA5:  INCF   28,F
-0FA6:  DECFSZ 78,F
-0FA7:  GOTO   792
+0F91:  MOVLW  08
+0F92:  ADDWF  1B,W
+0F93:  MOVWF  78
+0F94:  MOVF   1C,W
+0F95:  MOVWF  7A
+0F96:  BTFSC  03.0
+0F97:  INCF   7A,F
+0F98:  MOVF   78,W
+0F99:  MOVWF  27
+0F9A:  MOVF   7A,W
+0F9B:  MOVWF  28
+0F9C:  MOVWF  33
+0F9D:  MOVF   27,W
+0F9E:  MOVWF  32
+0F9F:  CLRF   34
+0FA0:  BCF    0A.3
+0FA1:  BCF    03.6
+0FA2:  CALL   5EA
+0FA3:  BSF    0A.3
+0FA4:  MOVF   79,W
+0FA5:  MOVWF  7A
+0FA6:  MOVF   78,W
+0FA7:  BSF    03.6
+0FA8:  MOVWF  27
+0FA9:  MOVF   7A,W
+0FAA:  MOVWF  28
+0FAB:  MOVLW  01
+0FAC:  MOVWF  2A
+0FAD:  MOVLW  21
+0FAE:  MOVWF  29
+0FAF:  MOVLW  06
+0FB0:  MOVWF  78
+0FB1:  MOVF   27,W
+0FB2:  MOVWF  04
+0FB3:  BCF    03.7
+0FB4:  BTFSC  28.0
+0FB5:  BSF    03.7
+0FB6:  MOVF   00,W
+0FB7:  MOVWF  77
+0FB8:  MOVF   29,W
+0FB9:  MOVWF  04
+0FBA:  BCF    03.7
+0FBB:  BTFSC  2A.0
+0FBC:  BSF    03.7
+0FBD:  MOVF   77,W
+0FBE:  MOVWF  00
+0FBF:  INCF   29,F
+0FC0:  BTFSC  03.2
+0FC1:  INCF   2A,F
+0FC2:  INCF   27,F
+0FC3:  BTFSC  03.2
+0FC4:  INCF   28,F
+0FC5:  DECFSZ 78,F
+0FC6:  GOTO   7B1
 ....................  
 ....................     numbersToSend[0] = displayableTime.second[0]; 
-0FA8:  MOVF   25,W
-0FA9:  MOVWF  1D
+0FC7:  MOVF   25,W
+0FC8:  MOVWF  1D
 ....................     numbersToSend[1] = displayableTime.second[1]; 
-0FAA:  MOVF   26,W
-0FAB:  MOVWF  1E
+0FC9:  MOVF   26,W
+0FCA:  MOVWF  1E
 ....................     numbersToSend[2] = displayableTime.minute[0]; 
-0FAC:  MOVF   23,W
-0FAD:  MOVWF  1F
+0FCB:  MOVF   23,W
+0FCC:  MOVWF  1F
 ....................     numbersToSend[3] = displayableTime.minute[1]; 
-0FAE:  MOVF   24,W
-0FAF:  MOVWF  20
+0FCD:  MOVF   24,W
+0FCE:  MOVWF  20
 ....................  
 ....................     SevenSegmentDisplay_showArrayOfNumbers( 
 ....................             numbersToSend, 
 ....................             Array_getArraySize(numbersToSend), 
 ....................             TRUE); 
-0FB0:  MOVLW  01
-0FB1:  MOVWF  2D
-0FB2:  MOVLW  1D
-0FB3:  MOVWF  2C
-0FB4:  MOVLW  04
-0FB5:  MOVWF  2E
-0FB6:  MOVLW  01
-0FB7:  MOVWF  2F
-0FB8:  BCF    0A.3
-0FB9:  BCF    03.6
-0FBA:  CALL   69E
-0FBB:  BSF    0A.3
-0FBC:  BSF    03.6
+0FCF:  MOVLW  01
+0FD0:  MOVWF  2D
+0FD1:  MOVLW  1D
+0FD2:  MOVWF  2C
+0FD3:  MOVLW  04
+0FD4:  MOVWF  2E
+0FD5:  MOVLW  01
+0FD6:  MOVWF  2F
+0FD7:  BCF    0A.3
+0FD8:  BCF    03.6
+0FD9:  CALL   69E
+0FDA:  BSF    0A.3
+0FDB:  BSF    03.6
 .................... } 
 ....................  
 .................... void Timer_hideMinutesAndShowHoursOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-1248:  CLRF   1D
-1249:  CLRF   1E
-124A:  CLRF   1F
-124B:  CLRF   20
+1275:  CLRF   1D
+1276:  CLRF   1E
+1277:  CLRF   1F
+1278:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-124C:  MOVLW  08
-124D:  ADDWF  1B,W
-124E:  MOVWF  78
-124F:  MOVF   1C,W
-1250:  MOVWF  7A
-1251:  BTFSC  03.0
-1252:  INCF   7A,F
-1253:  MOVF   78,W
-1254:  MOVWF  27
-1255:  MOVF   7A,W
-1256:  MOVWF  28
-1257:  MOVWF  33
-1258:  MOVF   27,W
-1259:  MOVWF  32
-125A:  CLRF   34
-125B:  BCF    0A.4
-125C:  BCF    03.6
-125D:  CALL   5EA
-125E:  BSF    0A.4
-125F:  MOVF   79,W
-1260:  MOVWF  7A
-1261:  MOVF   78,W
-1262:  BSF    03.6
-1263:  MOVWF  27
-1264:  MOVF   7A,W
-1265:  MOVWF  28
-1266:  MOVLW  01
-1267:  MOVWF  2A
-1268:  MOVLW  21
-1269:  MOVWF  29
-126A:  MOVLW  06
-126B:  MOVWF  78
-126C:  MOVF   27,W
-126D:  MOVWF  04
-126E:  BCF    03.7
-126F:  BTFSC  28.0
-1270:  BSF    03.7
-1271:  MOVF   00,W
-1272:  MOVWF  77
-1273:  MOVF   29,W
-1274:  MOVWF  04
-1275:  BCF    03.7
-1276:  BTFSC  2A.0
-1277:  BSF    03.7
-1278:  MOVF   77,W
-1279:  MOVWF  00
-127A:  INCF   29,F
-127B:  BTFSC  03.2
-127C:  INCF   2A,F
-127D:  INCF   27,F
-127E:  BTFSC  03.2
-127F:  INCF   28,F
-1280:  DECFSZ 78,F
-1281:  GOTO   26C
+1279:  MOVLW  08
+127A:  ADDWF  1B,W
+127B:  MOVWF  78
+127C:  MOVF   1C,W
+127D:  MOVWF  7A
+127E:  BTFSC  03.0
+127F:  INCF   7A,F
+1280:  MOVF   78,W
+1281:  MOVWF  27
+1282:  MOVF   7A,W
+1283:  MOVWF  28
+1284:  MOVWF  33
+1285:  MOVF   27,W
+1286:  MOVWF  32
+1287:  CLRF   34
+1288:  BCF    0A.4
+1289:  BCF    03.6
+128A:  CALL   5EA
+128B:  BSF    0A.4
+128C:  MOVF   79,W
+128D:  MOVWF  7A
+128E:  MOVF   78,W
+128F:  BSF    03.6
+1290:  MOVWF  27
+1291:  MOVF   7A,W
+1292:  MOVWF  28
+1293:  MOVLW  01
+1294:  MOVWF  2A
+1295:  MOVLW  21
+1296:  MOVWF  29
+1297:  MOVLW  06
+1298:  MOVWF  78
+1299:  MOVF   27,W
+129A:  MOVWF  04
+129B:  BCF    03.7
+129C:  BTFSC  28.0
+129D:  BSF    03.7
+129E:  MOVF   00,W
+129F:  MOVWF  77
+12A0:  MOVF   29,W
+12A1:  MOVWF  04
+12A2:  BCF    03.7
+12A3:  BTFSC  2A.0
+12A4:  BSF    03.7
+12A5:  MOVF   77,W
+12A6:  MOVWF  00
+12A7:  INCF   29,F
+12A8:  BTFSC  03.2
+12A9:  INCF   2A,F
+12AA:  INCF   27,F
+12AB:  BTFSC  03.2
+12AC:  INCF   28,F
+12AD:  DECFSZ 78,F
+12AE:  GOTO   299
 ....................  
 ....................     numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-1282:  MOVLW  08
-1283:  MOVWF  1E
+12AF:  MOVLW  08
+12B0:  MOVWF  1E
 ....................     numbersToSend[2] = SevenSegmentDisplay_characters[displayableTime.hour[0]]; 
-1284:  MOVF   21,W
-1285:  BCF    0A.4
-1286:  BCF    03.6
-1287:  CALL   004
-1288:  BSF    0A.4
-1289:  MOVWF  78
-128A:  BSF    03.6
-128B:  MOVWF  1F
+12B1:  MOVF   21,W
+12B2:  BCF    0A.4
+12B3:  BCF    03.6
+12B4:  CALL   004
+12B5:  BSF    0A.4
+12B6:  MOVWF  78
+12B7:  BSF    03.6
+12B8:  MOVWF  1F
 ....................     numbersToSend[3] = SevenSegmentDisplay_characters[displayableTime.hour[1]]; 
-128C:  MOVF   22,W
-128D:  BCF    0A.4
-128E:  BCF    03.6
-128F:  CALL   004
-1290:  BSF    0A.4
-1291:  MOVWF  78
-1292:  BSF    03.6
-1293:  MOVWF  20
+12B9:  MOVF   22,W
+12BA:  BCF    0A.4
+12BB:  BCF    03.6
+12BC:  CALL   004
+12BD:  BSF    0A.4
+12BE:  MOVWF  78
+12BF:  BSF    03.6
+12C0:  MOVWF  20
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-1294:  MOVLW  01
-1295:  MOVWF  31
-1296:  MOVLW  1D
-1297:  MOVWF  30
-1298:  MOVLW  04
-1299:  MOVWF  32
-129A:  BCF    0A.4
-129B:  BCF    03.6
-129C:  CALL   657
-129D:  BSF    0A.4
+12C1:  MOVLW  01
+12C2:  MOVWF  31
+12C3:  MOVLW  1D
+12C4:  MOVWF  30
+12C5:  MOVLW  04
+12C6:  MOVWF  32
+12C7:  BCF    0A.4
+12C8:  BCF    03.6
+12C9:  CALL   657
+12CA:  BSF    0A.4
 .................... } 
 ....................  
 .................... void Timer_hideSecondsAndShowMinutesOfLimitTime(Timer *timerPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-12B6:  CLRF   1D
-12B7:  CLRF   1E
-12B8:  CLRF   1F
-12B9:  CLRF   20
+12E3:  CLRF   1D
+12E4:  CLRF   1E
+12E5:  CLRF   1F
+12E6:  CLRF   20
 ....................     TimeInDigits displayableTime; 
 ....................  
 ....................     displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE); 
-12BA:  MOVLW  08
-12BB:  ADDWF  1B,W
-12BC:  MOVWF  78
-12BD:  MOVF   1C,W
-12BE:  MOVWF  7A
-12BF:  BTFSC  03.0
-12C0:  INCF   7A,F
-12C1:  MOVF   78,W
-12C2:  MOVWF  27
-12C3:  MOVF   7A,W
-12C4:  MOVWF  28
-12C5:  MOVWF  33
-12C6:  MOVF   27,W
-12C7:  MOVWF  32
-12C8:  CLRF   34
-12C9:  BCF    0A.4
-12CA:  BCF    03.6
-12CB:  CALL   5EA
-12CC:  BSF    0A.4
-12CD:  MOVF   79,W
-12CE:  MOVWF  7A
-12CF:  MOVF   78,W
-12D0:  BSF    03.6
-12D1:  MOVWF  27
-12D2:  MOVF   7A,W
-12D3:  MOVWF  28
-12D4:  MOVLW  01
-12D5:  MOVWF  2A
-12D6:  MOVLW  21
-12D7:  MOVWF  29
-12D8:  MOVLW  06
-12D9:  MOVWF  78
-12DA:  MOVF   27,W
-12DB:  MOVWF  04
-12DC:  BCF    03.7
-12DD:  BTFSC  28.0
-12DE:  BSF    03.7
-12DF:  MOVF   00,W
-12E0:  MOVWF  77
-12E1:  MOVF   29,W
-12E2:  MOVWF  04
-12E3:  BCF    03.7
-12E4:  BTFSC  2A.0
-12E5:  BSF    03.7
-12E6:  MOVF   77,W
-12E7:  MOVWF  00
-12E8:  INCF   29,F
-12E9:  BTFSC  03.2
-12EA:  INCF   2A,F
-12EB:  INCF   27,F
-12EC:  BTFSC  03.2
-12ED:  INCF   28,F
-12EE:  DECFSZ 78,F
-12EF:  GOTO   2DA
+12E7:  MOVLW  08
+12E8:  ADDWF  1B,W
+12E9:  MOVWF  78
+12EA:  MOVF   1C,W
+12EB:  MOVWF  7A
+12EC:  BTFSC  03.0
+12ED:  INCF   7A,F
+12EE:  MOVF   78,W
+12EF:  MOVWF  27
+12F0:  MOVF   7A,W
+12F1:  MOVWF  28
+12F2:  MOVWF  33
+12F3:  MOVF   27,W
+12F4:  MOVWF  32
+12F5:  CLRF   34
+12F6:  BCF    0A.4
+12F7:  BCF    03.6
+12F8:  CALL   5EA
+12F9:  BSF    0A.4
+12FA:  MOVF   79,W
+12FB:  MOVWF  7A
+12FC:  MOVF   78,W
+12FD:  BSF    03.6
+12FE:  MOVWF  27
+12FF:  MOVF   7A,W
+1300:  MOVWF  28
+1301:  MOVLW  01
+1302:  MOVWF  2A
+1303:  MOVLW  21
+1304:  MOVWF  29
+1305:  MOVLW  06
+1306:  MOVWF  78
+1307:  MOVF   27,W
+1308:  MOVWF  04
+1309:  BCF    03.7
+130A:  BTFSC  28.0
+130B:  BSF    03.7
+130C:  MOVF   00,W
+130D:  MOVWF  77
+130E:  MOVF   29,W
+130F:  MOVWF  04
+1310:  BCF    03.7
+1311:  BTFSC  2A.0
+1312:  BSF    03.7
+1313:  MOVF   77,W
+1314:  MOVWF  00
+1315:  INCF   29,F
+1316:  BTFSC  03.2
+1317:  INCF   2A,F
+1318:  INCF   27,F
+1319:  BTFSC  03.2
+131A:  INCF   28,F
+131B:  DECFSZ 78,F
+131C:  GOTO   307
 ....................  
 ....................     numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-12F0:  MOVLW  08
-12F1:  MOVWF  1E
+131D:  MOVLW  08
+131E:  MOVWF  1E
 ....................     numbersToSend[2] = SevenSegmentDisplay_characters[displayableTime.minute[0]]; 
-12F2:  MOVF   23,W
-12F3:  BCF    0A.4
-12F4:  BCF    03.6
-12F5:  CALL   004
-12F6:  BSF    0A.4
-12F7:  MOVWF  78
-12F8:  BSF    03.6
-12F9:  MOVWF  1F
+131F:  MOVF   23,W
+1320:  BCF    0A.4
+1321:  BCF    03.6
+1322:  CALL   004
+1323:  BSF    0A.4
+1324:  MOVWF  78
+1325:  BSF    03.6
+1326:  MOVWF  1F
 ....................     numbersToSend[3] = SevenSegmentDisplay_characters[displayableTime.minute[1]]; 
-12FA:  MOVF   24,W
-12FB:  BCF    0A.4
-12FC:  BCF    03.6
-12FD:  CALL   004
-12FE:  BSF    0A.4
-12FF:  MOVWF  78
-1300:  BSF    03.6
-1301:  MOVWF  20
+1327:  MOVF   24,W
+1328:  BCF    0A.4
+1329:  BCF    03.6
+132A:  CALL   004
+132B:  BSF    0A.4
+132C:  MOVWF  78
+132D:  BSF    03.6
+132E:  MOVWF  20
 ....................  
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-1302:  MOVLW  01
-1303:  MOVWF  31
-1304:  MOVLW  1D
-1305:  MOVWF  30
-1306:  MOVLW  04
-1307:  MOVWF  32
-1308:  BCF    0A.4
-1309:  BCF    03.6
-130A:  CALL   657
-130B:  BSF    0A.4
-130C:  BSF    03.6
+132F:  MOVLW  01
+1330:  MOVWF  31
+1331:  MOVLW  1D
+1332:  MOVWF  30
+1333:  MOVLW  04
+1334:  MOVWF  32
+1335:  BCF    0A.4
+1336:  BCF    03.6
+1337:  CALL   657
+1338:  BSF    0A.4
+1339:  BSF    03.6
 .................... } 
 ....................  
 .................... #endif	/* TIMER_H */ 
@@ -5557,761 +5553,753 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void PolyoneDisplay_showLimitTime(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-0EF0:  MOVLW  16
-0EF1:  BSF    03.6
-0EF2:  ADDWF  17,W
-0EF3:  MOVWF  04
-0EF4:  BCF    03.7
-0EF5:  BTFSC  18.0
-0EF6:  BSF    03.7
-0EF7:  MOVF   00,W
-0EF8:  ANDLW  01
-0EF9:  SUBLW  01
-0EFA:  BTFSS  03.2
-0EFB:  GOTO   758
+0F0F:  MOVLW  16
+0F10:  BSF    03.6
+0F11:  ADDWF  17,W
+0F12:  MOVWF  04
+0F13:  BCF    03.7
+0F14:  BTFSC  18.0
+0F15:  BSF    03.7
+0F16:  MOVF   00,W
+0F17:  ANDLW  01
+0F18:  SUBLW  01
+0F19:  BTFSS  03.2
+0F1A:  GOTO   777
 ....................         Timer_showHoursAndMinutesOfLimitTime(&polyoneDisplayPtr->timer); 
-0EFC:  MOVF   17,W
-0EFD:  MOVWF  78
-0EFE:  MOVF   18,W
-0EFF:  MOVWF  7A
-0F00:  MOVF   78,W
-0F01:  MOVWF  19
-0F02:  MOVF   7A,W
-0F03:  MOVWF  1A
-0F04:  MOVF   1A,W
-0F05:  MOVWF  1C
-0F06:  MOVF   19,W
-0F07:  MOVWF  1B
+0F1B:  MOVF   17,W
+0F1C:  MOVWF  78
+0F1D:  MOVF   18,W
+0F1E:  MOVWF  7A
+0F1F:  MOVF   78,W
+0F20:  MOVWF  19
+0F21:  MOVF   7A,W
+0F22:  MOVWF  1A
+0F23:  MOVF   1A,W
+0F24:  MOVWF  1C
+0F25:  MOVF   19,W
+0F26:  MOVWF  1B
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
 *
-0F56:  GOTO   7BC
-0F57:  BSF    03.6
-0F58:  MOVLW  16
-0F59:  ADDWF  17,W
-0F5A:  MOVWF  04
-0F5B:  BCF    03.7
-0F5C:  BTFSC  18.0
-0F5D:  BSF    03.7
-0F5E:  MOVF   00,W
-0F5F:  ANDLW  01
-0F60:  BTFSS  03.2
-0F61:  GOTO   7BD
+0F75:  GOTO   7DB
+0F76:  BSF    03.6
+0F77:  MOVLW  16
+0F78:  ADDWF  17,W
+0F79:  MOVWF  04
+0F7A:  BCF    03.7
+0F7B:  BTFSC  18.0
+0F7C:  BSF    03.7
+0F7D:  MOVF   00,W
+0F7E:  ANDLW  01
+0F7F:  BTFSS  03.2
+0F80:  GOTO   7DC
 ....................         Timer_showMinutesAndSecondsOfLimitTime(&polyoneDisplayPtr->timer); 
-0F62:  MOVF   17,W
-0F63:  MOVWF  78
-0F64:  MOVF   18,W
-0F65:  MOVWF  7A
-0F66:  MOVF   78,W
-0F67:  MOVWF  19
-0F68:  MOVF   7A,W
-0F69:  MOVWF  1A
-0F6A:  MOVF   1A,W
-0F6B:  MOVWF  1C
-0F6C:  MOVF   19,W
-0F6D:  MOVWF  1B
+0F81:  MOVF   17,W
+0F82:  MOVWF  78
+0F83:  MOVF   18,W
+0F84:  MOVWF  7A
+0F85:  MOVF   78,W
+0F86:  MOVWF  19
+0F87:  MOVF   7A,W
+0F88:  MOVWF  1A
+0F89:  MOVF   1A,W
+0F8A:  MOVWF  1C
+0F8B:  MOVF   19,W
+0F8C:  MOVWF  1B
 ....................     } 
 *
-0FBD:  BCF    03.6
-0FBE:  RETURN
+0FDC:  BCF    03.6
+0FDD:  RETURN
 .................... } 
 ....................  
 .................... void PolyoneDisplay_hideBrightness(void) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-1657:  BSF    03.6
-1658:  CLRF   17
-1659:  CLRF   18
-165A:  CLRF   19
-165B:  CLRF   1A
+1654:  BSF    03.6
+1655:  CLRF   17
+1656:  CLRF   18
+1657:  CLRF   19
+1658:  CLRF   1A
 ....................  
 ....................     numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_B]; 
-165C:  MOVLW  37
-165D:  MOVWF  19
+1659:  MOVLW  37
+165A:  MOVWF  19
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-165E:  MOVLW  01
-165F:  MOVWF  31
-1660:  MOVLW  17
-1661:  MOVWF  30
-1662:  MOVLW  04
-1663:  MOVWF  32
-1664:  BCF    0A.4
-1665:  BCF    03.6
-1666:  CALL   657
-1667:  BSF    0A.4
+165B:  MOVLW  01
+165C:  MOVWF  31
+165D:  MOVLW  17
+165E:  MOVWF  30
+165F:  MOVLW  04
+1660:  MOVWF  32
+1661:  BCF    0A.4
+1662:  BCF    03.6
+1663:  CALL   657
+1664:  BSF    0A.4
 .................... } 
 ....................  
 .................... void PolyoneDisplay_showBrightness(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-1000:  BSF    03.6
-1001:  CLRF   19
-1002:  CLRF   1A
-1003:  CLRF   1B
-1004:  CLRF   1C
+102E:  BSF    03.6
+102F:  CLRF   19
+1030:  CLRF   1A
+1031:  CLRF   1B
+1032:  CLRF   1C
 ....................  
 ....................     numbersToSend[0] = SevenSegmentDisplay_characters[(polyoneDisplayPtr->brightness + 1) % 10]; 
-1005:  MOVLW  19
-1006:  ADDWF  17,W
-1007:  MOVWF  04
-1008:  BCF    03.7
-1009:  BTFSC  18.0
-100A:  BSF    03.7
-100B:  MOVLW  01
-100C:  ADDWF  00,W
-100D:  MOVWF  1E
-100E:  BSF    03.5
-100F:  MOVWF  28
-1010:  MOVLW  0A
-1011:  MOVWF  29
-1012:  BCF    0A.4
-1013:  BCF    03.5
-1014:  BCF    03.6
-1015:  CALL   03D
-1016:  BSF    0A.4
-1017:  MOVF   77,W
-1018:  BCF    0A.4
-1019:  CALL   004
-101A:  BSF    0A.4
-101B:  MOVWF  78
-101C:  BSF    03.6
-101D:  MOVWF  19
+1033:  MOVLW  19
+1034:  ADDWF  17,W
+1035:  MOVWF  04
+1036:  BCF    03.7
+1037:  BTFSC  18.0
+1038:  BSF    03.7
+1039:  MOVLW  01
+103A:  ADDWF  00,W
+103B:  MOVWF  1E
+103C:  BSF    03.5
+103D:  MOVWF  28
+103E:  MOVLW  0A
+103F:  MOVWF  29
+1040:  BCF    0A.4
+1041:  BCF    03.5
+1042:  BCF    03.6
+1043:  CALL   03D
+1044:  BSF    0A.4
+1045:  MOVF   77,W
+1046:  BCF    0A.4
+1047:  CALL   004
+1048:  BSF    0A.4
+1049:  MOVWF  78
+104A:  BSF    03.6
+104B:  MOVWF  19
 ....................     numbersToSend[1] = SevenSegmentDisplay_characters[(polyoneDisplayPtr->brightness + 1) / 10] | 
 ....................             SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-101E:  MOVLW  19
-101F:  ADDWF  17,W
-1020:  MOVWF  04
-1021:  BCF    03.7
-1022:  BTFSC  18.0
-1023:  BSF    03.7
-1024:  MOVLW  01
-1025:  ADDWF  00,W
-1026:  MOVWF  1E
-1027:  BSF    03.5
-1028:  MOVWF  28
-1029:  MOVLW  0A
-102A:  MOVWF  29
-102B:  BCF    0A.4
-102C:  BCF    03.5
-102D:  BCF    03.6
-102E:  CALL   03D
-102F:  BSF    0A.4
-1030:  MOVF   78,W
-1031:  BCF    0A.4
-1032:  CALL   004
-1033:  BSF    0A.4
-1034:  IORLW  08
-1035:  BSF    03.6
-1036:  MOVWF  1A
+104C:  MOVLW  19
+104D:  ADDWF  17,W
+104E:  MOVWF  04
+104F:  BCF    03.7
+1050:  BTFSC  18.0
+1051:  BSF    03.7
+1052:  MOVLW  01
+1053:  ADDWF  00,W
+1054:  MOVWF  1E
+1055:  BSF    03.5
+1056:  MOVWF  28
+1057:  MOVLW  0A
+1058:  MOVWF  29
+1059:  BCF    0A.4
+105A:  BCF    03.5
+105B:  BCF    03.6
+105C:  CALL   03D
+105D:  BSF    0A.4
+105E:  MOVF   78,W
+105F:  BCF    0A.4
+1060:  CALL   004
+1061:  BSF    0A.4
+1062:  IORLW  08
+1063:  BSF    03.6
+1064:  MOVWF  1A
 ....................     numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_B]; 
-1037:  MOVLW  37
-1038:  MOVWF  1B
+1065:  MOVLW  37
+1066:  MOVWF  1B
 ....................  
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-1039:  MOVLW  01
-103A:  MOVWF  31
-103B:  MOVLW  19
-103C:  MOVWF  30
-103D:  MOVLW  04
-103E:  MOVWF  32
-103F:  BCF    0A.4
-1040:  BCF    03.6
-1041:  CALL   657
-1042:  BSF    0A.4
-1043:  RETURN
+1067:  MOVLW  01
+1068:  MOVWF  31
+1069:  MOVLW  19
+106A:  MOVWF  30
+106B:  MOVLW  04
+106C:  MOVWF  32
+106D:  BCF    0A.4
+106E:  BCF    03.6
+106F:  CALL   657
+1070:  BSF    0A.4
+1071:  RETURN
 .................... } 
 ....................  
 .................... void PolyoneDisplay_showFirstNumber(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-1231:  MOVLW  16
-1232:  ADDWF  17,W
-1233:  MOVWF  04
-1234:  BCF    03.7
-1235:  BTFSC  18.0
-1236:  BSF    03.7
-1237:  MOVF   00,W
-1238:  ANDLW  01
-1239:  SUBLW  01
-123A:  BTFSS  03.2
-123B:  GOTO   2A0
+125E:  MOVLW  16
+125F:  ADDWF  17,W
+1260:  MOVWF  04
+1261:  BCF    03.7
+1262:  BTFSC  18.0
+1263:  BSF    03.7
+1264:  MOVF   00,W
+1265:  ANDLW  01
+1266:  SUBLW  01
+1267:  BTFSS  03.2
+1268:  GOTO   2CD
 ....................         Timer_hideMinutesAndShowHoursOfLimitTime(&polyoneDisplayPtr->timer); 
-123C:  MOVF   17,W
-123D:  MOVWF  78
-123E:  MOVF   18,W
-123F:  MOVWF  7A
-1240:  MOVF   78,W
-1241:  MOVWF  19
-1242:  MOVF   7A,W
-1243:  MOVWF  1A
-1244:  MOVF   1A,W
-1245:  MOVWF  1C
-1246:  MOVF   19,W
-1247:  MOVWF  1B
+1269:  MOVF   17,W
+126A:  MOVWF  78
+126B:  MOVF   18,W
+126C:  MOVWF  7A
+126D:  MOVF   78,W
+126E:  MOVWF  19
+126F:  MOVF   7A,W
+1270:  MOVWF  1A
+1271:  MOVF   1A,W
+1272:  MOVWF  1C
+1273:  MOVF   19,W
+1274:  MOVWF  1B
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
 *
-129E:  GOTO   30C
-129F:  BSF    03.6
-12A0:  MOVLW  16
-12A1:  ADDWF  17,W
-12A2:  MOVWF  04
-12A3:  BCF    03.7
-12A4:  BTFSC  18.0
-12A5:  BSF    03.7
-12A6:  MOVF   00,W
-12A7:  ANDLW  01
-12A8:  BTFSS  03.2
-12A9:  GOTO   30D
+12CB:  GOTO   339
+12CC:  BSF    03.6
+12CD:  MOVLW  16
+12CE:  ADDWF  17,W
+12CF:  MOVWF  04
+12D0:  BCF    03.7
+12D1:  BTFSC  18.0
+12D2:  BSF    03.7
+12D3:  MOVF   00,W
+12D4:  ANDLW  01
+12D5:  BTFSS  03.2
+12D6:  GOTO   33A
 ....................         Timer_hideSecondsAndShowMinutesOfLimitTime(&polyoneDisplayPtr->timer); 
-12AA:  MOVF   17,W
-12AB:  MOVWF  78
-12AC:  MOVF   18,W
-12AD:  MOVWF  7A
-12AE:  MOVF   78,W
-12AF:  MOVWF  19
-12B0:  MOVF   7A,W
-12B1:  MOVWF  1A
-12B2:  MOVF   1A,W
-12B3:  MOVWF  1C
-12B4:  MOVF   19,W
-12B5:  MOVWF  1B
+12D7:  MOVF   17,W
+12D8:  MOVWF  78
+12D9:  MOVF   18,W
+12DA:  MOVWF  7A
+12DB:  MOVF   78,W
+12DC:  MOVWF  19
+12DD:  MOVF   7A,W
+12DE:  MOVWF  1A
+12DF:  MOVF   1A,W
+12E0:  MOVWF  1C
+12E1:  MOVF   19,W
+12E2:  MOVWF  1B
 ....................     } 
 .................... } 
 ....................  
 .................... void PolyoneDisplay_showSecondNumber(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-1098:  MOVLW  16
-1099:  ADDWF  17,W
-109A:  MOVWF  04
-109B:  BCF    03.7
-109C:  BTFSC  18.0
-109D:  BSF    03.7
-109E:  MOVF   00,W
-109F:  ANDLW  01
-10A0:  SUBLW  01
-10A1:  BTFSS  03.2
-10A2:  GOTO   105
+10C9:  MOVLW  16
+10CA:  ADDWF  17,W
+10CB:  MOVWF  04
+10CC:  BCF    03.7
+10CD:  BTFSC  18.0
+10CE:  BSF    03.7
+10CF:  MOVF   00,W
+10D0:  ANDLW  01
+10D1:  SUBLW  01
+10D2:  BTFSS  03.2
+10D3:  GOTO   136
 ....................         Timer_hideHoursAndShowMinutesOfLimitTime(&polyoneDisplayPtr->timer); 
-10A3:  MOVF   17,W
-10A4:  MOVWF  78
-10A5:  MOVF   18,W
-10A6:  MOVWF  7A
-10A7:  MOVF   78,W
-10A8:  MOVWF  19
-10A9:  MOVF   7A,W
-10AA:  MOVWF  1A
-10AB:  MOVF   1A,W
-10AC:  MOVWF  1C
-10AD:  MOVF   19,W
-10AE:  MOVWF  1B
+10D4:  MOVF   17,W
+10D5:  MOVWF  78
+10D6:  MOVF   18,W
+10D7:  MOVWF  7A
+10D8:  MOVF   78,W
+10D9:  MOVWF  19
+10DA:  MOVF   7A,W
+10DB:  MOVWF  1A
+10DC:  MOVF   1A,W
+10DD:  MOVWF  1C
+10DE:  MOVF   19,W
+10DF:  MOVWF  1B
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
 *
-1103:  GOTO   16F
-1104:  BSF    03.6
-1105:  MOVLW  16
-1106:  ADDWF  17,W
-1107:  MOVWF  04
-1108:  BCF    03.7
-1109:  BTFSC  18.0
-110A:  BSF    03.7
-110B:  MOVF   00,W
-110C:  ANDLW  01
-110D:  BTFSS  03.2
-110E:  GOTO   170
+1134:  GOTO   1A0
+1135:  BSF    03.6
+1136:  MOVLW  16
+1137:  ADDWF  17,W
+1138:  MOVWF  04
+1139:  BCF    03.7
+113A:  BTFSC  18.0
+113B:  BSF    03.7
+113C:  MOVF   00,W
+113D:  ANDLW  01
+113E:  BTFSS  03.2
+113F:  GOTO   1A1
 ....................         Timer_hideMinutesAndShowSecondsOfLimitTime(&polyoneDisplayPtr->timer); 
-110F:  MOVF   17,W
-1110:  MOVWF  78
-1111:  MOVF   18,W
-1112:  MOVWF  7A
-1113:  MOVF   78,W
-1114:  MOVWF  19
-1115:  MOVF   7A,W
-1116:  MOVWF  1A
-1117:  MOVF   1A,W
-1118:  MOVWF  1C
-1119:  MOVF   19,W
-111A:  MOVWF  1B
+1140:  MOVF   17,W
+1141:  MOVWF  78
+1142:  MOVF   18,W
+1143:  MOVWF  7A
+1144:  MOVF   78,W
+1145:  MOVWF  19
+1146:  MOVF   7A,W
+1147:  MOVWF  1A
+1148:  MOVF   1A,W
+1149:  MOVWF  1C
+114A:  MOVF   19,W
+114B:  MOVWF  1B
 ....................     } 
 .................... } 
 ....................  
 .................... void PolyoneDisplay_showFormat(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     int numbersToSend[4] = {0}; 
 *
-1402:  CLRF   19
-1403:  CLRF   1A
-1404:  CLRF   1B
-1405:  CLRF   1C
+142B:  CLRF   19
+142C:  CLRF   1A
+142D:  CLRF   1B
+142E:  CLRF   1C
 ....................  
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
-1406:  MOVLW  16
-1407:  ADDWF  17,W
-1408:  MOVWF  04
-1409:  BCF    03.7
-140A:  BTFSC  18.0
-140B:  BSF    03.7
-140C:  MOVF   00,W
-140D:  ANDLW  01
-140E:  SUBLW  01
-140F:  BTFSS  03.2
-1410:  GOTO   419
+142F:  MOVLW  16
+1430:  ADDWF  17,W
+1431:  MOVWF  04
+1432:  BCF    03.7
+1433:  BTFSC  18.0
+1434:  BSF    03.7
+1435:  MOVF   00,W
+1436:  ANDLW  01
+1437:  SUBLW  01
+1438:  BTFSS  03.2
+1439:  GOTO   442
 ....................  
 ....................         numbersToSend[0] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N]; 
-1411:  MOVLW  25
-1412:  MOVWF  19
+143A:  MOVLW  25
+143B:  MOVWF  19
 ....................         numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N] | 
 ....................                 SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-1413:  MOVLW  2D
-1414:  MOVWF  1A
+143C:  MOVLW  2D
+143D:  MOVWF  1A
 ....................         numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_CAPS_H]; 
-1415:  MOVLW  67
-1416:  MOVWF  1B
+143E:  MOVLW  67
+143F:  MOVWF  1B
 ....................         numbersToSend[3] = SevenSegmentDisplay_characters[INDEX_CAPS_H]; 
-1417:  MOVWF  1C
+1440:  MOVWF  1C
 ....................  
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
-1418:  GOTO   42A
-1419:  MOVLW  16
-141A:  ADDWF  17,W
-141B:  MOVWF  04
-141C:  BCF    03.7
-141D:  BTFSC  18.0
-141E:  BSF    03.7
-141F:  MOVF   00,W
-1420:  ANDLW  01
-1421:  BTFSS  03.2
-1422:  GOTO   42A
+1441:  GOTO   453
+1442:  MOVLW  16
+1443:  ADDWF  17,W
+1444:  MOVWF  04
+1445:  BCF    03.7
+1446:  BTFSC  18.0
+1447:  BSF    03.7
+1448:  MOVF   00,W
+1449:  ANDLW  01
+144A:  BTFSS  03.2
+144B:  GOTO   453
 ....................         numbersToSend[0] = SevenSegmentDisplay_characters[5]; 
-1423:  MOVLW  B3
-1424:  MOVWF  19
+144C:  MOVLW  B3
+144D:  MOVWF  19
 ....................         numbersToSend[1] = SevenSegmentDisplay_characters[5] | 
 ....................                 SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT]; 
-1425:  MOVLW  BB
-1426:  MOVWF  1A
+144E:  MOVLW  BB
+144F:  MOVWF  1A
 ....................         numbersToSend[2] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N]; 
-1427:  MOVLW  25
-1428:  MOVWF  1B
+1450:  MOVLW  25
+1451:  MOVWF  1B
 ....................         numbersToSend[3] = SevenSegmentDisplay_characters[INDEX_LOWERCASE_N]; 
-1429:  MOVWF  1C
+1452:  MOVWF  1C
 ....................     } 
 ....................  
 ....................     ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend)); 
-142A:  MOVLW  01
-142B:  MOVWF  31
-142C:  MOVLW  19
-142D:  MOVWF  30
-142E:  MOVLW  04
-142F:  MOVWF  32
-1430:  BCF    0A.4
-1431:  BCF    03.6
-1432:  CALL   657
-1433:  BSF    0A.4
+1453:  MOVLW  01
+1454:  MOVWF  31
+1455:  MOVLW  19
+1456:  MOVWF  30
+1457:  MOVLW  04
+1458:  MOVWF  32
+1459:  BCF    0A.4
+145A:  BCF    03.6
+145B:  CALL   657
+145C:  BSF    0A.4
 .................... } 
 ....................  
 .................... void PolyoneDisplay_increaseBrightness(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     polyoneDisplayPtr->brightness = (polyoneDisplayPtr->brightness + 1) % 10; 
 *
-1676:  MOVLW  19
-1677:  ADDWF  17,W
-1678:  MOVWF  78
-1679:  MOVF   18,W
-167A:  MOVWF  7A
-167B:  BTFSC  03.0
-167C:  INCF   7A,F
-167D:  MOVF   78,W
-167E:  MOVWF  19
-167F:  MOVF   7A,W
-1680:  MOVWF  1A
-1681:  MOVLW  19
-1682:  ADDWF  17,W
-1683:  MOVWF  04
-1684:  BCF    03.7
-1685:  BTFSC  18.0
-1686:  BSF    03.7
-1687:  MOVLW  01
-1688:  ADDWF  00,W
-1689:  MOVWF  1C
-168A:  BSF    03.5
-168B:  MOVWF  28
-168C:  MOVLW  0A
-168D:  MOVWF  29
-168E:  BCF    0A.4
-168F:  BCF    03.5
-1690:  BCF    03.6
-1691:  CALL   03D
-1692:  BSF    0A.4
-1693:  MOVF   77,W
-1694:  BSF    03.6
-1695:  MOVWF  1B
-1696:  MOVF   19,W
-1697:  MOVWF  04
-1698:  BCF    03.7
-1699:  BTFSC  1A.0
-169A:  BSF    03.7
-169B:  MOVF   1B,W
-169C:  MOVWF  00
+1673:  MOVLW  19
+1674:  ADDWF  17,W
+1675:  MOVWF  78
+1676:  MOVF   18,W
+1677:  MOVWF  7A
+1678:  BTFSC  03.0
+1679:  INCF   7A,F
+167A:  MOVF   78,W
+167B:  MOVWF  19
+167C:  MOVF   7A,W
+167D:  MOVWF  1A
+167E:  MOVLW  19
+167F:  ADDWF  17,W
+1680:  MOVWF  04
+1681:  BCF    03.7
+1682:  BTFSC  18.0
+1683:  BSF    03.7
+1684:  MOVLW  01
+1685:  ADDWF  00,W
+1686:  MOVWF  1C
+1687:  BSF    03.5
+1688:  MOVWF  28
+1689:  MOVLW  0A
+168A:  MOVWF  29
+168B:  BCF    0A.4
+168C:  BCF    03.5
+168D:  BCF    03.6
+168E:  CALL   03D
+168F:  BSF    0A.4
+1690:  MOVF   77,W
+1691:  BSF    03.6
+1692:  MOVWF  1B
+1693:  MOVF   19,W
+1694:  MOVWF  04
+1695:  BCF    03.7
+1696:  BTFSC  1A.0
+1697:  BSF    03.7
+1698:  MOVF   1B,W
+1699:  MOVWF  00
 ....................     set_pwm1_duty(brightnessLevels[polyoneDisplayPtr->brightness]); 
-169D:  MOVLW  19
-169E:  ADDWF  17,W
-169F:  MOVWF  04
-16A0:  BCF    03.7
-16A1:  BTFSC  18.0
-16A2:  BSF    03.7
-16A3:  MOVF   00,W
-16A4:  BCF    0A.4
-16A5:  BCF    03.6
-16A6:  CALL   023
-16A7:  BSF    0A.4
-16A8:  BSF    03.6
-16A9:  MOVWF  19
-16AA:  BCF    03.6
-16AB:  MOVWF  15
+169A:  MOVLW  19
+169B:  ADDWF  17,W
+169C:  MOVWF  04
+169D:  BCF    03.7
+169E:  BTFSC  18.0
+169F:  BSF    03.7
+16A0:  MOVF   00,W
+16A1:  BCF    0A.4
+16A2:  BCF    03.6
+16A3:  CALL   023
+16A4:  BSF    0A.4
+16A5:  BSF    03.6
+16A6:  MOVWF  19
+16A7:  BCF    03.6
+16A8:  MOVWF  15
 .................... } 
 ....................  
 .................... void PolyoneDisplay_increaseFirstNumber(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-117F:  MOVLW  16
-1180:  ADDWF  17,W
-1181:  MOVWF  04
-1182:  BCF    03.7
-1183:  BTFSC  18.0
-1184:  BSF    03.7
-1185:  MOVF   00,W
-1186:  ANDLW  01
-1187:  SUBLW  01
-1188:  BTFSS  03.2
-1189:  GOTO   1C6
+11B0:  MOVLW  16
+11B1:  ADDWF  17,W
+11B2:  MOVWF  04
+11B3:  BCF    03.7
+11B4:  BTFSC  18.0
+11B5:  BSF    03.7
+11B6:  MOVF   00,W
+11B7:  ANDLW  01
+11B8:  SUBLW  01
+11B9:  BTFSS  03.2
+11BA:  GOTO   1F7
 ....................         Timer_increaseTimerHours(&polyoneDisplayPtr->timer); 
-118A:  MOVF   17,W
-118B:  MOVWF  78
-118C:  MOVF   18,W
-118D:  MOVWF  7A
-118E:  MOVF   78,W
-118F:  MOVWF  19
-1190:  MOVF   7A,W
-1191:  MOVWF  1A
-1192:  MOVF   1A,W
-1193:  MOVWF  1C
-1194:  MOVF   19,W
-1195:  MOVWF  1B
+11BB:  MOVF   17,W
+11BC:  MOVWF  78
+11BD:  MOVF   18,W
+11BE:  MOVWF  7A
+11BF:  MOVF   78,W
+11C0:  MOVWF  19
+11C1:  MOVF   7A,W
+11C2:  MOVWF  1A
+11C3:  MOVF   1A,W
+11C4:  MOVWF  1C
+11C5:  MOVF   19,W
+11C6:  MOVWF  1B
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
 *
-11C5:  GOTO   1E2
-11C6:  MOVLW  16
-11C7:  ADDWF  17,W
-11C8:  MOVWF  04
-11C9:  BCF    03.7
-11CA:  BTFSC  18.0
-11CB:  BSF    03.7
-11CC:  MOVF   00,W
-11CD:  ANDLW  01
-11CE:  BTFSS  03.2
-11CF:  GOTO   1E2
+11F6:  GOTO   20F
+11F7:  MOVLW  16
+11F8:  ADDWF  17,W
+11F9:  MOVWF  04
+11FA:  BCF    03.7
+11FB:  BTFSC  18.0
+11FC:  BSF    03.7
+11FD:  MOVF   00,W
+11FE:  ANDLW  01
+11FF:  BTFSS  03.2
+1200:  GOTO   20F
 ....................         Timer_increaseTimerMinutes(&polyoneDisplayPtr->timer); 
-11D0:  MOVF   17,W
-11D1:  MOVWF  78
-11D2:  MOVF   18,W
-11D3:  MOVWF  7A
-11D4:  MOVF   78,W
-11D5:  MOVWF  19
-11D6:  MOVF   18,W
-11D7:  MOVWF  1A
-11D8:  MOVWF  1C
-11D9:  MOVF   19,W
-11DA:  MOVWF  1B
-11DB:  BCF    0A.4
-11DC:  BSF    0A.3
-11DD:  BCF    03.6
-11DE:  CALL   7BF
-11DF:  BSF    0A.4
-11E0:  BCF    0A.3
-11E1:  BSF    03.6
+1201:  MOVF   17,W
+1202:  MOVWF  78
+1203:  MOVF   18,W
+1204:  MOVWF  7A
+1205:  MOVF   78,W
+1206:  MOVWF  19
+1207:  MOVF   18,W
+1208:  MOVWF  1A
+1209:  MOVWF  1C
+120A:  MOVF   19,W
+120B:  MOVWF  1B
+120C:  BCF    03.6
+120D:  CALL   000
+120E:  BSF    03.6
 ....................     } 
 .................... } 
 ....................  
 .................... void PolyoneDisplay_increaseSecondNumber(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-131C:  MOVLW  16
-131D:  ADDWF  17,W
-131E:  MOVWF  04
-131F:  BCF    03.7
-1320:  BTFSC  18.0
-1321:  BSF    03.7
-1322:  MOVF   00,W
-1323:  ANDLW  01
-1324:  SUBLW  01
-1325:  BTFSS  03.2
-1326:  GOTO   33A
+1349:  MOVLW  16
+134A:  ADDWF  17,W
+134B:  MOVWF  04
+134C:  BCF    03.7
+134D:  BTFSC  18.0
+134E:  BSF    03.7
+134F:  MOVF   00,W
+1350:  ANDLW  01
+1351:  SUBLW  01
+1352:  BTFSS  03.2
+1353:  GOTO   363
 ....................         Timer_increaseTimerMinutes(&polyoneDisplayPtr->timer); 
-1327:  MOVF   17,W
-1328:  MOVWF  78
-1329:  MOVF   18,W
-132A:  MOVWF  7A
-132B:  MOVF   17,W
-132C:  MOVWF  19
-132D:  MOVF   18,W
-132E:  MOVWF  1A
-132F:  MOVWF  1C
-1330:  MOVF   17,W
-1331:  MOVWF  1B
-1332:  BCF    0A.4
-1333:  BSF    0A.3
-1334:  BCF    03.6
-1335:  CALL   7BF
-1336:  BSF    0A.4
-1337:  BCF    0A.3
+1354:  MOVF   17,W
+1355:  MOVWF  78
+1356:  MOVF   18,W
+1357:  MOVWF  7A
+1358:  MOVF   17,W
+1359:  MOVWF  19
+135A:  MOVF   18,W
+135B:  MOVWF  1A
+135C:  MOVWF  1C
+135D:  MOVF   17,W
+135E:  MOVWF  1B
+135F:  BCF    03.6
+1360:  CALL   000
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
-1338:  GOTO   380
-1339:  BSF    03.6
-133A:  MOVLW  16
-133B:  ADDWF  17,W
-133C:  MOVWF  04
-133D:  BCF    03.7
-133E:  BTFSC  18.0
-133F:  BSF    03.7
-1340:  MOVF   00,W
-1341:  ANDLW  01
-1342:  BTFSS  03.2
-1343:  GOTO   37F
+1361:  GOTO   3A9
+1362:  BSF    03.6
+1363:  MOVLW  16
+1364:  ADDWF  17,W
+1365:  MOVWF  04
+1366:  BCF    03.7
+1367:  BTFSC  18.0
+1368:  BSF    03.7
+1369:  MOVF   00,W
+136A:  ANDLW  01
+136B:  BTFSS  03.2
+136C:  GOTO   3A8
 ....................         Timer_increaseTimerSeconds(&polyoneDisplayPtr->timer); 
-1344:  MOVF   17,W
-1345:  MOVWF  78
-1346:  MOVF   18,W
-1347:  MOVWF  7A
-1348:  MOVF   78,W
-1349:  MOVWF  19
-134A:  MOVF   7A,W
-134B:  MOVWF  1A
-134C:  MOVF   1A,W
-134D:  MOVWF  1C
-134E:  MOVF   19,W
-134F:  MOVWF  1B
+136D:  MOVF   17,W
+136E:  MOVWF  78
+136F:  MOVF   18,W
+1370:  MOVWF  7A
+1371:  MOVF   78,W
+1372:  MOVWF  19
+1373:  MOVF   7A,W
+1374:  MOVWF  1A
+1375:  MOVF   1A,W
+1376:  MOVWF  1C
+1377:  MOVF   19,W
+1378:  MOVWF  1B
 ....................     } 
 .................... } 
 ....................  
 .................... void PolyoneDisplay_swapFormat(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     polyoneDisplayPtr->format = !polyoneDisplayPtr->format; 
 *
-143F:  MOVLW  16
-1440:  ADDWF  17,W
-1441:  MOVWF  78
-1442:  MOVF   18,W
-1443:  MOVWF  7A
-1444:  BTFSC  03.0
-1445:  INCF   7A,F
-1446:  MOVF   78,W
-1447:  MOVWF  19
-1448:  MOVF   7A,W
-1449:  MOVWF  1A
-144A:  MOVLW  16
-144B:  ADDWF  17,W
-144C:  MOVWF  04
-144D:  BCF    03.7
-144E:  BTFSC  18.0
-144F:  BSF    03.7
-1450:  BTFSS  00.0
-1451:  GOTO   459
-1452:  MOVF   19,W
-1453:  MOVWF  04
-1454:  BCF    03.7
-1455:  BTFSC  1A.0
-1456:  BSF    03.7
-1457:  BCF    00.0
-1458:  GOTO   45F
-1459:  MOVF   19,W
-145A:  MOVWF  04
-145B:  BCF    03.7
-145C:  BTFSC  1A.0
-145D:  BSF    03.7
-145E:  BSF    00.0
+1468:  MOVLW  16
+1469:  ADDWF  17,W
+146A:  MOVWF  78
+146B:  MOVF   18,W
+146C:  MOVWF  7A
+146D:  BTFSC  03.0
+146E:  INCF   7A,F
+146F:  MOVF   78,W
+1470:  MOVWF  19
+1471:  MOVF   7A,W
+1472:  MOVWF  1A
+1473:  MOVLW  16
+1474:  ADDWF  17,W
+1475:  MOVWF  04
+1476:  BCF    03.7
+1477:  BTFSC  18.0
+1478:  BSF    03.7
+1479:  BTFSS  00.0
+147A:  GOTO   482
+147B:  MOVF   19,W
+147C:  MOVWF  04
+147D:  BCF    03.7
+147E:  BTFSC  1A.0
+147F:  BSF    03.7
+1480:  BCF    00.0
+1481:  GOTO   488
+1482:  MOVF   19,W
+1483:  MOVWF  04
+1484:  BCF    03.7
+1485:  BTFSC  1A.0
+1486:  BSF    03.7
+1487:  BSF    00.0
 ....................  
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
-145F:  MOVLW  16
-1460:  ADDWF  17,W
-1461:  MOVWF  04
-1462:  BCF    03.7
-1463:  BTFSC  18.0
-1464:  BSF    03.7
-1465:  MOVF   00,W
-1466:  ANDLW  01
-1467:  SUBLW  01
-1468:  BTFSS  03.2
-1469:  GOTO   4B6
+1488:  MOVLW  16
+1489:  ADDWF  17,W
+148A:  MOVWF  04
+148B:  BCF    03.7
+148C:  BTFSC  18.0
+148D:  BSF    03.7
+148E:  MOVF   00,W
+148F:  ANDLW  01
+1490:  SUBLW  01
+1491:  BTFSS  03.2
+1492:  GOTO   4DF
 ....................         polyoneDisplayPtr->timer.alarmTime.hour = polyoneDisplayPtr->timer.alarmTime.minute; 
-146A:  MOVLW  09
-146B:  ADDWF  17,W
-146C:  MOVWF  78
-146D:  MOVF   18,W
-146E:  MOVWF  7A
-146F:  BTFSC  03.0
-1470:  INCF   7A,F
-1471:  MOVF   78,W
-1472:  MOVWF  19
-1473:  MOVF   7A,W
-1474:  MOVWF  1A
-1475:  MOVLW  0A
-1476:  ADDWF  17,W
-1477:  MOVWF  04
-1478:  BCF    03.7
-1479:  BTFSC  18.0
-147A:  BSF    03.7
-147B:  MOVF   00,W
-147C:  MOVWF  1B
-147D:  MOVF   19,W
-147E:  MOVWF  04
-147F:  BCF    03.7
-1480:  BTFSC  1A.0
-1481:  BSF    03.7
-1482:  MOVF   1B,W
-1483:  MOVWF  00
-....................         polyoneDisplayPtr->timer.alarmTime.minute = polyoneDisplayPtr->timer.alarmTime.second; 
-1484:  MOVLW  0A
-1485:  ADDWF  17,W
-1486:  MOVWF  78
-1487:  MOVF   18,W
-1488:  MOVWF  7A
-1489:  BTFSC  03.0
-148A:  INCF   7A,F
-148B:  MOVF   78,W
-148C:  MOVWF  19
-148D:  MOVF   7A,W
-148E:  MOVWF  1A
-148F:  MOVLW  0B
-1490:  ADDWF  17,W
-1491:  MOVWF  04
-1492:  BCF    03.7
-1493:  BTFSC  18.0
-1494:  BSF    03.7
-1495:  MOVF   00,W
-1496:  MOVWF  1B
-1497:  MOVF   19,W
-1498:  MOVWF  04
-1499:  BCF    03.7
-149A:  BTFSC  1A.0
-149B:  BSF    03.7
-149C:  MOVF   1B,W
-149D:  MOVWF  00
-....................         polyoneDisplayPtr->timer.alarmTime.second = 0; 
-149E:  MOVLW  0B
+1493:  MOVLW  09
+1494:  ADDWF  17,W
+1495:  MOVWF  78
+1496:  MOVF   18,W
+1497:  MOVWF  7A
+1498:  BTFSC  03.0
+1499:  INCF   7A,F
+149A:  MOVF   78,W
+149B:  MOVWF  19
+149C:  MOVF   7A,W
+149D:  MOVWF  1A
+149E:  MOVLW  0A
 149F:  ADDWF  17,W
 14A0:  MOVWF  04
 14A1:  BCF    03.7
 14A2:  BTFSC  18.0
 14A3:  BSF    03.7
-14A4:  CLRF   00
-....................         polyoneDisplayPtr->timer.hoursUpperBound = FIRST_NUMBER_UPPER_BOUND; 
-14A5:  MOVLW  13
-14A6:  ADDWF  17,W
+14A4:  MOVF   00,W
+14A5:  MOVWF  1B
+14A6:  MOVF   19,W
 14A7:  MOVWF  04
 14A8:  BCF    03.7
-14A9:  BTFSC  18.0
+14A9:  BTFSC  1A.0
 14AA:  BSF    03.7
-14AB:  MOVLW  63
+14AB:  MOVF   1B,W
 14AC:  MOVWF  00
-....................         polyoneDisplayPtr->timer.minutesUpperBound = SECOND_NUMBER_UPPER_BOUND; 
-14AD:  MOVLW  14
+....................         polyoneDisplayPtr->timer.alarmTime.minute = polyoneDisplayPtr->timer.alarmTime.second; 
+14AD:  MOVLW  0A
 14AE:  ADDWF  17,W
-14AF:  MOVWF  04
-14B0:  BCF    03.7
-14B1:  BTFSC  18.0
-14B2:  BSF    03.7
-14B3:  MOVLW  3B
-14B4:  MOVWF  00
+14AF:  MOVWF  78
+14B0:  MOVF   18,W
+14B1:  MOVWF  7A
+14B2:  BTFSC  03.0
+14B3:  INCF   7A,F
+14B4:  MOVF   78,W
+14B5:  MOVWF  19
+14B6:  MOVF   7A,W
+14B7:  MOVWF  1A
+14B8:  MOVLW  0B
+14B9:  ADDWF  17,W
+14BA:  MOVWF  04
+14BB:  BCF    03.7
+14BC:  BTFSC  18.0
+14BD:  BSF    03.7
+14BE:  MOVF   00,W
+14BF:  MOVWF  1B
+14C0:  MOVF   19,W
+14C1:  MOVWF  04
+14C2:  BCF    03.7
+14C3:  BTFSC  1A.0
+14C4:  BSF    03.7
+14C5:  MOVF   1B,W
+14C6:  MOVWF  00
+....................         polyoneDisplayPtr->timer.alarmTime.second = 0; 
+14C7:  MOVLW  0B
+14C8:  ADDWF  17,W
+14C9:  MOVWF  04
+14CA:  BCF    03.7
+14CB:  BTFSC  18.0
+14CC:  BSF    03.7
+14CD:  CLRF   00
+....................         polyoneDisplayPtr->timer.hoursUpperBound = FIRST_NUMBER_UPPER_BOUND; 
+14CE:  MOVLW  13
+14CF:  ADDWF  17,W
+14D0:  MOVWF  04
+14D1:  BCF    03.7
+14D2:  BTFSC  18.0
+14D3:  BSF    03.7
+14D4:  MOVLW  63
+14D5:  MOVWF  00
+....................         polyoneDisplayPtr->timer.minutesUpperBound = SECOND_NUMBER_UPPER_BOUND; 
+14D6:  MOVLW  14
+14D7:  ADDWF  17,W
+14D8:  MOVWF  04
+14D9:  BCF    03.7
+14DA:  BTFSC  18.0
+14DB:  BSF    03.7
+14DC:  MOVLW  3B
+14DD:  MOVWF  00
 ....................  
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
-14B5:  GOTO   50A
-14B6:  MOVLW  16
-14B7:  ADDWF  17,W
-14B8:  MOVWF  04
-14B9:  BCF    03.7
-14BA:  BTFSC  18.0
-14BB:  BSF    03.7
-14BC:  MOVF   00,W
-14BD:  ANDLW  01
-14BE:  BTFSS  03.2
-14BF:  GOTO   50A
+14DE:  GOTO   533
+14DF:  MOVLW  16
+14E0:  ADDWF  17,W
+14E1:  MOVWF  04
+14E2:  BCF    03.7
+14E3:  BTFSC  18.0
+14E4:  BSF    03.7
+14E5:  MOVF   00,W
+14E6:  ANDLW  01
+14E7:  BTFSS  03.2
+14E8:  GOTO   533
 ....................         polyoneDisplayPtr->timer.alarmTime.second = polyoneDisplayPtr->timer.alarmTime.minute; 
-14C0:  MOVLW  0B
-14C1:  ADDWF  17,W
-14C2:  MOVWF  78
-14C3:  MOVF   18,W
-14C4:  MOVWF  7A
-14C5:  BTFSC  03.0
-14C6:  INCF   7A,F
-14C7:  MOVF   78,W
-14C8:  MOVWF  19
-14C9:  MOVF   7A,W
-14CA:  MOVWF  1A
-14CB:  MOVLW  0A
-14CC:  ADDWF  17,W
-14CD:  MOVWF  04
-14CE:  BCF    03.7
-14CF:  BTFSC  18.0
-14D0:  BSF    03.7
-14D1:  MOVF   00,W
-14D2:  MOVWF  1B
-14D3:  MOVF   19,W
-14D4:  MOVWF  04
-14D5:  BCF    03.7
-14D6:  BTFSC  1A.0
-14D7:  BSF    03.7
-14D8:  MOVF   1B,W
-14D9:  MOVWF  00
-....................         polyoneDisplayPtr->timer.alarmTime.minute = polyoneDisplayPtr->timer.alarmTime.hour; 
-14DA:  MOVLW  0A
-14DB:  ADDWF  17,W
-14DC:  MOVWF  78
-14DD:  MOVF   18,W
-14DE:  MOVWF  7A
-14DF:  BTFSC  03.0
-14E0:  INCF   7A,F
-14E1:  MOVF   78,W
-14E2:  MOVWF  19
-14E3:  MOVF   7A,W
-14E4:  MOVWF  1A
-14E5:  MOVLW  09
-14E6:  ADDWF  17,W
-14E7:  MOVWF  04
-14E8:  BCF    03.7
-14E9:  BTFSC  18.0
-14EA:  BSF    03.7
-14EB:  MOVF   00,W
-14EC:  MOVWF  1B
-14ED:  MOVF   19,W
-14EE:  MOVWF  04
-14EF:  BCF    03.7
-14F0:  BTFSC  1A.0
-14F1:  BSF    03.7
-14F2:  MOVF   1B,W
-14F3:  MOVWF  00
-....................         polyoneDisplayPtr->timer.alarmTime.hour = 0; 
-14F4:  MOVLW  09
+14E9:  MOVLW  0B
+14EA:  ADDWF  17,W
+14EB:  MOVWF  78
+14EC:  MOVF   18,W
+14ED:  MOVWF  7A
+14EE:  BTFSC  03.0
+14EF:  INCF   7A,F
+14F0:  MOVF   78,W
+14F1:  MOVWF  19
+14F2:  MOVF   7A,W
+14F3:  MOVWF  1A
+14F4:  MOVLW  0A
 14F5:  ADDWF  17,W
 14F6:  MOVWF  04
 14F7:  BCF    03.7
 14F8:  BTFSC  18.0
 14F9:  BSF    03.7
-14FA:  CLRF   00
-....................         polyoneDisplayPtr->timer.hoursUpperBound = 0; 
-14FB:  MOVLW  13
-14FC:  ADDWF  17,W
+14FA:  MOVF   00,W
+14FB:  MOVWF  1B
+14FC:  MOVF   19,W
 14FD:  MOVWF  04
 14FE:  BCF    03.7
-14FF:  BTFSC  18.0
+14FF:  BTFSC  1A.0
 1500:  BSF    03.7
-1501:  CLRF   00
+1501:  MOVF   1B,W
+1502:  MOVWF  00
+....................         polyoneDisplayPtr->timer.alarmTime.minute = polyoneDisplayPtr->timer.alarmTime.hour; 
+1503:  MOVLW  0A
+1504:  ADDWF  17,W
+1505:  MOVWF  78
+1506:  MOVF   18,W
+1507:  MOVWF  7A
+1508:  BTFSC  03.0
+1509:  INCF   7A,F
+150A:  MOVF   78,W
+150B:  MOVWF  19
+150C:  MOVF   7A,W
+150D:  MOVWF  1A
+150E:  MOVLW  09
+150F:  ADDWF  17,W
+1510:  MOVWF  04
+1511:  BCF    03.7
+1512:  BTFSC  18.0
+1513:  BSF    03.7
+1514:  MOVF   00,W
+1515:  MOVWF  1B
+1516:  MOVF   19,W
+1517:  MOVWF  04
+1518:  BCF    03.7
+1519:  BTFSC  1A.0
+151A:  BSF    03.7
+151B:  MOVF   1B,W
+151C:  MOVWF  00
+....................         polyoneDisplayPtr->timer.alarmTime.hour = 0; 
+151D:  MOVLW  09
+151E:  ADDWF  17,W
+151F:  MOVWF  04
+1520:  BCF    03.7
+1521:  BTFSC  18.0
+1522:  BSF    03.7
+1523:  CLRF   00
+....................         polyoneDisplayPtr->timer.hoursUpperBound = 0; 
+1524:  MOVLW  13
+1525:  ADDWF  17,W
+1526:  MOVWF  04
+1527:  BCF    03.7
+1528:  BTFSC  18.0
+1529:  BSF    03.7
+152A:  CLRF   00
 ....................         polyoneDisplayPtr->timer.minutesUpperBound = FIRST_NUMBER_UPPER_BOUND; 
-1502:  MOVLW  14
-1503:  ADDWF  17,W
-1504:  MOVWF  04
-1505:  BCF    03.7
-1506:  BTFSC  18.0
-1507:  BSF    03.7
-1508:  MOVLW  63
-1509:  MOVWF  00
-150A:  BCF    03.6
+152B:  MOVLW  14
+152C:  ADDWF  17,W
+152D:  MOVWF  04
+152E:  BCF    03.7
+152F:  BTFSC  18.0
+1530:  BSF    03.7
+1531:  MOVLW  63
+1532:  MOVWF  00
+1533:  BCF    03.6
 ....................  
 ....................     } 
 .................... } 
@@ -6319,77 +6307,77 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... BOOLEAN PolyoneDisplay_isAlarmOkay(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-13A3:  MOVLW  16
-13A4:  ADDWF  17,W
-13A5:  MOVWF  04
-13A6:  BCF    03.7
-13A7:  BTFSC  18.0
-13A8:  BSF    03.7
-13A9:  MOVF   00,W
-13AA:  ANDLW  01
-13AB:  SUBLW  01
-13AC:  BTFSS  03.2
-13AD:  GOTO   3C6
+13CC:  MOVLW  16
+13CD:  ADDWF  17,W
+13CE:  MOVWF  04
+13CF:  BCF    03.7
+13D0:  BTFSC  18.0
+13D1:  BSF    03.7
+13D2:  MOVF   00,W
+13D3:  ANDLW  01
+13D4:  SUBLW  01
+13D5:  BTFSS  03.2
+13D6:  GOTO   3EF
 ....................         return (polyoneDisplayPtr->timer.alarmTime.hour != 0) || (polyoneDisplayPtr->timer.alarmTime.minute != 0); 
-13AE:  MOVLW  09
-13AF:  ADDWF  17,W
-13B0:  MOVWF  04
-13B1:  BCF    03.7
-13B2:  BTFSC  18.0
-13B3:  BSF    03.7
-13B4:  MOVF   00,F
-13B5:  BTFSS  03.2
-13B6:  GOTO   3C2
-13B7:  MOVLW  0A
-13B8:  ADDWF  17,W
-13B9:  MOVWF  04
-13BA:  BCF    03.7
-13BB:  BTFSC  18.0
-13BC:  BSF    03.7
-13BD:  MOVF   00,F
-13BE:  BTFSS  03.2
-13BF:  GOTO   3C2
-13C0:  MOVLW  00
-13C1:  GOTO   3C3
-13C2:  MOVLW  01
-13C3:  MOVWF  78
-13C4:  GOTO   3E6
+13D7:  MOVLW  09
+13D8:  ADDWF  17,W
+13D9:  MOVWF  04
+13DA:  BCF    03.7
+13DB:  BTFSC  18.0
+13DC:  BSF    03.7
+13DD:  MOVF   00,F
+13DE:  BTFSS  03.2
+13DF:  GOTO   3EB
+13E0:  MOVLW  0A
+13E1:  ADDWF  17,W
+13E2:  MOVWF  04
+13E3:  BCF    03.7
+13E4:  BTFSC  18.0
+13E5:  BSF    03.7
+13E6:  MOVF   00,F
+13E7:  BTFSS  03.2
+13E8:  GOTO   3EB
+13E9:  MOVLW  00
+13EA:  GOTO   3EC
+13EB:  MOVLW  01
+13EC:  MOVWF  78
+13ED:  GOTO   40F
 ....................  
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
-13C5:  GOTO   3E6
-13C6:  MOVLW  16
-13C7:  ADDWF  17,W
-13C8:  MOVWF  04
-13C9:  BCF    03.7
-13CA:  BTFSC  18.0
-13CB:  BSF    03.7
-13CC:  MOVF   00,W
-13CD:  ANDLW  01
-13CE:  BTFSS  03.2
-13CF:  GOTO   3E6
+13EE:  GOTO   40F
+13EF:  MOVLW  16
+13F0:  ADDWF  17,W
+13F1:  MOVWF  04
+13F2:  BCF    03.7
+13F3:  BTFSC  18.0
+13F4:  BSF    03.7
+13F5:  MOVF   00,W
+13F6:  ANDLW  01
+13F7:  BTFSS  03.2
+13F8:  GOTO   40F
 ....................         return (polyoneDisplayPtr->timer.alarmTime.minute != 0) || (polyoneDisplayPtr->timer.alarmTime.second != 0); 
-13D0:  MOVLW  0A
-13D1:  ADDWF  17,W
-13D2:  MOVWF  04
-13D3:  BCF    03.7
-13D4:  BTFSC  18.0
-13D5:  BSF    03.7
-13D6:  MOVF   00,F
-13D7:  BTFSS  03.2
-13D8:  GOTO   3E4
-13D9:  MOVLW  0B
-13DA:  ADDWF  17,W
-13DB:  MOVWF  04
-13DC:  BCF    03.7
-13DD:  BTFSC  18.0
-13DE:  BSF    03.7
-13DF:  MOVF   00,F
-13E0:  BTFSS  03.2
-13E1:  GOTO   3E4
-13E2:  MOVLW  00
-13E3:  GOTO   3E5
-13E4:  MOVLW  01
-13E5:  MOVWF  78
+13F9:  MOVLW  0A
+13FA:  ADDWF  17,W
+13FB:  MOVWF  04
+13FC:  BCF    03.7
+13FD:  BTFSC  18.0
+13FE:  BSF    03.7
+13FF:  MOVF   00,F
+1400:  BTFSS  03.2
+1401:  GOTO   40D
+1402:  MOVLW  0B
+1403:  ADDWF  17,W
+1404:  MOVWF  04
+1405:  BCF    03.7
+1406:  BTFSC  18.0
+1407:  BSF    03.7
+1408:  MOVF   00,F
+1409:  BTFSS  03.2
+140A:  GOTO   40D
+140B:  MOVLW  00
+140C:  GOTO   40E
+140D:  MOVLW  01
+140E:  MOVWF  78
 ....................     } 
 .................... } 
 ....................  
@@ -6460,46 +6448,46 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void PolyoneDisplay_saveBrightness(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     write_eeprom(polyoneDisplayPtr->addressBrightness, polyoneDisplayPtr->brightness); 
 *
-1610:  MOVLW  1D
-1611:  ADDWF  17,W
-1612:  MOVWF  04
-1613:  BCF    03.7
-1614:  BTFSC  18.0
-1615:  BSF    03.7
-1616:  MOVF   00,W
-1617:  MOVWF  19
-1618:  MOVLW  19
-1619:  ADDWF  17,W
-161A:  MOVWF  04
-161B:  BCF    03.7
-161C:  BTFSC  18.0
-161D:  BSF    03.7
-161E:  MOVF   00,W
-161F:  MOVWF  1A
-1620:  BCF    03.6
-1621:  MOVF   0B,W
-1622:  MOVWF  77
-1623:  BCF    0B.7
-1624:  BSF    03.6
-1625:  MOVF   19,W
-1626:  MOVWF  0D
-1627:  MOVF   1A,W
-1628:  MOVWF  0C
-1629:  BSF    03.5
-162A:  BCF    0C.7
-162B:  BSF    0C.2
-162C:  MOVLW  55
-162D:  MOVWF  0D
-162E:  MOVLW  AA
-162F:  MOVWF  0D
-1630:  BSF    0C.1
-1631:  BTFSC  0C.1
-1632:  GOTO   631
-1633:  BCF    0C.2
-1634:  MOVF   77,W
-1635:  BCF    03.5
-1636:  BCF    03.6
-1637:  IORWF  0B,F
+16CC:  MOVLW  1D
+16CD:  ADDWF  17,W
+16CE:  MOVWF  04
+16CF:  BCF    03.7
+16D0:  BTFSC  18.0
+16D1:  BSF    03.7
+16D2:  MOVF   00,W
+16D3:  MOVWF  19
+16D4:  MOVLW  19
+16D5:  ADDWF  17,W
+16D6:  MOVWF  04
+16D7:  BCF    03.7
+16D8:  BTFSC  18.0
+16D9:  BSF    03.7
+16DA:  MOVF   00,W
+16DB:  MOVWF  1A
+16DC:  BCF    03.6
+16DD:  MOVF   0B,W
+16DE:  MOVWF  77
+16DF:  BCF    0B.7
+16E0:  BSF    03.6
+16E1:  MOVF   19,W
+16E2:  MOVWF  0D
+16E3:  MOVF   1A,W
+16E4:  MOVWF  0C
+16E5:  BSF    03.5
+16E6:  BCF    0C.7
+16E7:  BSF    0C.2
+16E8:  MOVLW  55
+16E9:  MOVWF  0D
+16EA:  MOVLW  AA
+16EB:  MOVWF  0D
+16EC:  BSF    0C.1
+16ED:  BTFSC  0C.1
+16EE:  GOTO   6ED
+16EF:  BCF    0C.2
+16F0:  MOVF   77,W
+16F1:  BCF    03.5
+16F2:  BCF    03.6
+16F3:  IORWF  0B,F
 .................... } 
 ....................  
 .................... void PolyoneDisplay_setState(PolyoneDisplay *polyoneDisplayPtr, PolyoneDisplayState polyoneDisplayState) { 
@@ -6679,95 +6667,95 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 .................... void PolyoneDisplay_saveFormat(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     write_eeprom(polyoneDisplayPtr->addressFormat, polyoneDisplayPtr->format); 
 *
-15E3:  MOVLW  1C
-15E4:  ADDWF  17,W
-15E5:  MOVWF  04
-15E6:  BCF    03.7
-15E7:  BTFSC  18.0
-15E8:  BSF    03.7
-15E9:  MOVF   00,W
-15EA:  MOVWF  19
-15EB:  MOVLW  16
-15EC:  ADDWF  17,W
-15ED:  MOVWF  04
-15EE:  BCF    03.7
-15EF:  BTFSC  18.0
-15F0:  BSF    03.7
-15F1:  CLRF   1A
-15F2:  BTFSC  00.0
-15F3:  INCF   1A,F
-15F4:  BCF    03.6
-15F5:  MOVF   0B,W
-15F6:  MOVWF  77
-15F7:  BCF    0B.7
-15F8:  BSF    03.6
-15F9:  MOVF   19,W
-15FA:  MOVWF  0D
-15FB:  MOVF   1A,W
-15FC:  MOVWF  0C
-15FD:  BSF    03.5
-15FE:  BCF    0C.7
-15FF:  BSF    0C.2
-1600:  MOVLW  55
-1601:  MOVWF  0D
-1602:  MOVLW  AA
-1603:  MOVWF  0D
-1604:  BSF    0C.1
-1605:  BTFSC  0C.1
-1606:  GOTO   605
-1607:  BCF    0C.2
-1608:  MOVF   77,W
-1609:  BCF    03.5
-160A:  BCF    03.6
-160B:  IORWF  0B,F
+160C:  MOVLW  1C
+160D:  ADDWF  17,W
+160E:  MOVWF  04
+160F:  BCF    03.7
+1610:  BTFSC  18.0
+1611:  BSF    03.7
+1612:  MOVF   00,W
+1613:  MOVWF  19
+1614:  MOVLW  16
+1615:  ADDWF  17,W
+1616:  MOVWF  04
+1617:  BCF    03.7
+1618:  BTFSC  18.0
+1619:  BSF    03.7
+161A:  CLRF   1A
+161B:  BTFSC  00.0
+161C:  INCF   1A,F
+161D:  BCF    03.6
+161E:  MOVF   0B,W
+161F:  MOVWF  77
+1620:  BCF    0B.7
+1621:  BSF    03.6
+1622:  MOVF   19,W
+1623:  MOVWF  0D
+1624:  MOVF   1A,W
+1625:  MOVWF  0C
+1626:  BSF    03.5
+1627:  BCF    0C.7
+1628:  BSF    0C.2
+1629:  MOVLW  55
+162A:  MOVWF  0D
+162B:  MOVLW  AA
+162C:  MOVWF  0D
+162D:  BSF    0C.1
+162E:  BTFSC  0C.1
+162F:  GOTO   62E
+1630:  BCF    0C.2
+1631:  MOVF   77,W
+1632:  BCF    03.5
+1633:  BCF    03.6
+1634:  IORWF  0B,F
 .................... } 
 ....................  
 .................... void PolyoneDisplay_saveAlarm(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) { 
 *
-1516:  MOVLW  16
-1517:  ADDWF  17,W
-1518:  MOVWF  04
-1519:  BCF    03.7
-151A:  BTFSC  18.0
-151B:  BSF    03.7
-151C:  MOVF   00,W
-151D:  ANDLW  01
-151E:  SUBLW  01
-151F:  BTFSS  03.2
-1520:  GOTO   578
+153F:  MOVLW  16
+1540:  ADDWF  17,W
+1541:  MOVWF  04
+1542:  BCF    03.7
+1543:  BTFSC  18.0
+1544:  BSF    03.7
+1545:  MOVF   00,W
+1546:  ANDLW  01
+1547:  SUBLW  01
+1548:  BTFSS  03.2
+1549:  GOTO   5A1
 ....................         Timer_saveAlarmHoursMinutes(&polyoneDisplayPtr.timer); 
-1521:  MOVLW  01
-1522:  MOVWF  1A
-1523:  MOVLW  17
-1524:  MOVWF  19
+154A:  MOVLW  01
+154B:  MOVWF  1A
+154C:  MOVLW  17
+154D:  MOVWF  19
 ....................     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) { 
 *
-1576:  GOTO   5DF
-1577:  BSF    03.6
-1578:  MOVLW  16
-1579:  ADDWF  17,W
-157A:  MOVWF  04
-157B:  BCF    03.7
-157C:  BTFSC  18.0
-157D:  BSF    03.7
-157E:  MOVF   00,W
-157F:  ANDLW  01
-1580:  BTFSS  03.2
-1581:  GOTO   5E0
+159F:  GOTO   608
+15A0:  BSF    03.6
+15A1:  MOVLW  16
+15A2:  ADDWF  17,W
+15A3:  MOVWF  04
+15A4:  BCF    03.7
+15A5:  BTFSC  18.0
+15A6:  BSF    03.7
+15A7:  MOVF   00,W
+15A8:  ANDLW  01
+15A9:  BTFSS  03.2
+15AA:  GOTO   609
 ....................         Timer_saveAlarmMinutesSeconds(&polyoneDisplayPtr->timer); 
-1582:  MOVF   17,W
-1583:  MOVWF  78
-1584:  MOVF   18,W
-1585:  MOVWF  7A
-1586:  MOVF   78,W
-1587:  MOVWF  19
-1588:  MOVF   7A,W
-1589:  MOVWF  1A
-158A:  MOVF   1A,W
-158B:  MOVWF  1C
-158C:  MOVF   19,W
-158D:  MOVWF  1B
+15AB:  MOVF   17,W
+15AC:  MOVWF  78
+15AD:  MOVF   18,W
+15AE:  MOVWF  7A
+15AF:  MOVF   78,W
+15B0:  MOVWF  19
+15B1:  MOVF   7A,W
+15B2:  MOVWF  1A
+15B3:  MOVF   1A,W
+15B4:  MOVWF  1C
+15B5:  MOVF   19,W
+15B6:  MOVWF  1B
 ....................     } 
 .................... } 
 ....................  
@@ -6776,69 +6764,69 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 ....................     PolyoneDisplayState currentState; 
 ....................     currentState = polyoneDisplayPtr->currentState; 
 *
-0D25:  MOVLW  17
-0D26:  ADDWF  17,W
-0D27:  MOVWF  04
-0D28:  BCF    03.7
-0D29:  BTFSC  18.0
-0D2A:  BSF    03.7
-0D2B:  MOVF   00,W
-0D2C:  MOVWF  19
+0D2C:  MOVLW  17
+0D2D:  ADDWF  17,W
+0D2E:  MOVWF  04
+0D2F:  BCF    03.7
+0D30:  BTFSC  18.0
+0D31:  BSF    03.7
+0D32:  MOVF   00,W
+0D33:  MOVWF  19
 ....................     polyoneDisplayPtr->currentState = polyoneDisplayPtr->previousState; 
-0D2D:  MOVLW  17
-0D2E:  ADDWF  17,W
-0D2F:  MOVWF  78
-0D30:  MOVF   18,W
-0D31:  MOVWF  7A
-0D32:  BTFSC  03.0
-0D33:  INCF   7A,F
-0D34:  MOVF   78,W
-0D35:  MOVWF  1A
-0D36:  MOVF   7A,W
-0D37:  MOVWF  1B
-0D38:  MOVLW  18
-0D39:  ADDWF  17,W
-0D3A:  MOVWF  04
-0D3B:  BCF    03.7
-0D3C:  BTFSC  18.0
-0D3D:  BSF    03.7
-0D3E:  MOVF   00,W
-0D3F:  MOVWF  1C
-0D40:  MOVF   1A,W
+0D34:  MOVLW  17
+0D35:  ADDWF  17,W
+0D36:  MOVWF  78
+0D37:  MOVF   18,W
+0D38:  MOVWF  7A
+0D39:  BTFSC  03.0
+0D3A:  INCF   7A,F
+0D3B:  MOVF   78,W
+0D3C:  MOVWF  1A
+0D3D:  MOVF   7A,W
+0D3E:  MOVWF  1B
+0D3F:  MOVLW  18
+0D40:  ADDWF  17,W
 0D41:  MOVWF  04
 0D42:  BCF    03.7
-0D43:  BTFSC  1B.0
+0D43:  BTFSC  18.0
 0D44:  BSF    03.7
-0D45:  MOVF   1C,W
-0D46:  MOVWF  00
+0D45:  MOVF   00,W
+0D46:  MOVWF  1C
+0D47:  MOVF   1A,W
+0D48:  MOVWF  04
+0D49:  BCF    03.7
+0D4A:  BTFSC  1B.0
+0D4B:  BSF    03.7
+0D4C:  MOVF   1C,W
+0D4D:  MOVWF  00
 ....................     polyoneDisplayPtr->previousState = currentState; 
-0D47:  MOVLW  18
-0D48:  ADDWF  17,W
-0D49:  MOVWF  04
-0D4A:  BCF    03.7
-0D4B:  BTFSC  18.0
-0D4C:  BSF    03.7
-0D4D:  MOVF   19,W
-0D4E:  MOVWF  00
+0D4E:  MOVLW  18
+0D4F:  ADDWF  17,W
+0D50:  MOVWF  04
+0D51:  BCF    03.7
+0D52:  BTFSC  18.0
+0D53:  BSF    03.7
+0D54:  MOVF   19,W
+0D55:  MOVWF  00
 .................... } 
 ....................  
 .................... BOOLEAN PolyoneDisplay_isTimerDone(PolyoneDisplay *polyoneDisplayPtr) { 
 ....................     return Timer_isTimerFinished(&polyoneDisplayPtr->timer); 
 *
-0DB1:  MOVF   17,W
-0DB2:  MOVWF  78
-0DB3:  MOVF   18,W
-0DB4:  MOVWF  7A
-0DB5:  MOVF   78,W
-0DB6:  MOVWF  19
-0DB7:  MOVF   7A,W
-0DB8:  MOVWF  1A
-0DB9:  MOVF   1A,W
-0DBA:  MOVWF  1C
-0DBB:  MOVF   19,W
-0DBC:  MOVWF  1B
+0DBE:  MOVF   17,W
+0DBF:  MOVWF  78
+0DC0:  MOVF   18,W
+0DC1:  MOVWF  7A
+0DC2:  MOVF   78,W
+0DC3:  MOVWF  19
+0DC4:  MOVF   7A,W
+0DC5:  MOVWF  1A
+0DC6:  MOVF   1A,W
+0DC7:  MOVWF  1C
+0DC8:  MOVF   19,W
+0DC9:  MOVWF  1B
 *
-0DE9:  MOVF   78,W
+0DF6:  MOVF   78,W
 .................... } 
 .................... #endif	/* POLYONEDISPLAY_H */ 
 ....................  
@@ -6899,179 +6887,185 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 ....................  
 .................... void main(void) { 
 *
-175D:  MOVF   03,W
-175E:  ANDLW  1F
-175F:  MOVWF  03
-1760:  MOVLW  FF
-1761:  MOVWF  20
-1762:  BSF    3E.0
-1763:  BSF    3E.1
-1764:  BSF    3E.2
-1765:  BSF    3E.3
-1766:  BSF    3E.4
-1767:  CLRF   5F
-1768:  CLRF   60
-1769:  CLRF   61
-176A:  BSF    03.5
-176B:  BSF    03.6
-176C:  MOVF   09,W
-176D:  ANDLW  C0
-176E:  MOVWF  09
-176F:  BCF    03.6
-1770:  BCF    1F.4
-1771:  BCF    1F.5
-1772:  MOVLW  00
-1773:  BSF    03.6
-1774:  MOVWF  08
-1775:  BCF    03.5
-1776:  CLRF   07
-1777:  CLRF   08
-1778:  CLRF   09
-1779:  BCF    03.7
+1800:  MOVF   03,W
+1801:  ANDLW  1F
+1802:  MOVWF  03
+1803:  MOVLW  FF
+1804:  MOVWF  20
+1805:  BSF    3E.0
+1806:  BSF    3E.1
+1807:  BSF    3E.2
+1808:  BSF    3E.3
+1809:  BSF    3E.4
+180A:  CLRF   5F
+180B:  CLRF   60
+180C:  CLRF   61
+180D:  BSF    03.5
+180E:  BSF    03.6
+180F:  MOVF   09,W
+1810:  ANDLW  C0
+1811:  MOVWF  09
+1812:  BCF    03.6
+1813:  BCF    1F.4
+1814:  BCF    1F.5
+1815:  MOVLW  00
+1816:  BSF    03.6
+1817:  MOVWF  08
+1818:  BCF    03.5
+1819:  CLRF   07
+181A:  CLRF   08
+181B:  CLRF   09
+181C:  BCF    03.7
 ....................     setupHardware(); 
-177A:  BCF    03.6
-177B:  GOTO   733
+181D:  BCF    0A.3
+181E:  BCF    03.6
+181F:  GOTO   753
+1820:  BSF    0A.3
 ....................     myPolyoneDisplay.currentState = STATE_INIT; 
-177C:  MOVLW  03
-177D:  MOVWF  56
+1821:  MOVLW  03
+1822:  MOVWF  56
 ....................     rtos_run(); 
-177E:  CLRF   22
-177F:  CLRF   24
-1780:  MOVLW  05
-1781:  MOVWF  23
-1782:  CLRF   26
-1783:  CLRF   25
-1784:  MOVLW  F7
-1785:  MOVWF  27
-1786:  MOVLW  16
-1787:  MOVWF  28
-1788:  CLRF   29
-1789:  CLRF   2B
-178A:  MOVLW  05
-178B:  MOVWF  2A
-178C:  CLRF   2D
-178D:  MOVLW  01
-178E:  MOVWF  2C
-178F:  MOVLW  15
-1790:  MOVWF  2E
-1791:  MOVLW  17
-1792:  MOVWF  2F
-1793:  CLRF   30
-1794:  CLRF   32
-1795:  MOVLW  01
-1796:  MOVWF  31
-1797:  CLRF   34
-1798:  CLRF   33
-1799:  MOVLW  44
-179A:  MOVWF  35
-179B:  MOVLW  10
-179C:  MOVWF  36
-179D:  CLRF   37
-179E:  CLRF   39
-179F:  MOVLW  14
-17A0:  MOVWF  38
-17A1:  CLRF   3B
-17A2:  MOVLW  02
-17A3:  MOVWF  3A
-17A4:  MOVLW  ED
-17A5:  MOVWF  3C
-17A6:  MOVLW  07
-17A7:  MOVWF  3D
-17A8:  CLRF   21
-17A9:  BSF    03.5
-17AA:  MOVF   01,W
-17AB:  ANDLW  C0
-17AC:  IORLW  07
-17AD:  MOVWF  01
-17AE:  MOVLW  3D
-17AF:  BCF    03.5
-17B0:  MOVWF  01
-17B1:  BCF    0B.2
-17B2:  BCF    03.0
-17B3:  RLF    21,W
-17B4:  MOVWF  77
-17B5:  BCF    0A.4
-17B6:  CALL   031
-17B7:  BSF    0A.4
-17B8:  MOVWF  79
-17B9:  MOVLW  01
-17BA:  ADDWF  77,W
-17BB:  BCF    0A.4
-17BC:  CALL   031
-17BD:  BSF    0A.4
-17BE:  MOVWF  7A
-17BF:  MOVF   79,W
-17C0:  MOVWF  04
-17C1:  BCF    03.7
-17C2:  BTFSC  7A.0
-17C3:  BSF    03.7
-17C4:  MOVF   00,W
-17C5:  MOVWF  79
-17C6:  INCF   04,F
-17C7:  MOVF   00,W
-17C8:  MOVWF  77
-17C9:  INCF   04,F
-17CA:  MOVF   00,W
-17CB:  MOVWF  78
-17CC:  INCF   04,F
-17CD:  INCF   00,F
-17CE:  MOVF   00,W
-17CF:  MOVWF  7A
-17D0:  BTFSS  03.2
-17D1:  GOTO   7D5
-17D2:  INCF   04,F
-17D3:  INCF   00,F
-17D4:  DECF   04,F
-17D5:  INCF   04,F
-17D6:  MOVF   00,W
-17D7:  SUBWF  78,W
-17D8:  BTFSS  03.2
-17D9:  GOTO   7ED
-17DA:  MOVF   77,W
-17DB:  SUBWF  7A,W
-17DC:  BTFSS  03.2
-17DD:  GOTO   7ED
-17DE:  DECF   04,F
-17DF:  CLRF   00
-17E0:  INCF   04,F
-17E1:  CLRF   00
-17E2:  INCF   04,F
-17E3:  BTFSC  79.7
-17E4:  GOTO   7ED
-17E5:  INCF   04,F
-17E6:  MOVF   00,W
-17E7:  MOVWF  0A
-17E8:  DECF   04,F
-17E9:  MOVF   00,W
-17EA:  MOVWF  02
-17EB:  BCF    03.5
-17EC:  BCF    03.6
-17ED:  INCF   21,F
-17EE:  MOVLW  04
-17EF:  SUBWF  21,W
-17F0:  BTFSS  03.2
-17F1:  GOTO   7B2
-17F2:  CLRF   21
-17F3:  MOVF   01,W
-17F4:  BTFSS  0B.2
-17F5:  GOTO   7F8
-17F6:  BSF    03.5
-17F7:  GOTO   7AE
-17F8:  GOTO   7F3
-17F9:  MOVLW  FF
-17FA:  MOVWF  21
+1823:  CLRF   22
+1824:  CLRF   24
+1825:  MOVLW  05
+1826:  MOVWF  23
+1827:  CLRF   26
+1828:  CLRF   25
+1829:  MOVLW  DE
+182A:  MOVWF  27
+182B:  MOVLW  0F
+182C:  MOVWF  28
+182D:  CLRF   29
+182E:  CLRF   2B
+182F:  MOVLW  05
+1830:  MOVWF  2A
+1831:  CLRF   2D
+1832:  MOVLW  01
+1833:  MOVWF  2C
+1834:  MOVLW  35
+1835:  MOVWF  2E
+1836:  MOVLW  17
+1837:  MOVWF  2F
+1838:  CLRF   30
+1839:  CLRF   32
+183A:  MOVLW  01
+183B:  MOVWF  31
+183C:  CLRF   34
+183D:  CLRF   33
+183E:  MOVLW  72
+183F:  MOVWF  35
+1840:  MOVLW  10
+1841:  MOVWF  36
+1842:  CLRF   37
+1843:  CLRF   39
+1844:  MOVLW  14
+1845:  MOVWF  38
+1846:  CLRF   3B
+1847:  MOVLW  02
+1848:  MOVWF  3A
+1849:  MOVLW  ED
+184A:  MOVWF  3C
+184B:  MOVLW  07
+184C:  MOVWF  3D
+184D:  CLRF   21
+184E:  BSF    03.5
+184F:  MOVF   01,W
+1850:  ANDLW  C0
+1851:  IORLW  07
+1852:  MOVWF  01
+1853:  MOVLW  3D
+1854:  BCF    03.5
+1855:  MOVWF  01
+1856:  BCF    0B.2
+1857:  BCF    03.0
+1858:  RLF    21,W
+1859:  MOVWF  77
+185A:  BCF    0A.4
+185B:  BCF    0A.3
+185C:  CALL   031
+185D:  BSF    0A.4
+185E:  BSF    0A.3
+185F:  MOVWF  79
+1860:  MOVLW  01
+1861:  ADDWF  77,W
+1862:  BCF    0A.4
+1863:  BCF    0A.3
+1864:  CALL   031
+1865:  BSF    0A.4
+1866:  BSF    0A.3
+1867:  MOVWF  7A
+1868:  MOVF   79,W
+1869:  MOVWF  04
+186A:  BCF    03.7
+186B:  BTFSC  7A.0
+186C:  BSF    03.7
+186D:  MOVF   00,W
+186E:  MOVWF  79
+186F:  INCF   04,F
+1870:  MOVF   00,W
+1871:  MOVWF  77
+1872:  INCF   04,F
+1873:  MOVF   00,W
+1874:  MOVWF  78
+1875:  INCF   04,F
+1876:  INCF   00,F
+1877:  MOVF   00,W
+1878:  MOVWF  7A
+1879:  BTFSS  03.2
+187A:  GOTO   07E
+187B:  INCF   04,F
+187C:  INCF   00,F
+187D:  DECF   04,F
+187E:  INCF   04,F
+187F:  MOVF   00,W
+1880:  SUBWF  78,W
+1881:  BTFSS  03.2
+1882:  GOTO   096
+1883:  MOVF   77,W
+1884:  SUBWF  7A,W
+1885:  BTFSS  03.2
+1886:  GOTO   096
+1887:  DECF   04,F
+1888:  CLRF   00
+1889:  INCF   04,F
+188A:  CLRF   00
+188B:  INCF   04,F
+188C:  BTFSC  79.7
+188D:  GOTO   096
+188E:  INCF   04,F
+188F:  MOVF   00,W
+1890:  MOVWF  0A
+1891:  DECF   04,F
+1892:  MOVF   00,W
+1893:  MOVWF  02
+1894:  BCF    03.5
+1895:  BCF    03.6
+1896:  INCF   21,F
+1897:  MOVLW  04
+1898:  SUBWF  21,W
+1899:  BTFSS  03.2
+189A:  GOTO   057
+189B:  CLRF   21
+189C:  MOVF   01,W
+189D:  BTFSS  0B.2
+189E:  GOTO   0A1
+189F:  BSF    03.5
+18A0:  GOTO   053
+18A1:  GOTO   09C
+18A2:  MOVLW  FF
+18A3:  MOVWF  21
 .................... } 
 ....................  
-17FB:  SLEEP
+18A4:  SLEEP
 .................... void x(void) { 
 ....................     switch (myPolyoneDisplay.currentState) { 
 *
 0A7A:  MOVF   56,W
 0A7B:  ADDLW  F5
 0A7C:  BTFSC  03.0
-0A7D:  GOTO   6DE
+0A7D:  GOTO   6FD
 0A7E:  ADDLW  0B
-0A7F:  GOTO   6E1
+0A7F:  GOTO   700
 ....................         case STATE_INIT: 
 ....................             myPolyoneDisplay = PolyoneDisplay_new(EEPROM_CURRENT_STATE, 
 ....................                     EEPROM_PREVIOUS_STATE, 
@@ -7147,987 +7141,1064 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 0D17:  BCF    03.6
 0D18:  CALL   000
 ....................             break; 
-0D19:  GOTO   6DE
+0D19:  GOTO   6FD
 ....................  
 ....................         case STATE_IDLE: 
+....................             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
+0D1A:  BSF    03.6
+0D1B:  CLRF   18
+0D1C:  MOVLW  3F
+0D1D:  MOVWF  17
+0D1E:  CLRF   19
+0D1F:  BCF    03.6
+0D20:  CALL   000
 ....................             if (input(PIN_BUTTON_START) && (!startStopButtonState)) { 
-0D1A:  BSF    03.5
-0D1B:  BSF    06.1
-0D1C:  BCF    03.5
-0D1D:  BTFSS  06.1
-0D1E:  GOTO   55E
-0D1F:  BTFSC  3E.3
-0D20:  GOTO   55E
+0D21:  BSF    03.5
+0D22:  BSF    06.1
+0D23:  BCF    03.5
+0D24:  BTFSS  06.1
+0D25:  GOTO   565
+0D26:  BTFSC  3E.3
+0D27:  GOTO   565
 ....................                 PolyoneDisplay_resume(&myPolyoneDisplay); 
-0D21:  BSF    03.6
-0D22:  CLRF   18
-0D23:  MOVLW  3F
-0D24:  MOVWF  17
+0D28:  BSF    03.6
+0D29:  CLRF   18
+0D2A:  MOVLW  3F
+0D2B:  MOVWF  17
 ....................                 PolyoneDisplay_saveState(&myPolyoneDisplay); 
 *
-0D4F:  CLRF   18
-0D50:  MOVLW  3F
-0D51:  MOVWF  17
-0D52:  BCF    0A.3
-0D53:  BCF    03.6
-0D54:  CALL   70B
-0D55:  BSF    0A.3
+0D56:  CLRF   18
+0D57:  MOVLW  3F
+0D58:  MOVWF  17
+0D59:  BCF    0A.3
+0D5A:  BCF    03.6
+0D5B:  CALL   70B
+0D5C:  BSF    0A.3
 ....................                 PolyoneDisplay_updateRtc(&myPolyoneDisplay); 
-0D56:  BSF    03.6
-0D57:  CLRF   47
-0D58:  MOVLW  3F
-0D59:  MOVWF  46
-0D5A:  BCF    0A.3
-0D5B:  BCF    03.6
-0D5C:  CALL   155
-0D5D:  BSF    0A.3
+0D5D:  BSF    03.6
+0D5E:  CLRF   47
+0D5F:  MOVLW  3F
+0D60:  MOVWF  46
+0D61:  BCF    0A.3
+0D62:  BCF    03.6
+0D63:  CALL   155
+0D64:  BSF    0A.3
 ....................             } 
 ....................             if (buttonStateStartStopReset == BUTTON_STATE_HELD) { 
-0D5E:  BTFSC  3E.1
-0D5F:  GOTO   56B
+0D65:  BTFSC  3E.1
+0D66:  GOTO   572
 ....................                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED; 
-0D60:  BSF    3E.1
+0D67:  BSF    3E.1
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING); 
-0D61:  BSF    03.6
-0D62:  CLRF   18
-0D63:  MOVLW  3F
-0D64:  MOVWF  17
-0D65:  MOVLW  04
-0D66:  MOVWF  19
-0D67:  BCF    0A.3
-0D68:  BCF    03.6
-0D69:  CALL   75E
-0D6A:  BSF    0A.3
+0D68:  BSF    03.6
+0D69:  CLRF   18
+0D6A:  MOVLW  3F
+0D6B:  MOVWF  17
+0D6C:  MOVLW  04
+0D6D:  MOVWF  19
+0D6E:  BCF    0A.3
+0D6F:  BCF    03.6
+0D70:  CALL   75E
+0D71:  BSF    0A.3
+....................             } 
+....................             if (buttonStateMenu == BUTTON_STATE_HELD) { 
+0D72:  BTFSC  3E.2
+0D73:  GOTO   57F
+....................                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED; 
+0D74:  BSF    3E.2
+....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS); 
+0D75:  BSF    03.6
+0D76:  CLRF   18
+0D77:  MOVLW  3F
+0D78:  MOVWF  17
+0D79:  MOVLW  09
+0D7A:  MOVWF  19
+0D7B:  BCF    0A.3
+0D7C:  BCF    03.6
+0D7D:  CALL   75E
+0D7E:  BSF    0A.3
 ....................             } 
 ....................             break; 
-0D6B:  GOTO   6DE
+0D7F:  GOTO   6FD
 ....................  
 ....................         case STATE_COUNTING_DOWN: 
 ....................             PolyoneDisplay_updateTimer(&myPolyoneDisplay); 
-0D6C:  BSF    03.6
-0D6D:  CLRF   47
-0D6E:  MOVLW  3F
-0D6F:  MOVWF  46
-0D70:  BCF    0A.3
-0D71:  BCF    03.6
-0D72:  CALL   54E
-0D73:  BSF    0A.3
+0D80:  BSF    03.6
+0D81:  CLRF   47
+0D82:  MOVLW  3F
+0D83:  MOVWF  46
+0D84:  BCF    0A.3
+0D85:  BCF    03.6
+0D86:  CALL   54E
+0D87:  BSF    0A.3
 ....................             PolyoneDisplay_showCount(&myPolyoneDisplay, TRUE); 
-0D74:  BSF    03.6
-0D75:  CLRF   18
-0D76:  MOVLW  3F
-0D77:  MOVWF  17
-0D78:  MOVLW  01
-0D79:  MOVWF  19
-0D7A:  BCF    03.6
-0D7B:  CALL   000
+0D88:  BSF    03.6
+0D89:  CLRF   18
+0D8A:  MOVLW  3F
+0D8B:  MOVWF  17
+0D8C:  MOVLW  01
+0D8D:  MOVWF  19
+0D8E:  BCF    03.6
+0D8F:  CALL   000
 ....................  
 ....................             if (buttonStateStartStopReset == BUTTON_STATE_HELD) { 
-0D7C:  BTFSC  3E.1
-0D7D:  GOTO   589
+0D90:  BTFSC  3E.1
+0D91:  GOTO   59D
 ....................                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED; 
-0D7E:  BSF    3E.1
+0D92:  BSF    3E.1
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING); 
-0D7F:  BSF    03.6
-0D80:  CLRF   18
-0D81:  MOVLW  3F
-0D82:  MOVWF  17
-0D83:  MOVLW  04
-0D84:  MOVWF  19
-0D85:  BCF    0A.3
-0D86:  BCF    03.6
-0D87:  CALL   75E
-0D88:  BSF    0A.3
+0D93:  BSF    03.6
+0D94:  CLRF   18
+0D95:  MOVLW  3F
+0D96:  MOVWF  17
+0D97:  MOVLW  04
+0D98:  MOVWF  19
+0D99:  BCF    0A.3
+0D9A:  BCF    03.6
+0D9B:  CALL   75E
+0D9C:  BSF    0A.3
 ....................             } 
 ....................             if (input(PIN_BUTTON_START) && (!startStopButtonState)) { 
-0D89:  BSF    03.5
-0D8A:  BSF    06.1
-0D8B:  BCF    03.5
-0D8C:  BTFSS  06.1
-0D8D:  GOTO   5AD
-0D8E:  BTFSC  3E.3
-0D8F:  GOTO   5AD
+0D9D:  BSF    03.5
+0D9E:  BSF    06.1
+0D9F:  BCF    03.5
+0DA0:  BTFSS  06.1
+0DA1:  GOTO   5BA
+0DA2:  BTFSC  3E.3
+0DA3:  GOTO   5BA
 ....................                 PolyoneDisplay_stop(&myPolyoneDisplay); 
-0D90:  BSF    03.6
-0D91:  CLRF   18
-0D92:  MOVLW  3F
-0D93:  MOVWF  17
-0D94:  BCF    0A.3
-0D95:  BCF    03.6
-0D96:  CALL   783
-0D97:  BSF    0A.3
+0DA4:  BSF    03.6
+0DA5:  CLRF   18
+0DA6:  MOVLW  3F
+0DA7:  MOVWF  17
+0DA8:  BCF    0A.3
+0DA9:  BCF    03.6
+0DAA:  CALL   783
+0DAB:  BSF    0A.3
 ....................                 PolyoneDisplay_saveRtcCurrentTime(&myPolyoneDisplay); 
-0D98:  BSF    03.6
-0D99:  CLRF   18
-0D9A:  MOVLW  3F
-0D9B:  MOVWF  17
-0D9C:  BCF    03.6
-0D9D:  CALL   1F6
+0DAC:  BSF    03.6
+0DAD:  CLRF   18
+0DAE:  MOVLW  3F
+0DAF:  MOVWF  17
+0DB0:  BCF    03.6
+0DB1:  CALL   1F6
 ....................                 PolyoneDisplay_saveState(&myPolyoneDisplay); 
-0D9E:  BSF    03.6
-0D9F:  CLRF   18
-0DA0:  MOVLW  3F
-0DA1:  MOVWF  17
-0DA2:  BCF    0A.3
-0DA3:  BCF    03.6
-0DA4:  CALL   70B
-0DA5:  BSF    0A.3
-....................                 PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
-0DA6:  BSF    03.6
-0DA7:  CLRF   18
-0DA8:  MOVLW  3F
-0DA9:  MOVWF  17
-0DAA:  CLRF   19
-0DAB:  BCF    03.6
-0DAC:  CALL   000
+0DB2:  BSF    03.6
+0DB3:  CLRF   18
+0DB4:  MOVLW  3F
+0DB5:  MOVWF  17
+0DB6:  BCF    0A.3
+0DB7:  BCF    03.6
+0DB8:  CALL   70B
+0DB9:  BSF    0A.3
+.................... //                PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
 ....................             } 
 ....................             if (PolyoneDisplay_isTimerDone(&myPolyoneDisplay)) { 
-0DAD:  BSF    03.6
-0DAE:  CLRF   18
-0DAF:  MOVLW  3F
-0DB0:  MOVWF  17
+0DBA:  BSF    03.6
+0DBB:  CLRF   18
+0DBC:  MOVLW  3F
+0DBD:  MOVWF  17
 *
-0DEA:  MOVF   78,F
-0DEB:  BTFSC  03.2
-0DEC:  GOTO   638
+0DF7:  MOVF   78,F
+0DF8:  BTFSC  03.2
+0DF9:  GOTO   645
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_COUNTING_UP); 
-0DED:  CLRF   18
-0DEE:  MOVLW  3F
-0DEF:  MOVWF  17
-0DF0:  MOVLW  01
-0DF1:  MOVWF  19
-0DF2:  BCF    0A.3
-0DF3:  BCF    03.6
-0DF4:  CALL   75E
-0DF5:  BSF    0A.3
+0DFA:  CLRF   18
+0DFB:  MOVLW  3F
+0DFC:  MOVWF  17
+0DFD:  MOVLW  01
+0DFE:  MOVWF  19
+0DFF:  BCF    0A.3
+0E00:  BCF    03.6
+0E01:  CALL   75E
+0E02:  BSF    0A.3
 ....................                 turnOnBuzzer(); 
 ....................                 myPolyoneDisplay.typeOfCount = COUNTUP; 
 *
-0E23:  BSF    55.1
+0E30:  BSF    55.1
 ....................                 PolyoneDisplay_saveTypeOfCount(&myPolyoneDisplay); 
-0E24:  BSF    03.6
-0E25:  CLRF   18
-0E26:  MOVLW  3F
-0E27:  MOVWF  17
-0E28:  BCF    0A.3
-0E29:  BCF    03.6
-0E2A:  CALL   7BB
-0E2B:  BSF    0A.3
+0E31:  BSF    03.6
+0E32:  CLRF   18
+0E33:  MOVLW  3F
+0E34:  MOVWF  17
+0E35:  BCF    0A.3
+0E36:  BCF    03.6
+0E37:  CALL   7BB
+0E38:  BSF    0A.3
 ....................                 Time_clearRtcTime(); 
-0E2C:  BCF    0A.3
-0E2D:  CALL   7E6
-0E2E:  BSF    0A.3
+0E39:  BCF    0A.3
+0E3A:  CALL   7E6
+0E3B:  BSF    0A.3
 ....................                 PolyoneDisplay_updateTimer(&myPolyoneDisplay); 
-0E2F:  BSF    03.6
-0E30:  CLRF   47
-0E31:  MOVLW  3F
-0E32:  MOVWF  46
-0E33:  BCF    0A.3
-0E34:  BCF    03.6
-0E35:  CALL   54E
-0E36:  BSF    0A.3
-0E37:  BSF    03.6
+0E3C:  BSF    03.6
+0E3D:  CLRF   47
+0E3E:  MOVLW  3F
+0E3F:  MOVWF  46
+0E40:  BCF    0A.3
+0E41:  BCF    03.6
+0E42:  CALL   54E
+0E43:  BSF    0A.3
+0E44:  BSF    03.6
+....................             } 
+....................             if (buttonStateMenu == BUTTON_STATE_HELD) { 
+0E45:  BCF    03.6
+0E46:  BTFSC  3E.2
+0E47:  GOTO   653
+....................                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED; 
+0E48:  BSF    3E.2
+....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS); 
+0E49:  BSF    03.6
+0E4A:  CLRF   18
+0E4B:  MOVLW  3F
+0E4C:  MOVWF  17
+0E4D:  MOVLW  09
+0E4E:  MOVWF  19
+0E4F:  BCF    0A.3
+0E50:  BCF    03.6
+0E51:  CALL   75E
+0E52:  BSF    0A.3
 ....................             } 
 ....................             break; 
-0E38:  BCF    03.6
-0E39:  GOTO   6DE
+0E53:  GOTO   6FD
 ....................  
 ....................         case STATE_COUNTING_UP: 
 ....................             PolyoneDisplay_updateTimer(&myPolyoneDisplay); 
-0E3A:  BSF    03.6
-0E3B:  CLRF   47
-0E3C:  MOVLW  3F
-0E3D:  MOVWF  46
-0E3E:  BCF    0A.3
-0E3F:  BCF    03.6
-0E40:  CALL   54E
-0E41:  BSF    0A.3
+0E54:  BSF    03.6
+0E55:  CLRF   47
+0E56:  MOVLW  3F
+0E57:  MOVWF  46
+0E58:  BCF    0A.3
+0E59:  BCF    03.6
+0E5A:  CALL   54E
+0E5B:  BSF    0A.3
 ....................             PolyoneDisplay_showCount(&myPolyoneDisplay, TRUE); 
-0E42:  BSF    03.6
-0E43:  CLRF   18
-0E44:  MOVLW  3F
-0E45:  MOVWF  17
-0E46:  MOVLW  01
-0E47:  MOVWF  19
-0E48:  BCF    03.6
-0E49:  CALL   000
+0E5C:  BSF    03.6
+0E5D:  CLRF   18
+0E5E:  MOVLW  3F
+0E5F:  MOVWF  17
+0E60:  MOVLW  01
+0E61:  MOVWF  19
+0E62:  BCF    03.6
+0E63:  CALL   000
 ....................             if (input(PIN_BUTTON_START) && (!startStopButtonState)) { 
-0E4A:  BSF    03.5
-0E4B:  BSF    06.1
-0E4C:  BCF    03.5
-0E4D:  BTFSS  06.1
-0E4E:  GOTO   66E
-0E4F:  BTFSC  3E.3
-0E50:  GOTO   66E
+0E64:  BSF    03.5
+0E65:  BSF    06.1
+0E66:  BCF    03.5
+0E67:  BTFSS  06.1
+0E68:  GOTO   681
+0E69:  BTFSC  3E.3
+0E6A:  GOTO   681
 ....................                 PolyoneDisplay_stop(&myPolyoneDisplay); 
-0E51:  BSF    03.6
-0E52:  CLRF   18
-0E53:  MOVLW  3F
-0E54:  MOVWF  17
-0E55:  BCF    0A.3
-0E56:  BCF    03.6
-0E57:  CALL   783
-0E58:  BSF    0A.3
+0E6B:  BSF    03.6
+0E6C:  CLRF   18
+0E6D:  MOVLW  3F
+0E6E:  MOVWF  17
+0E6F:  BCF    0A.3
+0E70:  BCF    03.6
+0E71:  CALL   783
+0E72:  BSF    0A.3
 ....................                 PolyoneDisplay_saveRtcCurrentTime(&myPolyoneDisplay); 
-0E59:  BSF    03.6
-0E5A:  CLRF   18
-0E5B:  MOVLW  3F
-0E5C:  MOVWF  17
-0E5D:  BCF    03.6
-0E5E:  CALL   1F6
+0E73:  BSF    03.6
+0E74:  CLRF   18
+0E75:  MOVLW  3F
+0E76:  MOVWF  17
+0E77:  BCF    03.6
+0E78:  CALL   1F6
 ....................                 PolyoneDisplay_saveState(&myPolyoneDisplay); 
-0E5F:  BSF    03.6
-0E60:  CLRF   18
-0E61:  MOVLW  3F
-0E62:  MOVWF  17
-0E63:  BCF    0A.3
-0E64:  BCF    03.6
-0E65:  CALL   70B
-0E66:  BSF    0A.3
-....................                 PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
-0E67:  BSF    03.6
-0E68:  CLRF   18
-0E69:  MOVLW  3F
-0E6A:  MOVWF  17
-0E6B:  CLRF   19
-0E6C:  BCF    03.6
-0E6D:  CALL   000
+0E79:  BSF    03.6
+0E7A:  CLRF   18
+0E7B:  MOVLW  3F
+0E7C:  MOVWF  17
+0E7D:  BCF    0A.3
+0E7E:  BCF    03.6
+0E7F:  CALL   70B
+0E80:  BSF    0A.3
+.................... //                PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
 ....................             } 
 ....................  
 ....................             if (buttonStateStartStopReset == BUTTON_STATE_HELD) { 
-0E6E:  BTFSC  3E.1
-0E6F:  GOTO   67B
+0E81:  BTFSC  3E.1
+0E82:  GOTO   68E
 ....................                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED; 
-0E70:  BSF    3E.1
+0E83:  BSF    3E.1
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING); 
-0E71:  BSF    03.6
-0E72:  CLRF   18
-0E73:  MOVLW  3F
-0E74:  MOVWF  17
-0E75:  MOVLW  04
-0E76:  MOVWF  19
-0E77:  BCF    0A.3
-0E78:  BCF    03.6
-0E79:  CALL   75E
-0E7A:  BSF    0A.3
+0E84:  BSF    03.6
+0E85:  CLRF   18
+0E86:  MOVLW  3F
+0E87:  MOVWF  17
+0E88:  MOVLW  04
+0E89:  MOVWF  19
+0E8A:  BCF    0A.3
+0E8B:  BCF    03.6
+0E8C:  CALL   75E
+0E8D:  BSF    0A.3
+....................             } 
+....................             if (buttonStateMenu == BUTTON_STATE_HELD) { 
+0E8E:  BTFSC  3E.2
+0E8F:  GOTO   69B
+....................                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED; 
+0E90:  BSF    3E.2
+....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS); 
+0E91:  BSF    03.6
+0E92:  CLRF   18
+0E93:  MOVLW  3F
+0E94:  MOVWF  17
+0E95:  MOVLW  09
+0E96:  MOVWF  19
+0E97:  BCF    0A.3
+0E98:  BCF    03.6
+0E99:  CALL   75E
+0E9A:  BSF    0A.3
 ....................             } 
 ....................             break; 
-0E7B:  GOTO   6DE
+0E9B:  GOTO   6FD
 ....................  
 ....................         case STATE_RESETTING: 
 ....................             myPolyoneDisplay.typeOfCount = COUNTDOWN; 
-0E7C:  BCF    55.1
+0E9C:  BCF    55.1
 ....................             PolyoneDisplay_saveTypeOfCount(&myPolyoneDisplay); 
-0E7D:  BSF    03.6
-0E7E:  CLRF   18
-0E7F:  MOVLW  3F
-0E80:  MOVWF  17
-0E81:  BCF    0A.3
-0E82:  BCF    03.6
-0E83:  CALL   7BB
-0E84:  BSF    0A.3
+0E9D:  BSF    03.6
+0E9E:  CLRF   18
+0E9F:  MOVLW  3F
+0EA0:  MOVWF  17
+0EA1:  BCF    0A.3
+0EA2:  BCF    03.6
+0EA3:  CALL   7BB
+0EA4:  BSF    0A.3
 ....................             Time_clearRtcTime(); 
-0E85:  BCF    0A.3
-0E86:  CALL   7E6
-0E87:  BSF    0A.3
+0EA5:  BCF    0A.3
+0EA6:  CALL   7E6
+0EA7:  BSF    0A.3
 ....................             SeventSegmentDisplay_showHyphens(); 
 ....................             delay_ms(TIMEOUT_HYPHENS_MILISECONDS); 
 *
-0E9D:  MOVLW  08
-0E9E:  BSF    03.6
-0E9F:  MOVWF  17
-0EA0:  MOVLW  FA
-0EA1:  MOVWF  18
-0EA2:  BCF    0A.3
-0EA3:  BCF    03.6
-0EA4:  CALL   7A7
-0EA5:  BSF    0A.3
-0EA6:  BSF    03.6
-0EA7:  DECFSZ 17,F
-0EA8:  GOTO   6A0
+0EBD:  MOVLW  08
+0EBE:  BSF    03.6
+0EBF:  MOVWF  17
+0EC0:  MOVLW  FA
+0EC1:  MOVWF  18
+0EC2:  BCF    0A.3
+0EC3:  BCF    03.6
+0EC4:  CALL   7A7
+0EC5:  BSF    0A.3
+0EC6:  BSF    03.6
+0EC7:  DECFSZ 17,F
+0EC8:  GOTO   6C0
 ....................             PolyoneDisplay_setState(&myPolyoneDisplay, STATE_WAITING_FOR_BUTTON_BEING_RELEASED); 
-0EA9:  CLRF   18
-0EAA:  MOVLW  3F
-0EAB:  MOVWF  17
-0EAC:  MOVLW  0A
-0EAD:  MOVWF  19
-0EAE:  BCF    0A.3
-0EAF:  BCF    03.6
-0EB0:  CALL   75E
-0EB1:  BSF    0A.3
+0EC9:  CLRF   18
+0ECA:  MOVLW  3F
+0ECB:  MOVWF  17
+0ECC:  MOVLW  0A
+0ECD:  MOVWF  19
+0ECE:  BCF    0A.3
+0ECF:  BCF    03.6
+0ED0:  CALL   75E
+0ED1:  BSF    0A.3
 ....................             nextStateAfterWaitingForButtonBeingReleased = STATE_READY; 
-0EB2:  MOVLW  05
-0EB3:  MOVWF  5E
+0ED2:  MOVLW  05
+0ED3:  MOVWF  5E
 ....................             Time_clearRtcTime(); 
-0EB4:  BCF    0A.3
-0EB5:  CALL   7E6
-0EB6:  BSF    0A.3
+0ED4:  BCF    0A.3
+0ED5:  CALL   7E6
+0ED6:  BSF    0A.3
 ....................             PolyoneDisplay_updateTimer(&myPolyoneDisplay); 
-0EB7:  BSF    03.6
-0EB8:  CLRF   47
-0EB9:  MOVLW  3F
-0EBA:  MOVWF  46
-0EBB:  BCF    0A.3
-0EBC:  BCF    03.6
-0EBD:  CALL   54E
-0EBE:  BSF    0A.3
+0ED7:  BSF    03.6
+0ED8:  CLRF   47
+0ED9:  MOVLW  3F
+0EDA:  MOVWF  46
+0EDB:  BCF    0A.3
+0EDC:  BCF    03.6
+0EDD:  CALL   54E
+0EDE:  BSF    0A.3
 ....................             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
-0EBF:  BSF    03.6
-0EC0:  CLRF   18
-0EC1:  MOVLW  3F
-0EC2:  MOVWF  17
-0EC3:  CLRF   19
-0EC4:  BCF    03.6
-0EC5:  CALL   000
-....................             rtos_enable(Task_checkIfMenuButtonIsHeld); 
-0EC6:  BCF    29.7
+0EDF:  BSF    03.6
+0EE0:  CLRF   18
+0EE1:  MOVLW  3F
+0EE2:  MOVWF  17
+0EE3:  CLRF   19
+0EE4:  BCF    03.6
+0EE5:  CALL   000
+....................             //            rtos_enable(Task_checkIfMenuButtonIsHeld); 
 ....................             break; 
-0EC7:  GOTO   6DE
+0EE6:  GOTO   6FD
 ....................  
 ....................         case STATE_WAITING_FOR_BUTTON_BEING_RELEASED: 
 ....................             if (input(PIN_BUTTON_START) && input(PIN_BUTTON_MENU)) { 
-0EC8:  BSF    03.5
-0EC9:  BSF    06.1
-0ECA:  BCF    03.5
-0ECB:  BTFSS  06.1
-0ECC:  GOTO   6DE
-0ECD:  BSF    03.5
-0ECE:  BSF    06.0
-0ECF:  BCF    03.5
-0ED0:  BTFSS  06.0
-0ED1:  GOTO   6DE
+0EE7:  BSF    03.5
+0EE8:  BSF    06.1
+0EE9:  BCF    03.5
+0EEA:  BTFSS  06.1
+0EEB:  GOTO   6FD
+0EEC:  BSF    03.5
+0EED:  BSF    06.0
+0EEE:  BCF    03.5
+0EEF:  BTFSS  06.0
+0EF0:  GOTO   6FD
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, nextStateAfterWaitingForButtonBeingReleased); 
-0ED2:  BSF    03.6
-0ED3:  CLRF   18
-0ED4:  MOVLW  3F
-0ED5:  MOVWF  17
-0ED6:  BCF    03.6
-0ED7:  MOVF   5E,W
-0ED8:  BSF    03.6
-0ED9:  MOVWF  19
-0EDA:  BCF    0A.3
-0EDB:  BCF    03.6
-0EDC:  CALL   75E
-0EDD:  BSF    0A.3
+0EF1:  BSF    03.6
+0EF2:  CLRF   18
+0EF3:  MOVLW  3F
+0EF4:  MOVWF  17
+0EF5:  BCF    03.6
+0EF6:  MOVF   5E,W
+0EF7:  BSF    03.6
+0EF8:  MOVWF  19
+0EF9:  BCF    0A.3
+0EFA:  BCF    03.6
+0EFB:  CALL   75E
+0EFC:  BSF    0A.3
 ....................             } 
 ....................             break; 
 ....................     } 
-0EDE:  BCF    0A.3
-0EDF:  BSF    0A.4
-0EE0:  GOTO   047 (RETURN)
+0EFD:  BCF    0A.3
+0EFE:  BSF    0A.4
+0EFF:  GOTO   075 (RETURN)
 .................... } 
 ....................  
 .................... void Task_runStateMachine(void) { 
 ....................     x(); 
 *
-1044:  BCF    0A.4
-1045:  BSF    0A.3
-1046:  GOTO   27A
-1047:  BSF    0A.4
-1048:  BCF    0A.3
+1072:  BCF    0A.4
+1073:  BSF    0A.3
+1074:  GOTO   27A
+1075:  BSF    0A.4
+1076:  BCF    0A.3
 ....................     switch (myPolyoneDisplay.currentState) { 
-1049:  MOVLW  05
-104A:  SUBWF  56,W
-104B:  ADDLW  FB
-104C:  BTFSC  03.0
-104D:  GOTO   6D3
-104E:  ADDLW  05
-104F:  GOTO   6EE
+1077:  MOVLW  05
+1078:  SUBWF  56,W
+1079:  ADDLW  FB
+107A:  BTFSC  03.0
+107B:  GOTO   711
+107C:  ADDLW  05
+107D:  GOTO   72C
 ....................         case STATE_READY: 
+....................             output_toggle(PIN_LED); 
+107E:  BSF    03.5
+107F:  BCF    06.3
+1080:  MOVLW  08
+1081:  BCF    03.5
+1082:  XORWF  06,F
 ....................             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE); 
-1050:  BSF    03.6
-1051:  CLRF   18
-1052:  MOVLW  3F
-1053:  MOVWF  17
-1054:  CLRF   19
-1055:  BCF    0A.4
-1056:  BSF    0A.3
-1057:  BCF    03.6
-1058:  CALL   000
-1059:  BSF    0A.4
-105A:  BCF    0A.3
+1083:  BSF    03.6
+1084:  CLRF   18
+1085:  MOVLW  3F
+1086:  MOVWF  17
+1087:  CLRF   19
+1088:  BCF    0A.4
+1089:  BSF    0A.3
+108A:  BCF    03.6
+108B:  CALL   000
+108C:  BSF    0A.4
+108D:  BCF    0A.3
 ....................             if (input(PIN_BUTTON_START) && (!startStopButtonState)) { 
-105B:  BSF    03.5
-105C:  BSF    06.1
-105D:  BCF    03.5
-105E:  BTFSS  06.1
-105F:  GOTO   077
-1060:  BTFSC  3E.3
-1061:  GOTO   077
+108E:  BSF    03.5
+108F:  BSF    06.1
+1090:  BCF    03.5
+1091:  BTFSS  06.1
+1092:  GOTO   0AA
+1093:  BTFSC  3E.3
+1094:  GOTO   0AA
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_COUNTING_DOWN); 
-1062:  BSF    03.6
-1063:  CLRF   18
-1064:  MOVLW  3F
-1065:  MOVWF  17
-1066:  MOVLW  02
-1067:  MOVWF  19
-1068:  BCF    0A.4
-1069:  BCF    03.6
-106A:  CALL   75E
-106B:  BSF    0A.4
+1095:  BSF    03.6
+1096:  CLRF   18
+1097:  MOVLW  3F
+1098:  MOVWF  17
+1099:  MOVLW  02
+109A:  MOVWF  19
+109B:  BCF    0A.4
+109C:  BCF    03.6
+109D:  CALL   75E
+109E:  BSF    0A.4
 ....................                 PolyoneDisplay_saveState(&myPolyoneDisplay); 
-106C:  BSF    03.6
-106D:  CLRF   18
-106E:  MOVLW  3F
-106F:  MOVWF  17
-1070:  BCF    0A.4
-1071:  BCF    03.6
-1072:  CALL   70B
-1073:  BSF    0A.4
+109F:  BSF    03.6
+10A0:  CLRF   18
+10A1:  MOVLW  3F
+10A2:  MOVWF  17
+10A3:  BCF    0A.4
+10A4:  BCF    03.6
+10A5:  CALL   70B
+10A6:  BSF    0A.4
 ....................                 Time_clearRtcTime(); 
-1074:  BCF    0A.4
-1075:  CALL   7E6
-1076:  BSF    0A.4
+10A7:  BCF    0A.4
+10A8:  CALL   7E6
+10A9:  BSF    0A.4
 ....................             } 
 ....................             if (buttonStateMenu == BUTTON_STATE_HELD) { 
-1077:  BTFSC  3E.2
-1078:  GOTO   086
+10AA:  BTFSC  3E.2
+10AB:  GOTO   0B7
 ....................                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED; 
-1079:  BSF    3E.2
+10AC:  BSF    3E.2
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_FIRST_NUMBER); 
-107A:  BSF    03.6
-107B:  CLRF   18
-107C:  MOVLW  3F
-107D:  MOVWF  17
-107E:  MOVLW  06
-107F:  MOVWF  19
-1080:  BCF    0A.4
-1081:  BCF    03.6
-1082:  CALL   75E
-1083:  BSF    0A.4
-....................                 rtos_enable(Task_blinkDisplay); 
-1084:  BCF    37.7
-....................                 rtos_disable(Task_checkIfMenuButtonIsHeld); 
-1085:  BSF    29.7
+10AD:  BSF    03.6
+10AE:  CLRF   18
+10AF:  MOVLW  3F
+10B0:  MOVWF  17
+10B1:  MOVLW  06
+10B2:  MOVWF  19
+10B3:  BCF    0A.4
+10B4:  BCF    03.6
+10B5:  CALL   75E
+10B6:  BSF    0A.4
+....................                 //                rtos_disable(Task_checkIfMenuButtonIsHeld); 
 ....................             } 
 ....................             break; 
-1086:  GOTO   6D3
+10B7:  GOTO   711
 ....................  
 ....................         case STATE_SETTING_FIRST_NUMBER: 
 ....................  
 ....................             if (showDisplayCompletely) { 
-1087:  BTFSS  3E.0
-1088:  GOTO   094
+10B8:  BTFSS  3E.0
+10B9:  GOTO   0C5
 ....................                 PolyoneDisplay_showLimitTime(&myPolyoneDisplay); 
-1089:  BSF    03.6
-108A:  CLRF   18
-108B:  MOVLW  3F
-108C:  MOVWF  17
-108D:  BCF    0A.4
-108E:  BSF    0A.3
-108F:  BCF    03.6
-1090:  CALL   6F0
-1091:  BSF    0A.4
-1092:  BCF    0A.3
+10BA:  BSF    03.6
+10BB:  CLRF   18
+10BC:  MOVLW  3F
+10BD:  MOVWF  17
+10BE:  BCF    0A.4
+10BF:  BSF    0A.3
+10C0:  BCF    03.6
+10C1:  CALL   70F
+10C2:  BSF    0A.4
+10C3:  BCF    0A.3
 ....................             } else { 
-1093:  GOTO   16F
+10C4:  GOTO   1A0
 ....................                 PolyoneDisplay_showSecondNumber(&myPolyoneDisplay); 
-1094:  BSF    03.6
-1095:  CLRF   18
-1096:  MOVLW  3F
-1097:  MOVWF  17
+10C5:  BSF    03.6
+10C6:  CLRF   18
+10C7:  MOVLW  3F
+10C8:  MOVWF  17
 ....................             } 
 ....................             if (!input(PIN_BUTTON_START)) { 
 *
-1170:  BSF    03.5
-1171:  BCF    03.6
-1172:  BSF    06.1
-1173:  BCF    03.5
-1174:  BTFSC  06.1
-1175:  GOTO   1F9
+11A1:  BSF    03.5
+11A2:  BCF    03.6
+11A3:  BSF    06.1
+11A4:  BCF    03.5
+11A5:  BTFSC  06.1
+11A6:  GOTO   226
 ....................                 while (!input(PIN_BUTTON_START)) { 
-1176:  BSF    03.5
-1177:  BSF    06.1
-1178:  BCF    03.5
-1179:  BTFSC  06.1
-117A:  GOTO   1F9
+11A7:  BSF    03.5
+11A8:  BSF    06.1
+11A9:  BCF    03.5
+11AA:  BTFSC  06.1
+11AB:  GOTO   226
 ....................                     PolyoneDisplay_increaseFirstNumber(&myPolyoneDisplay); 
-117B:  BSF    03.6
-117C:  CLRF   18
-117D:  MOVLW  3F
-117E:  MOVWF  17
+11AC:  BSF    03.6
+11AD:  CLRF   18
+11AE:  MOVLW  3F
+11AF:  MOVWF  17
 ....................                     PolyoneDisplay_showLimitTime(&myPolyoneDisplay); 
 *
-11E2:  CLRF   18
-11E3:  MOVLW  3F
-11E4:  MOVWF  17
-11E5:  BCF    0A.4
-11E6:  BSF    0A.3
-11E7:  BCF    03.6
-11E8:  CALL   6F0
-11E9:  BSF    0A.4
-11EA:  BCF    0A.3
+120F:  CLRF   18
+1210:  MOVLW  3F
+1211:  MOVWF  17
+1212:  BCF    0A.4
+1213:  BSF    0A.3
+1214:  BCF    03.6
+1215:  CALL   70F
+1216:  BSF    0A.4
+1217:  BCF    0A.3
 ....................                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS); 
-11EB:  MOVLW  02
-11EC:  BSF    03.6
-11ED:  MOVWF  17
-11EE:  MOVLW  96
-11EF:  MOVWF  18
-11F0:  BCF    0A.4
-11F1:  BCF    03.6
-11F2:  CALL   7A7
-11F3:  BSF    0A.4
-11F4:  BSF    03.6
-11F5:  DECFSZ 17,F
-11F6:  GOTO   1EE
-11F7:  BCF    03.6
-11F8:  GOTO   176
+1218:  MOVLW  02
+1219:  BSF    03.6
+121A:  MOVWF  17
+121B:  MOVLW  96
+121C:  MOVWF  18
+121D:  BCF    0A.4
+121E:  BCF    03.6
+121F:  CALL   7A7
+1220:  BSF    0A.4
+1221:  BSF    03.6
+1222:  DECFSZ 17,F
+1223:  GOTO   21B
+1224:  BCF    03.6
+1225:  GOTO   1A7
 ....................                 } 
 ....................             } 
 ....................  
 ....................             if (!menuButtonState && input(PIN_BUTTON_MENU)) { 
-11F9:  BTFSC  3E.4
-11FA:  GOTO   210
-11FB:  BSF    03.5
-11FC:  BSF    06.0
-11FD:  BCF    03.5
-11FE:  BTFSS  06.0
-11FF:  GOTO   210
+1226:  BTFSC  3E.4
+1227:  GOTO   23D
+1228:  BSF    03.5
+1229:  BSF    06.0
+122A:  BCF    03.5
+122B:  BTFSS  06.0
+122C:  GOTO   23D
 ....................                 if (myPolyoneDisplay.previousState == STATE_READY) { 
-1200:  MOVF   57,W
-1201:  SUBLW  05
-1202:  BTFSS  03.2
-1203:  GOTO   206
+122D:  MOVF   57,W
+122E:  SUBLW  05
+122F:  BTFSS  03.2
+1230:  GOTO   233
 ....................                     numberOfMenuButtonHasBeenReleased++; 
-1204:  INCF   5F,F
+1231:  INCF   5F,F
 ....................                 } else { 
-1205:  GOTO   210
+1232:  GOTO   23D
 ....................                     PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_SECOND_NUMBER); 
-1206:  BSF    03.6
-1207:  CLRF   18
-1208:  MOVLW  3F
-1209:  MOVWF  17
-120A:  MOVLW  07
-120B:  MOVWF  19
-120C:  BCF    0A.4
-120D:  BCF    03.6
-120E:  CALL   75E
-120F:  BSF    0A.4
+1233:  BSF    03.6
+1234:  CLRF   18
+1235:  MOVLW  3F
+1236:  MOVWF  17
+1237:  MOVLW  07
+1238:  MOVWF  19
+1239:  BCF    0A.4
+123A:  BCF    03.6
+123B:  CALL   75E
+123C:  BSF    0A.4
 ....................                 } 
 ....................             } 
 ....................             if (numberOfMenuButtonHasBeenReleased >= 2) { 
-1210:  MOVF   5F,W
-1211:  SUBLW  01
-1212:  BTFSC  03.0
-1213:  GOTO   21F
+123D:  MOVF   5F,W
+123E:  SUBLW  01
+123F:  BTFSC  03.0
+1240:  GOTO   24C
 ....................                 numberOfMenuButtonHasBeenReleased = 0; 
-1214:  CLRF   5F
+1241:  CLRF   5F
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_SECOND_NUMBER); 
-1215:  BSF    03.6
-1216:  CLRF   18
-1217:  MOVLW  3F
-1218:  MOVWF  17
-1219:  MOVLW  07
-121A:  MOVWF  19
-121B:  BCF    0A.4
-121C:  BCF    03.6
-121D:  CALL   75E
-121E:  BSF    0A.4
-....................  
+1242:  BSF    03.6
+1243:  CLRF   18
+1244:  MOVLW  3F
+1245:  MOVWF  17
+1246:  MOVLW  07
+1247:  MOVWF  19
+1248:  BCF    0A.4
+1249:  BCF    03.6
+124A:  CALL   75E
+124B:  BSF    0A.4
 ....................             } 
 ....................  
 ....................             break; 
-121F:  GOTO   6D3
+124C:  GOTO   711
 ....................         case STATE_SETTING_SECOND_NUMBER: 
 ....................             if (showDisplayCompletely) { 
-1220:  BTFSS  3E.0
-1221:  GOTO   22D
+124D:  BTFSS  3E.0
+124E:  GOTO   25A
 ....................                 PolyoneDisplay_showLimitTime(&myPolyoneDisplay); 
-1222:  BSF    03.6
-1223:  CLRF   18
-1224:  MOVLW  3F
-1225:  MOVWF  17
-1226:  BCF    0A.4
-1227:  BSF    0A.3
-1228:  BCF    03.6
-1229:  CALL   6F0
-122A:  BSF    0A.4
-122B:  BCF    0A.3
+124F:  BSF    03.6
+1250:  CLRF   18
+1251:  MOVLW  3F
+1252:  MOVWF  17
+1253:  BCF    0A.4
+1254:  BSF    0A.3
+1255:  BCF    03.6
+1256:  CALL   70F
+1257:  BSF    0A.4
+1258:  BCF    0A.3
 ....................             } else { 
-122C:  GOTO   30C
+1259:  GOTO   339
 ....................                 PolyoneDisplay_showFirstNumber(&myPolyoneDisplay); 
-122D:  BSF    03.6
-122E:  CLRF   18
-122F:  MOVLW  3F
-1230:  MOVWF  17
+125A:  BSF    03.6
+125B:  CLRF   18
+125C:  MOVLW  3F
+125D:  MOVWF  17
 ....................             } 
 ....................             if (!input(PIN_BUTTON_START)) { 
 *
-130D:  BSF    03.5
-130E:  BCF    03.6
-130F:  BSF    06.1
-1310:  BCF    03.5
-1311:  BTFSC  06.1
-1312:  GOTO   398
+133A:  BSF    03.5
+133B:  BCF    03.6
+133C:  BSF    06.1
+133D:  BCF    03.5
+133E:  BTFSC  06.1
+133F:  GOTO   3C1
 ....................                 while (!input(PIN_BUTTON_START)) { 
-1313:  BSF    03.5
-1314:  BSF    06.1
-1315:  BCF    03.5
-1316:  BTFSC  06.1
-1317:  GOTO   398
+1340:  BSF    03.5
+1341:  BSF    06.1
+1342:  BCF    03.5
+1343:  BTFSC  06.1
+1344:  GOTO   3C1
 ....................                     PolyoneDisplay_increaseSecondNumber(&myPolyoneDisplay); 
-1318:  BSF    03.6
-1319:  CLRF   18
-131A:  MOVLW  3F
-131B:  MOVWF  17
+1345:  BSF    03.6
+1346:  CLRF   18
+1347:  MOVLW  3F
+1348:  MOVWF  17
 ....................                     PolyoneDisplay_showLimitTime(&myPolyoneDisplay); 
 *
-1380:  BSF    03.6
-1381:  CLRF   18
-1382:  MOVLW  3F
-1383:  MOVWF  17
-1384:  BCF    0A.4
-1385:  BSF    0A.3
-1386:  BCF    03.6
-1387:  CALL   6F0
-1388:  BSF    0A.4
-1389:  BCF    0A.3
+13A9:  BSF    03.6
+13AA:  CLRF   18
+13AB:  MOVLW  3F
+13AC:  MOVWF  17
+13AD:  BCF    0A.4
+13AE:  BSF    0A.3
+13AF:  BCF    03.6
+13B0:  CALL   70F
+13B1:  BSF    0A.4
+13B2:  BCF    0A.3
 ....................                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS); 
-138A:  MOVLW  02
-138B:  BSF    03.6
-138C:  MOVWF  17
-138D:  MOVLW  96
-138E:  MOVWF  18
-138F:  BCF    0A.4
-1390:  BCF    03.6
-1391:  CALL   7A7
-1392:  BSF    0A.4
-1393:  BSF    03.6
-1394:  DECFSZ 17,F
-1395:  GOTO   38D
-1396:  BCF    03.6
-1397:  GOTO   313
+13B3:  MOVLW  02
+13B4:  BSF    03.6
+13B5:  MOVWF  17
+13B6:  MOVLW  96
+13B7:  MOVWF  18
+13B8:  BCF    0A.4
+13B9:  BCF    03.6
+13BA:  CALL   7A7
+13BB:  BSF    0A.4
+13BC:  BSF    03.6
+13BD:  DECFSZ 17,F
+13BE:  GOTO   3B6
+13BF:  BCF    03.6
+13C0:  GOTO   340
 ....................                 } 
 ....................             } 
 ....................             if (!menuButtonState && input(PIN_BUTTON_MENU)) { 
-1398:  BTFSC  3E.4
-1399:  GOTO   3FD
-139A:  BSF    03.5
-139B:  BSF    06.0
-139C:  BCF    03.5
-139D:  BTFSS  06.0
-139E:  GOTO   3FD
+13C1:  BTFSC  3E.4
+13C2:  GOTO   426
+13C3:  BSF    03.5
+13C4:  BSF    06.0
+13C5:  BCF    03.5
+13C6:  BTFSS  06.0
+13C7:  GOTO   426
 ....................                 if (PolyoneDisplay_isAlarmOkay(&myPolyoneDisplay)) { 
-139F:  BSF    03.6
-13A0:  CLRF   18
-13A1:  MOVLW  3F
-13A2:  MOVWF  17
+13C8:  BSF    03.6
+13C9:  CLRF   18
+13CA:  MOVLW  3F
+13CB:  MOVWF  17
 *
-13E6:  MOVF   78,F
-13E7:  BTFSC  03.2
-13E8:  GOTO   3F4
+140F:  MOVF   78,F
+1410:  BTFSC  03.2
+1411:  GOTO   41D
 ....................                     PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_FORMAT); 
-13E9:  CLRF   18
-13EA:  MOVLW  3F
-13EB:  MOVWF  17
-13EC:  MOVLW  08
-13ED:  MOVWF  19
-13EE:  BCF    0A.4
-13EF:  BCF    03.6
-13F0:  CALL   75E
-13F1:  BSF    0A.4
+1412:  CLRF   18
+1413:  MOVLW  3F
+1414:  MOVWF  17
+1415:  MOVLW  08
+1416:  MOVWF  19
+1417:  BCF    0A.4
+1418:  BCF    03.6
+1419:  CALL   75E
+141A:  BSF    0A.4
 ....................                 } else { 
-13F2:  GOTO   3FD
-13F3:  BSF    03.6
+141B:  GOTO   426
+141C:  BSF    03.6
 ....................  
 ....................                     PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_FIRST_NUMBER); 
-13F4:  CLRF   18
-13F5:  MOVLW  3F
-13F6:  MOVWF  17
-13F7:  MOVLW  06
-13F8:  MOVWF  19
-13F9:  BCF    0A.4
-13FA:  BCF    03.6
-13FB:  CALL   75E
-13FC:  BSF    0A.4
+141D:  CLRF   18
+141E:  MOVLW  3F
+141F:  MOVWF  17
+1420:  MOVLW  06
+1421:  MOVWF  19
+1422:  BCF    0A.4
+1423:  BCF    03.6
+1424:  CALL   75E
+1425:  BSF    0A.4
 ....................                 } 
 ....................             } 
 ....................             break; 
-13FD:  GOTO   6D3
+1426:  GOTO   711
 ....................  
 ....................         case STATE_SETTING_FORMAT: 
 ....................             PolyoneDisplay_showFormat(&myPolyoneDisplay); 
-13FE:  BSF    03.6
-13FF:  CLRF   18
-1400:  MOVLW  3F
-1401:  MOVWF  17
+1427:  BSF    03.6
+1428:  CLRF   18
+1429:  MOVLW  3F
+142A:  MOVWF  17
 ....................             if (input(PIN_BUTTON_START) && (!startStopButtonState)) { 
 *
-1434:  BSF    03.5
-1435:  BSF    06.1
-1436:  BCF    03.5
-1437:  BTFSS  06.1
-1438:  GOTO   50B
-1439:  BTFSC  3E.3
-143A:  GOTO   50B
+145D:  BSF    03.5
+145E:  BSF    06.1
+145F:  BCF    03.5
+1460:  BTFSS  06.1
+1461:  GOTO   534
+1462:  BTFSC  3E.3
+1463:  GOTO   534
 ....................                 PolyoneDisplay_swapFormat(&myPolyoneDisplay); 
-143B:  BSF    03.6
-143C:  CLRF   18
-143D:  MOVLW  3F
-143E:  MOVWF  17
+1464:  BSF    03.6
+1465:  CLRF   18
+1466:  MOVLW  3F
+1467:  MOVWF  17
 ....................             } 
 ....................             if (!menuButtonState && input(PIN_BUTTON_MENU)) { 
 *
-150B:  BTFSC  3E.4
-150C:  GOTO   64D
-150D:  BSF    03.5
-150E:  BSF    06.0
-150F:  BCF    03.5
-1510:  BTFSS  06.0
-1511:  GOTO   64D
+1534:  BTFSC  3E.4
+1535:  GOTO   64A
+1536:  BSF    03.5
+1537:  BSF    06.0
+1538:  BCF    03.5
+1539:  BTFSS  06.0
+153A:  GOTO   64A
 ....................                 PolyoneDisplay_saveAlarm(&myPolyoneDisplay); 
-1512:  BSF    03.6
-1513:  CLRF   18
-1514:  MOVLW  3F
-1515:  MOVWF  17
+153B:  BSF    03.6
+153C:  CLRF   18
+153D:  MOVLW  3F
+153E:  MOVWF  17
 ....................                 PolyoneDisplay_saveFormat(&myPolyoneDisplay); 
 *
-15E0:  CLRF   18
-15E1:  MOVLW  3F
-15E2:  MOVWF  17
-....................                 PolyoneDisplay_saveBrightness(&myPolyoneDisplay); 
-*
-160C:  BSF    03.6
-160D:  CLRF   18
-160E:  MOVLW  3F
-160F:  MOVWF  17
+1609:  CLRF   18
+160A:  MOVLW  3F
+160B:  MOVWF  17
+....................  
 ....................                 Time_clearRtcTime(); 
 *
-1638:  BCF    0A.4
-1639:  CALL   7E6
-163A:  BSF    0A.4
+1635:  BCF    0A.4
+1636:  CALL   7E6
+1637:  BSF    0A.4
 ....................                 PolyoneDisplay_updateTimer(&myPolyoneDisplay); 
-163B:  BSF    03.6
-163C:  CLRF   47
-163D:  MOVLW  3F
-163E:  MOVWF  46
-163F:  BCF    0A.4
-1640:  BCF    03.6
-1641:  CALL   54E
-1642:  BSF    0A.4
+1638:  BSF    03.6
+1639:  CLRF   47
+163A:  MOVLW  3F
+163B:  MOVWF  46
+163C:  BCF    0A.4
+163D:  BCF    03.6
+163E:  CALL   54E
+163F:  BSF    0A.4
 ....................  
 ....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS); 
-1643:  BSF    03.6
-1644:  CLRF   18
-1645:  MOVLW  3F
-1646:  MOVWF  17
-1647:  MOVLW  09
-1648:  MOVWF  19
-1649:  BCF    0A.4
-164A:  BCF    03.6
-164B:  CALL   75E
-164C:  BSF    0A.4
+1640:  BSF    03.6
+1641:  CLRF   18
+1642:  MOVLW  3F
+1643:  MOVWF  17
+1644:  MOVLW  09
+1645:  MOVWF  19
+1646:  BCF    0A.4
+1647:  BCF    03.6
+1648:  CALL   75E
+1649:  BSF    0A.4
 ....................             } 
 ....................             break; 
-164D:  GOTO   6D3
+164A:  GOTO   711
 ....................  
 ....................         case STATE_SETTING_BRIGHTNESS: 
 ....................             if (showDisplayCompletely) { 
-164E:  BTFSS  3E.0
-164F:  GOTO   657
+164B:  BTFSS  3E.0
+164C:  GOTO   654
 ....................                 PolyoneDisplay_showBrightness(&myPolyoneDisplay); 
-1650:  BSF    03.6
-1651:  CLRF   18
-1652:  MOVLW  3F
-1653:  MOVWF  17
-1654:  BCF    03.6
-1655:  CALL   000
+164D:  BSF    03.6
+164E:  CLRF   18
+164F:  MOVLW  3F
+1650:  MOVWF  17
+1651:  BCF    03.6
+1652:  CALL   02E
 ....................             } else { 
-1656:  GOTO   668
+1653:  GOTO   665
 ....................                 PolyoneDisplay_hideBrightness(); 
 ....................             } 
 ....................             if (!input(PIN_BUTTON_START)) { 
 *
-1668:  BSF    03.5
-1669:  BSF    06.1
-166A:  BCF    03.5
-166B:  BTFSC  06.1
-166C:  GOTO   6C0
+1665:  BSF    03.5
+1666:  BSF    06.1
+1667:  BCF    03.5
+1668:  BTFSC  06.1
+1669:  GOTO   6BD
 ....................                 while (!input(PIN_BUTTON_START)) { 
-166D:  BSF    03.5
-166E:  BSF    06.1
-166F:  BCF    03.5
-1670:  BTFSC  06.1
-1671:  GOTO   6C0
+166A:  BSF    03.5
+166B:  BSF    06.1
+166C:  BCF    03.5
+166D:  BTFSC  06.1
+166E:  GOTO   6BD
 ....................                     PolyoneDisplay_increaseBrightness(&myPolyoneDisplay); 
-1672:  BSF    03.6
-1673:  CLRF   18
-1674:  MOVLW  3F
-1675:  MOVWF  17
+166F:  BSF    03.6
+1670:  CLRF   18
+1671:  MOVLW  3F
+1672:  MOVWF  17
 ....................                     PolyoneDisplay_showBrightness(&myPolyoneDisplay); 
 *
-16AC:  BSF    03.6
-16AD:  CLRF   18
-16AE:  MOVLW  3F
-16AF:  MOVWF  17
-16B0:  BCF    03.6
-16B1:  CALL   000
+16A9:  BSF    03.6
+16AA:  CLRF   18
+16AB:  MOVLW  3F
+16AC:  MOVWF  17
+16AD:  BCF    03.6
+16AE:  CALL   02E
 ....................                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS); 
-16B2:  MOVLW  02
-16B3:  BSF    03.6
-16B4:  MOVWF  17
-16B5:  MOVLW  96
-16B6:  MOVWF  18
-16B7:  BCF    0A.4
-16B8:  BCF    03.6
-16B9:  CALL   7A7
-16BA:  BSF    0A.4
-16BB:  BSF    03.6
-16BC:  DECFSZ 17,F
-16BD:  GOTO   6B5
-16BE:  BCF    03.6
-16BF:  GOTO   66D
+16AF:  MOVLW  02
+16B0:  BSF    03.6
+16B1:  MOVWF  17
+16B2:  MOVLW  96
+16B3:  MOVWF  18
+16B4:  BCF    0A.4
+16B5:  BCF    03.6
+16B6:  CALL   7A7
+16B7:  BSF    0A.4
+16B8:  BSF    03.6
+16B9:  DECFSZ 17,F
+16BA:  GOTO   6B2
+16BB:  BCF    03.6
+16BC:  GOTO   66A
 ....................                 } 
 ....................             } 
+....................  
 ....................             if (!menuButtonState && input(PIN_BUTTON_MENU)) { 
-16C0:  BTFSC  3E.4
-16C1:  GOTO   6D3
-16C2:  BSF    03.5
-16C3:  BSF    06.0
-16C4:  BCF    03.5
-16C5:  BTFSS  06.0
-16C6:  GOTO   6D3
-....................                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_READY); 
-16C7:  BSF    03.6
-16C8:  CLRF   18
-16C9:  MOVLW  3F
-16CA:  MOVWF  17
-16CB:  MOVLW  05
-16CC:  MOVWF  19
-16CD:  BCF    0A.4
-16CE:  BCF    03.6
-16CF:  CALL   75E
-16D0:  BSF    0A.4
-....................                 rtos_enable(Task_checkIfMenuButtonIsHeld); 
-16D1:  BCF    29.7
-....................                 rtos_disable(Task_blinkDisplay); 
-16D2:  BSF    37.7
+16BD:  BTFSC  3E.4
+16BE:  GOTO   700
+16BF:  BSF    03.5
+16C0:  BSF    06.0
+16C1:  BCF    03.5
+16C2:  BTFSS  06.0
+16C3:  GOTO   700
+....................                 if (myPolyoneDisplay.previousState == STATE_SETTING_FORMAT) { 
+16C4:  MOVF   57,W
+16C5:  SUBLW  08
+16C6:  BTFSS  03.2
+16C7:  GOTO   6FF
+....................                     PolyoneDisplay_saveBrightness(&myPolyoneDisplay); 
+16C8:  BSF    03.6
+16C9:  CLRF   18
+16CA:  MOVLW  3F
+16CB:  MOVWF  17
+....................                     PolyoneDisplay_setState(&myPolyoneDisplay, STATE_READY); 
+*
+16F4:  BSF    03.6
+16F5:  CLRF   18
+16F6:  MOVLW  3F
+16F7:  MOVWF  17
+16F8:  MOVLW  05
+16F9:  MOVWF  19
+16FA:  BCF    0A.4
+16FB:  BCF    03.6
+16FC:  CALL   75E
+16FD:  BSF    0A.4
+....................                     //                    rtos_enable(Task_checkIfMenuButtonIsHeld); 
+....................                 } else { 
+16FE:  GOTO   700
+....................                     numberOfMenuButtonHasBeenReleased++; 
+16FF:  INCF   5F,F
+....................                 } 
+....................             } 
+....................             if (numberOfMenuButtonHasBeenReleased >= 2) { 
+1700:  MOVF   5F,W
+1701:  SUBLW  01
+1702:  BTFSC  03.0
+1703:  GOTO   711
+....................                 numberOfMenuButtonHasBeenReleased = 0; 
+1704:  CLRF   5F
+....................                 PolyoneDisplay_setState(&myPolyoneDisplay, myPolyoneDisplay.previousState); 
+1705:  BSF    03.6
+1706:  CLRF   18
+1707:  MOVLW  3F
+1708:  MOVWF  17
+1709:  BCF    03.6
+170A:  MOVF   57,W
+170B:  BSF    03.6
+170C:  MOVWF  19
+170D:  BCF    0A.4
+170E:  BCF    03.6
+170F:  CALL   75E
+1710:  BSF    0A.4
 ....................             } 
 ....................             break; 
 ....................     } 
 ....................  
 ....................     startStopButtonState = input(PIN_BUTTON_START); 
-16D3:  BSF    03.5
-16D4:  BSF    06.1
-16D5:  BCF    03.5
-16D6:  BCF    3E.3
-16D7:  BTFSC  06.1
-16D8:  BSF    3E.3
+1711:  BSF    03.5
+1712:  BSF    06.1
+1713:  BCF    03.5
+1714:  BCF    3E.3
+1715:  BTFSC  06.1
+1716:  BSF    3E.3
 ....................     menuButtonState = input(PIN_BUTTON_MENU); 
-16D9:  BSF    03.5
-16DA:  BSF    06.0
-16DB:  BCF    03.5
-16DC:  BCF    3E.4
-16DD:  BTFSC  06.0
-16DE:  BSF    3E.4
+1717:  BSF    03.5
+1718:  BSF    06.0
+1719:  BCF    03.5
+171A:  BCF    3E.4
+171B:  BTFSC  06.0
+171C:  BSF    3E.4
 ....................     rtos_yield(); 
-16DF:  MOVLW  E6
-16E0:  MOVWF  35
-16E1:  MOVLW  16
-16E2:  MOVWF  36
-16E3:  BCF    0A.3
-16E4:  BSF    0A.4
-16E5:  GOTO   7EB
-16E6:  MOVLW  44
-16E7:  MOVWF  35
-16E8:  MOVLW  10
-16E9:  MOVWF  36
-16EA:  BCF    0A.3
-16EB:  BSF    0A.4
-16EC:  GOTO   7EB
-16ED:  RETURN
+171D:  MOVLW  24
+171E:  MOVWF  35
+171F:  MOVLW  17
+1720:  MOVWF  36
+1721:  BSF    0A.3
+1722:  BSF    0A.4
+1723:  GOTO   094
+1724:  MOVLW  72
+1725:  MOVWF  35
+1726:  MOVLW  10
+1727:  MOVWF  36
+1728:  BSF    0A.3
+1729:  BSF    0A.4
+172A:  GOTO   094
+172B:  RETURN
 .................... } 
 ....................  
 .................... void Task_checkIfStartStopResetButtonIsHeld(void) { 
 ....................     static int nextUpButtonCounter = 0; 
 ....................     if (!input(PIN_BUTTON_START)) { 
 *
-16F7:  BSF    03.5
-16F8:  BSF    06.1
-16F9:  BCF    03.5
-16FA:  BTFSC  06.1
-16FB:  GOTO   6FE
+0FDE:  BSF    03.5
+0FDF:  BSF    06.1
+0FE0:  BCF    03.5
+0FE1:  BTFSC  06.1
+0FE2:  GOTO   7E5
 ....................         nextUpButtonCounter++; 
-16FC:  INCF   60,F
+0FE3:  INCF   60,F
 ....................     } else { 
-16FD:  GOTO   700
+0FE4:  GOTO   7E7
 ....................         nextUpButtonCounter = 0; 
-16FE:  CLRF   60
+0FE5:  CLRF   60
 ....................         buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED; 
-16FF:  BSF    3E.1
+0FE6:  BSF    3E.1
 ....................     } 
 ....................     if (nextUpButtonCounter >= (TIMEOUT_RESET_TIMER_MILISECONDS / 50 / 3)) { 
-1700:  MOVF   60,W
-1701:  SUBLW  13
-1702:  BTFSC  03.0
-1703:  GOTO   706
+0FE7:  MOVF   60,W
+0FE8:  SUBLW  13
+0FE9:  BTFSC  03.0
+0FEA:  GOTO   7ED
 ....................         buttonStateStartStopReset = BUTTON_STATE_HELD; 
-1704:  BCF    3E.1
+0FEB:  BCF    3E.1
 ....................         nextUpButtonCounter = 0; 
-1705:  CLRF   60
+0FEC:  CLRF   60
 ....................     } 
 ....................     rtos_yield(); 
-1706:  MOVLW  0D
-1707:  MOVWF  27
-1708:  MOVLW  17
-1709:  MOVWF  28
-170A:  BCF    0A.3
-170B:  BSF    0A.4
-170C:  GOTO   7EB
-170D:  MOVLW  F7
-170E:  MOVWF  27
-170F:  MOVLW  16
-1710:  MOVWF  28
-1711:  BCF    0A.3
-1712:  BSF    0A.4
-1713:  GOTO   7EB
-1714:  RETURN
+0FED:  MOVLW  F4
+0FEE:  MOVWF  27
+0FEF:  MOVLW  0F
+0FF0:  MOVWF  28
+0FF1:  BSF    0A.3
+0FF2:  BSF    0A.4
+0FF3:  GOTO   094
+0FF4:  MOVLW  DE
+0FF5:  MOVWF  27
+0FF6:  MOVLW  0F
+0FF7:  MOVWF  28
+0FF8:  BSF    0A.3
+0FF9:  BSF    0A.4
+0FFA:  GOTO   094
+0FFB:  RETURN
 .................... } 
 ....................  
 .................... void Task_checkIfMenuButtonIsHeld(void) { 
 ....................     static int menuButtonCounter = 0; 
 ....................  
 ....................     if (!input(PIN_BUTTON_MENU)) { 
-1715:  BSF    03.5
-1716:  BSF    06.0
-1717:  BCF    03.5
-1718:  BTFSC  06.0
-1719:  GOTO   71C
+*
+1735:  BSF    03.5
+1736:  BSF    06.0
+1737:  BCF    03.5
+1738:  BTFSC  06.0
+1739:  GOTO   73C
 ....................         menuButtonCounter++; 
-171A:  INCF   61,F
+173A:  INCF   61,F
 ....................     } else { 
-171B:  GOTO   71E
+173B:  GOTO   73E
 ....................         menuButtonCounter = 0; 
-171C:  CLRF   61
+173C:  CLRF   61
 ....................         buttonStateMenu = BUTTON_STATE_NOT_PUSHED; 
-171D:  BSF    3E.2
+173D:  BSF    3E.2
 ....................     } 
 ....................     if (menuButtonCounter >= (TIMEOUT_MENU_BUTTON_MILISECONDS / 50 / 3)) { 
-171E:  MOVF   61,W
-171F:  SUBLW  0C
-1720:  BTFSC  03.0
-1721:  GOTO   724
+173E:  MOVF   61,W
+173F:  SUBLW  0C
+1740:  BTFSC  03.0
+1741:  GOTO   744
 ....................         buttonStateMenu = BUTTON_STATE_HELD; 
-1722:  BCF    3E.2
+1742:  BCF    3E.2
 ....................         menuButtonCounter = 0; 
-1723:  CLRF   61
+1743:  CLRF   61
 ....................     } 
 ....................     rtos_yield(); 
-1724:  MOVLW  2B
-1725:  MOVWF  2E
-1726:  MOVLW  17
-1727:  MOVWF  2F
-1728:  BCF    0A.3
-1729:  BSF    0A.4
-172A:  GOTO   7EB
-172B:  MOVLW  15
-172C:  MOVWF  2E
-172D:  MOVLW  17
-172E:  MOVWF  2F
-172F:  BCF    0A.3
-1730:  BSF    0A.4
-1731:  GOTO   7EB
-1732:  RETURN
+1744:  MOVLW  4B
+1745:  MOVWF  2E
+1746:  MOVLW  17
+1747:  MOVWF  2F
+1748:  BSF    0A.3
+1749:  BSF    0A.4
+174A:  GOTO   094
+174B:  MOVLW  35
+174C:  MOVWF  2E
+174D:  MOVLW  17
+174E:  MOVWF  2F
+174F:  BSF    0A.3
+1750:  BSF    0A.4
+1751:  GOTO   094
+1752:  RETURN
 .................... } 
 ....................  
 .................... void Task_blinkDisplay(void) { 
@@ -8140,125 +8211,125 @@ CCS PCM C Compiler, Version 5.015, 5967               09-Nov-17 11:46
 07F0:  MOVWF  3C
 07F1:  MOVLW  07
 07F2:  MOVWF  3D
-07F3:  BCF    0A.3
+07F3:  BSF    0A.3
 07F4:  BSF    0A.4
-07F5:  GOTO   7EB
+07F5:  GOTO   094
 07F6:  MOVLW  ED
 07F7:  MOVWF  3C
 07F8:  MOVLW  07
 07F9:  MOVWF  3D
-07FA:  BCF    0A.3
+07FA:  BSF    0A.3
 07FB:  BSF    0A.4
-07FC:  GOTO   7EB
+07FC:  GOTO   094
 07FD:  RETURN
 .................... } 
 ....................  
 .................... void setupHardware(void) { 
 ....................     setup_timer_2(T2_DIV_BY_16, 255, 1); 
 *
-1733:  MOVLW  00
-1734:  MOVWF  78
-1735:  IORLW  06
-1736:  MOVWF  12
-1737:  MOVLW  FF
-1738:  BSF    03.5
-1739:  MOVWF  12
+1753:  MOVLW  00
+1754:  MOVWF  78
+1755:  IORLW  06
+1756:  MOVWF  12
+1757:  MOVLW  FF
+1758:  BSF    03.5
+1759:  MOVWF  12
 ....................     setup_ccp1(CCP_PWM | CCP_PWM_L_H); 
-173A:  BCF    03.5
-173B:  BCF    20.2
-173C:  MOVF   20,W
-173D:  BSF    03.5
-173E:  MOVWF  07
-173F:  BCF    03.5
-1740:  BCF    07.2
-1741:  MOVLW  0E
-1742:  MOVWF  17
-1743:  BSF    03.5
-1744:  CLRF   1B
-1745:  CLRF   1C
-1746:  MOVLW  01
-1747:  MOVWF  1D
+175A:  BCF    03.5
+175B:  BCF    20.2
+175C:  MOVF   20,W
+175D:  BSF    03.5
+175E:  MOVWF  07
+175F:  BCF    03.5
+1760:  BCF    07.2
+1761:  MOVLW  0E
+1762:  MOVWF  17
+1763:  BSF    03.5
+1764:  CLRF   1B
+1765:  CLRF   1C
+1766:  MOVLW  01
+1767:  MOVWF  1D
 ....................  
 ....................     delay_ms(500); 
-1748:  MOVLW  02
-1749:  BCF    03.5
-174A:  MOVWF  62
-174B:  MOVLW  FA
-174C:  BSF    03.6
-174D:  MOVWF  18
-174E:  BCF    0A.4
-174F:  BCF    03.6
-1750:  CALL   7A7
-1751:  BSF    0A.4
-1752:  DECFSZ 62,F
-1753:  GOTO   74B
+1768:  MOVLW  02
+1769:  BCF    03.5
+176A:  MOVWF  62
+176B:  MOVLW  FA
+176C:  BSF    03.6
+176D:  MOVWF  18
+176E:  BCF    0A.4
+176F:  BCF    03.6
+1770:  CALL   7A7
+1771:  BSF    0A.4
+1772:  DECFSZ 62,F
+1773:  GOTO   76B
 ....................     port_b_pullups(0xFF); 
-1754:  MOVLW  FF
-1755:  BSF    03.5
-1756:  MOVWF  15
-1757:  BCF    01.7
+1774:  MOVLW  FF
+1775:  BSF    03.5
+1776:  MOVWF  15
+1777:  BCF    01.7
 ....................     WPUB = 0xFF; 
-1758:  MOVWF  15
-1759:  BCF    03.5
-175A:  BCF    0A.3
-175B:  BSF    0A.4
-175C:  GOTO   77C (RETURN)
+1778:  MOVWF  15
+1779:  BCF    03.5
+177A:  BSF    0A.3
+177B:  BSF    0A.4
+177C:  GOTO   020 (RETURN)
 .................... } 
 ....................  
 .................... void turnOnBuzzer(void) { 
 ....................     output_high(PIN_BUZZER); 
 *
-0DF6:  BCF    20.5
-0DF7:  MOVF   20,W
-0DF8:  BSF    03.5
-0DF9:  MOVWF  07
-0DFA:  BCF    03.5
-0DFB:  BSF    07.5
-....................     delay_ms(200); 
-0DFC:  MOVLW  C8
-0DFD:  BSF    03.6
-0DFE:  MOVWF  18
-0DFF:  BCF    0A.3
-0E00:  BCF    03.6
-0E01:  CALL   7A7
-0E02:  BSF    0A.3
-....................     output_low(PIN_BUZZER); 
 0E03:  BCF    20.5
 0E04:  MOVF   20,W
 0E05:  BSF    03.5
 0E06:  MOVWF  07
 0E07:  BCF    03.5
-0E08:  BCF    07.5
-....................     delay_ms(100); 
-0E09:  MOVLW  64
+0E08:  BSF    07.5
+....................     delay_ms(200); 
+0E09:  MOVLW  C8
 0E0A:  BSF    03.6
 0E0B:  MOVWF  18
 0E0C:  BCF    0A.3
 0E0D:  BCF    03.6
 0E0E:  CALL   7A7
 0E0F:  BSF    0A.3
-....................     output_high(PIN_BUZZER); 
+....................     output_low(PIN_BUZZER); 
 0E10:  BCF    20.5
 0E11:  MOVF   20,W
 0E12:  BSF    03.5
 0E13:  MOVWF  07
 0E14:  BCF    03.5
-0E15:  BSF    07.5
-....................     delay_ms(200); 
-0E16:  MOVLW  C8
+0E15:  BCF    07.5
+....................     delay_ms(100); 
+0E16:  MOVLW  64
 0E17:  BSF    03.6
 0E18:  MOVWF  18
 0E19:  BCF    0A.3
 0E1A:  BCF    03.6
 0E1B:  CALL   7A7
 0E1C:  BSF    0A.3
-....................     output_low(PIN_BUZZER); 
+....................     output_high(PIN_BUZZER); 
 0E1D:  BCF    20.5
 0E1E:  MOVF   20,W
 0E1F:  BSF    03.5
 0E20:  MOVWF  07
 0E21:  BCF    03.5
-0E22:  BCF    07.5
+0E22:  BSF    07.5
+....................     delay_ms(200); 
+0E23:  MOVLW  C8
+0E24:  BSF    03.6
+0E25:  MOVWF  18
+0E26:  BCF    0A.3
+0E27:  BCF    03.6
+0E28:  CALL   7A7
+0E29:  BSF    0A.3
+....................     output_low(PIN_BUZZER); 
+0E2A:  BCF    20.5
+0E2B:  MOVF   20,W
+0E2C:  BSF    03.5
+0E2D:  MOVWF  07
+0E2E:  BCF    03.5
+0E2F:  BCF    07.5
 .................... } 
 
 Configuration Fuses:

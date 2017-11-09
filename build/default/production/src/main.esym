@@ -1,7 +1,7 @@
 D G "__PCM__" 0 0 ""5.015""
 D G "__DEVICE__" 0 0 ""
 D G "__DATE__" 0 0 ""09-Nov-17""
-D G "__TIME__" 0 0 ""11:46:49""
+D G "__TIME__" 0 0 ""13:53:07""
 D G "__16F886" 0 0 "1" "* File:   main.c"
 C G "" 0 1 1 "*"
 C G "" 0 1 1 "*"
@@ -1351,14 +1351,19 @@ V G "nextStateAfterWaitingForButtonBeingReleased" 0 71 "PolyoneDisplayState" `11
 V G "numberOfMenuButtonHasBeenReleased" 0 72 "int8" `1127 
 F G "MAIN" 0 74 "void()" `1128 
 F G "x" 0 80 "void()" `1132 
-F G "Task_runStateMachine" 0 171 "void()" `1117 
-F G "Task_checkIfStartStopResetButtonIsHeld" 0 283 "void()" `1113 
-V L "nextUpButtonCounter" 0 284 "int8" `1135 
-F G "Task_checkIfMenuButtonIsHeld" 0 298 "void()" `1115 
-V L "menuButtonCounter" 0 299 "int8" `1136 
-F G "Task_blinkDisplay" 0 314 "void()" `1119 
-F G "setupHardware" 0 319 "void()" `1110 
-F G "turnOnBuzzer" 0 328 "void()" `1111 
+C L "x" 0 21 1 "FUNCTION"
+C L "x" 0 21 1 "FUNCTION"
+C L "x" 0 21 1 "FUNCTION"
+F G "Task_runStateMachine" 0 184 "void()" `1117 
+C L "Task_runStateMachine" 0 21 1 "FUNCTION"
+C L "Task_runStateMachine" 0 21 1 "FUNCTION"
+F G "Task_checkIfStartStopResetButtonIsHeld" 0 304 "void()" `1113 
+V L "nextUpButtonCounter" 0 305 "int8" `1135 
+F G "Task_checkIfMenuButtonIsHeld" 0 319 "void()" `1115 
+V L "menuButtonCounter" 0 320 "int8" `1136 
+F G "Task_blinkDisplay" 0 335 "void()" `1119 
+F G "setupHardware" 0 340 "void()" `1110 
+F G "turnOnBuzzer" 0 349 "void()" `1111 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

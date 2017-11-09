@@ -1,13 +1,13 @@
 ÀÄPolyone J17-424
-   ÃÄMAIN  2/159  Ram=0
+   ÃÄMAIN  3/165  Ram=0
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄsetupHardware  2/42  Ram=1
    ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
    ³  ÃÄ@const1131  0/12  Ram=0
    ³  ÀÄ@const1131  0/12  Ram=0
-   ÃÄTask_runStateMachine  2/1706  Ram=1
-   ³  ÃÄx  1/1127  Ram=4
-   ³  ³  ÃÄ@goto11575  1/15  Ram=0
+   ÃÄTask_runStateMachine  2/1722  Ram=1
+   ³  ÃÄx  1/1158  Ram=4
+   ³  ³  ÃÄ@goto11593  1/15  Ram=0
    ³  ³  ÃÄPolyoneDisplay_new  (Inline)  Ram=49
    ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
@@ -118,10 +118,13 @@
    ³  ³  ³     ³  ÀÄ*
    ³  ³  ³     ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
    ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
+   ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_resume  (Inline)  Ram=6
    ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
    ³  ³  ÃÄPolyoneDisplay_updateRtc  0/61  Ram=4
    ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ³  ÃÄPolyoneDisplay_updateTimer  0/50  Ram=4
    ³  ³  ³  ÀÄ*
@@ -132,8 +135,6 @@
    ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/132  Ram=4
    ³  ³  ³  ÀÄTimer_saveRtcCurrentTime  (Inline)  Ram=4
    ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
-   ³  ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
-   ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_isTimerDone  (Inline)  Ram=4
    ³  ³  ³  ÀÄTimer_isTimerFinished  (Inline)  Ram=4
    ³  ³  ³     ÀÄTime_isTimeZero  (Inline)  Ram=3
@@ -148,6 +149,7 @@
    ³  ³  ³     ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_updateTimer  0/50  Ram=4
    ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ³  ÃÄPolyoneDisplay_updateTimer  0/50  Ram=4
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
@@ -156,8 +158,7 @@
    ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/132  Ram=4
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
-   ³  ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
-   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ³  ÃÄPolyoneDisplay_saveTypeOfCount  0/43  Ram=4
    ³  ³  ÃÄTime_clearRtcTime  0/7  Ram=0
@@ -174,7 +175,7 @@
    ³  ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄPolyoneDisplay_setState  0/37  Ram=6
-   ³  ÃÄ@goto11700  2/9  Ram=0
+   ³  ÃÄ@goto11729  2/9  Ram=0
    ³  ÃÄPolyoneDisplay_showCount  1/502  Ram=5
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
@@ -210,7 +211,7 @@
    ³  ³        ÀÄ*
    ³  ÃÄPolyoneDisplay_increaseFirstNumber  (Inline)  Ram=4
    ³  ³  ÃÄTimer_increaseTimerHours  (Inline)  Ram=5
-   ³  ³  ÀÄTimer_increaseTimerMinutes  1/50  Ram=5
+   ³  ³  ÀÄTimer_increaseTimerMinutes  2/46  Ram=5
    ³  ÃÄPolyoneDisplay_showLimitTime  1/207  Ram=4
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -234,7 +235,7 @@
    ³  ³     ÀÄShiftRegister_sendData  0/71  Ram=5
    ³  ³        ÀÄ*
    ³  ÃÄPolyoneDisplay_increaseSecondNumber  (Inline)  Ram=4
-   ³  ³  ÃÄTimer_increaseTimerMinutes  1/50  Ram=5
+   ³  ³  ÃÄTimer_increaseTimerMinutes  2/46  Ram=5
    ³  ³  ÀÄTimer_increaseTimerSeconds  (Inline)  Ram=5
    ³  ÃÄPolyoneDisplay_showLimitTime  1/207  Ram=4
    ³  ³  ÀÄ*
@@ -250,7 +251,6 @@
    ³  ³  ÃÄTimer_saveAlarmHoursMinutes  (Inline)  Ram=4
    ³  ³  ÀÄTimer_saveAlarmMinutesSeconds  (Inline)  Ram=4
    ³  ÃÄPolyoneDisplay_saveFormat  (Inline)  Ram=4
-   ³  ÃÄPolyoneDisplay_saveBrightness  (Inline)  Ram=4
    ³  ÃÄTime_clearRtcTime  0/7  Ram=0
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_updateTimer  0/50  Ram=4
@@ -272,7 +272,9 @@
    ³  ÃÄPolyoneDisplay_showBrightness  2/68  Ram=8
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄPolyoneDisplay_saveBrightness  (Inline)  Ram=4
+   ³  ÃÄPolyoneDisplay_setState  0/37  Ram=6
    ³  ÀÄPolyoneDisplay_setState  0/37  Ram=6
-   ÃÄTask_checkIfStartStopResetButtonIsHeld  2/30  Ram=0
+   ÃÄTask_checkIfStartStopResetButtonIsHeld  1/30  Ram=0
    ÃÄTask_checkIfMenuButtonIsHeld  2/30  Ram=0
    ÀÄTask_blinkDisplay  0/17  Ram=0
