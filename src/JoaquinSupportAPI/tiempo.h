@@ -10,6 +10,7 @@
 
 #include "ds3231.h"
 #include "array.h"
+#include "sevensegmentdisplay.h"
 
 typedef enum {
     FORMAT_24 = 0,
@@ -17,11 +18,11 @@ typedef enum {
 } Format;
 
 typedef struct {
+    Format format;
     int hour;
     int minute;
     int second;
-    Format format;
-    char formatAddress;
+//    char formatAddress;
 } Time;
 
 typedef struct {
@@ -54,7 +55,7 @@ Time Time_getCurrentTime() {
 Time Time_new(__EEADDRESS__ formatAddress) {
     Time newTime;
     newTime = Time_getCurrentTime();
-    newTime.formatAddress = formatAddress;
+//    newTime.formatAddress = formatAddress;
     newTime.format = read_eeprom(formatAddress) % 2;
 
     return newTime;
@@ -69,7 +70,7 @@ void Time_updateTime(Time *timePtr) {
 }
 
 void Time_saveFormat(Time *timePtr) {
-    write_eeprom(timePtr->formatAddress, timePtr->format);
+//    write_eeprom(timePtr->formatAddress, timePtr->format);
 }
 
 void Time_changeTimeFormat(Time *timePtr) {
@@ -97,18 +98,18 @@ TimeInDigits Time_getTimeInDigits(Time *timePtr, BOOLEAN formatted) {
     Array_splitNumberIntoDigits(
             hour,
             newTimeInDigits.hour,
-            getArraySize(newTimeInDigits.hour)
+            Array_getArraySize(newTimeInDigits.hour)
             );
     Array_splitNumberIntoDigits(
             timePtr->minute,
             newTimeInDigits.minute,
-            getArraySize(newTimeInDigits.minute)
+            Array_getArraySize(newTimeInDigits.minute)
             );
 
     Array_splitNumberIntoDigits(
             timePtr->second,
             newTimeInDigits.second,
-            getArraySize(newTimeInDigits.second)
+            Array_getArraySize(newTimeInDigits.second)
             );
 
     return newTimeInDigits;
@@ -171,7 +172,6 @@ void Time_increaseSeconds(Time *timePtr, int maximumSeconds) {
 void Time_resetSeconds(Time *timePtr) {
     timePtr->second = 0;
 }
-////////
 
 void Time_setClockTime(Time *timePtr) {
     setTime(
@@ -236,6 +236,51 @@ BOOLEAN Time_isTimeToStartDayLightSavingTime(Time *timePtr) {
     return (timePtr->hour == 2)&&
             (timePtr->minute == 0)&&
             (timePtr->second == 0);
+}
+
+void Time_showHoursMinutesRtc(BOOLEAN blink) {
+    int timeToSend[4] = {0};
+    TimeInDigits timeInDigits;
+    Time currentTime;
+    currentTime = Time_getCurrentTime();
+
+    timeInDigits = Time_getTimeInDigits(&currentTime, FALSE);
+    timeToSend[0] = timeInDigits.minute[0];
+    timeToSend[1] = timeInDigits.minute[1];
+    timeToSend[2] = timeInDigits.hour[0];
+    timeToSend[3] = timeInDigits.hour[1];
+
+    if (blink) {
+        blink = currentTime.second % 2;
+    } else {
+        blink = TRUE;
+    }
+    
+    SevenSegmentDisplay_showArrayOfNumbers(
+            timeToSend,
+            Array_getArraySize(timeToSend),
+            blink
+            );
+}
+
+void Time_showMinutesSecondsRtc(void) {
+    int timeToSend[4] = {0};
+    TimeInDigits timeInDigits;
+    Time currentTime;
+    currentTime = Time_getCurrentTime();
+    currentTime.minute = (currentTime.minute + currentTime.hour * 60) % 100;
+
+    timeInDigits = Time_getTimeInDigits(&currentTime, FALSE);
+    timeToSend[0] = timeInDigits.second[0];
+    timeToSend[1] = timeInDigits.second[1];
+    timeToSend[2] = timeInDigits.minute[0];
+    timeToSend[3] = timeInDigits.minute[1];
+
+    SevenSegmentDisplay_showArrayOfNumbers(
+            timeToSend,
+            Array_getArraySize(timeToSend),
+            TRUE
+            );
 }
 
 #endif	/* TIME_H */

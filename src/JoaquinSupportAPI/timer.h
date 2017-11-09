@@ -14,10 +14,7 @@
 typedef struct {
     Time countdownTime;
     Time currentTime;
-    Time limitTime;
-    int hoursUpperBound;
-    int minutesUpperBound;
-    int secondsUpperBound;
+    Time alarmTime;
     char addressIsCounting;
     char addressAlarmSeconds;
     char addressAlarmMinutes;
@@ -25,49 +22,81 @@ typedef struct {
     char addressRtcHours;
     char addressRtcMinutes;
     char addressRtcSeconds;
+    int hoursUpperBound;
+    int minutesUpperBound;
+    int secondsUpperBound;
 } Timer;
 
-Timer Timer_newHoursMinutes(int maximumHours, int maximumMinutes, __EEADDRESS__ alarmHourAddress,
-        __EEADDRESS__ alarmMinutesAddress, __EEADDRESS__ rtcHour,
-        __EEADDRESS__ rtcMinutes, __EEADDRESS__ rtcSeconds) {
+void Timer_updateCountdownTime(Timer *timerPtr) {
+
+    signed int32 currentTimeInSeconds;
+    signed int32 limitTimeInSeconds;
+    signed int32 countdownTimeInSeconds;
+    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
+    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->alarmTime);
+    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
+
+    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
+
+    int32 hour = (countdownTimeInSeconds / 3600);
+    int32 minute = (countdownTimeInSeconds % 3600) / 60;
+    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
+
+    timerPtr->countdownTime.hour = hour;
+    timerPtr->countdownTime.minute = minute;
+}
+
+Timer Timer_newHoursMinutes(int maximumHours, int maximumMinutes, __EEADDRESS__ addressAlarmHour,
+        __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressRtcHour,
+        __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
 
-    newTimer.limitTime.hour = read_eeprom(alarmHourAddress) % (maximumHours + 1);
-    newTimer.limitTime.minute = read_eeprom(alarmMinutesAddress) % (maximumMinutes + 1);
-    newTimer.limitTime.second = 0;
+    newTimer.addressAlarmHours = addressAlarmHour;
+    newTimer.addressAlarmMinutes = addressAlarmMinutes;
+    newTimer.addressRtcHours = addressRtcHour;
+    newTimer.addressRtcMinutes = addressRtcMinutes;
+    newTimer.addressRtcSeconds = addressRtcSeconds;
+
+    newTimer.alarmTime.hour = read_eeprom(addressAlarmHour) % (maximumHours + 1);
+    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (maximumMinutes + 1);
+    newTimer.alarmTime.second = 0;
 
     newTimer.hoursUpperBound = maximumHours;
     newTimer.minutesUpperBound = maximumMinutes;
     newTimer.secondsUpperBound = 59;
 
-    newTimer.addressAlarmHours = alarmHourAddress;
-    newTimer.addressAlarmMinutes = alarmMinutesAddress;
-    newTimer.addressRtcHours = rtcHour;
-    newTimer.addressRtcMinutes = rtcMinutes;
-    newTimer.addressRtcSeconds = rtcSeconds;
+    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 100;
+    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (maximumMinutes + 1);
+    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
 
     return newTimer;
 }
 
 Timer Timer_newMinutesSeconds(int maximumMinutes,
-        __EEADDRESS__ alarmMinutesAddress, __EEADDRESS__ addressAlarmSeconds,
-        __EEADDRESS__ rtcHour, __EEADDRESS__ rtcMinutes, __EEADDRESS__ rtcSeconds) {
+        __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressAlarmSeconds,
+        __EEADDRESS__ addressRtcHour, __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
+
+    newTimer.addressAlarmMinutes = addressAlarmMinutes;
+    newTimer.addressAlarmSeconds = addressAlarmSeconds;
+    newTimer.addressRtcHours = addressRtcHour;
+    newTimer.addressRtcMinutes = addressRtcMinutes;
+    newTimer.addressRtcSeconds = addressRtcSeconds;
 
     newTimer.hoursUpperBound = 0;
     newTimer.minutesUpperBound = maximumMinutes;
     newTimer.secondsUpperBound = 59;
 
-    newTimer.limitTime.hour = 0;
-    newTimer.limitTime.minute = read_eeprom(alarmMinutesAddress) % (maximumMinutes + 1);
-    newTimer.limitTime.second =
+    newTimer.alarmTime.hour = 0;
+    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (maximumMinutes + 1);
+    newTimer.alarmTime.second =
             read_eeprom(addressAlarmSeconds) % (newTimer.secondsUpperBound + 1);
 
-    newTimer.addressAlarmMinutes = alarmMinutesAddress;
-    newTimer.addressAlarmSeconds = addressAlarmSeconds;
-    newTimer.addressRtcHours = rtcHour;
-    newTimer.addressRtcMinutes = rtcMinutes;
-    newTimer.addressRtcSeconds = rtcSeconds;
+
+    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 2;
+    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (maximumMinutes + 1);
+    newTimer.currentTime.minute = (newTimer.currentTime.minute + newTimer.currentTime.hour * 60) % 100;
+    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
 
     return newTimer;
 }
@@ -109,46 +138,29 @@ Timer Timer_newMinutesSeconds(int maximumMinutes,
     return newTimer;
 }
 
-void Timer_updateRtc(Timer *timerPtr) {
+void Timer_setRtc(Timer *timerPtr) {
     Time_setClockTime(&timerPtr->currentTime);
 }
 
-void Timer_updateCountdownTime(Timer *timerPtr) {
 
-    signed int32 currentTimeInSeconds;
-    signed int32 limitTimeInSeconds;
-    signed int32 countdownTimeInSeconds;
-    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
-    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->limitTime);
-    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
 
-    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
-
-    int32 hour = (countdownTimeInSeconds / 3600);
-    int32 minute = (countdownTimeInSeconds % 3600) / 60;
-    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
-
-    timerPtr->countdownTime.hour = hour;
-    timerPtr->countdownTime.minute = minute;
-}
-
-void Timer_updateCountdownTimeMinutesSeconds(Timer *timerPtr) {
-    signed int32 currentTimeInSeconds;
-    signed int32 limitTimeInSeconds;
-    signed int32 countdownTimeInSeconds;
-    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
-    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->limitTime);
-    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
-
-    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
-
-    int32 hour = (countdownTimeInSeconds / 3600);
-    int32 minute = (countdownTimeInSeconds % 3600) / 60;
-    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
-
-    timerPtr->countdownTime.hour = hour;
-    timerPtr->countdownTime.minute = minute;
-}
+//void Timer_updateCountdownTimeMinutesSeconds(Timer *timerPtr) {
+//    signed int32 currentTimeInSeconds;
+//    signed int32 limitTimeInSeconds;
+//    signed int32 countdownTimeInSeconds;
+//    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
+//    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->alarmTime);
+//    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
+//
+//    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
+//
+//    int32 hour = (countdownTimeInSeconds / 3600);
+//    int32 minute = (countdownTimeInSeconds % 3600) / 60;
+//    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
+//
+//    timerPtr->countdownTime.hour = hour;
+//    timerPtr->countdownTime.minute = minute;
+//}
 
 void Timer_updateTimerFromEeprom(Timer *timerPtr) {
 
@@ -178,39 +190,39 @@ BOOLEAN Timer_hasTimerChanged(Timer *timerPtr) {
 }
 
 void Timer_increaseTimerHours(Timer *timerPtr) {
-    timerPtr->limitTime.hour =
-            timerPtr->limitTime.hour == timerPtr->hoursUpperBound ?
-            0 : timerPtr->limitTime.hour + 1;
+    timerPtr->alarmTime.hour =
+            timerPtr->alarmTime.hour == timerPtr->hoursUpperBound ?
+            0 : timerPtr->alarmTime.hour + 1;
 }
 
 void Timer_decreaseTimerHours(Timer *timerPtr) {
-    timerPtr->limitTime.hour =
-            timerPtr->limitTime.hour == 0 ?
-            timerPtr->hoursUpperBound : timerPtr->limitTime.hour - 1;
+    timerPtr->alarmTime.hour =
+            timerPtr->alarmTime.hour == 0 ?
+            timerPtr->hoursUpperBound : timerPtr->alarmTime.hour - 1;
 }
 
 void Timer_increaseTimerMinutes(Timer *timerPtr) {
-    timerPtr->limitTime.minute =
-            timerPtr->limitTime.minute == timerPtr->minutesUpperBound ?
-            0 : timerPtr->limitTime.minute + 1;
+    timerPtr->alarmTime.minute =
+            timerPtr->alarmTime.minute == timerPtr->minutesUpperBound ?
+            0 : timerPtr->alarmTime.minute + 1;
 }
 
 void Timer_decreaseTimerMinutes(Timer *timerPtr) {
-    timerPtr->limitTime.minute =
-            timerPtr->limitTime.minute == 0 ?
-            timerPtr->minutesUpperBound : timerPtr->limitTime.minute - 1;
+    timerPtr->alarmTime.minute =
+            timerPtr->alarmTime.minute == 0 ?
+            timerPtr->minutesUpperBound : timerPtr->alarmTime.minute - 1;
 }
 
 void Timer_increaseTimerSeconds(Timer *timerPtr) {
-    timerPtr->limitTime.second =
-            timerPtr->limitTime.second == timerPtr->secondsUpperBound ?
-            0 : timerPtr->limitTime.second + 1;
+    timerPtr->alarmTime.second =
+            timerPtr->alarmTime.second == timerPtr->secondsUpperBound ?
+            0 : timerPtr->alarmTime.second + 1;
 }
 
 void Timer_decreaseTimerSeconds(Timer *timerPtr) {
-    timerPtr->limitTime.second =
-            timerPtr->limitTime.second == 0 ?
-            timerPtr->secondsUpperBound : timerPtr->limitTime.second - 1;
+    timerPtr->alarmTime.second =
+            timerPtr->alarmTime.second == 0 ?
+            timerPtr->secondsUpperBound : timerPtr->alarmTime.second - 1;
 }
 
 void Timer_saveStateCounting(Timer *timerPtr, BOOLEAN isCounting) {
@@ -223,9 +235,19 @@ void Timer_saveRtcCurrentTime(Timer *timerPtr) {
     write_eeprom(timerPtr->addressRtcSeconds, timerPtr->currentTime.second);
 }
 
-void Timer_saveLimitTime(Timer *timerPtr) {
-    write_eeprom(timerPtr->addressAlarmHours, timerPtr->limitTime.hour);
-    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->limitTime.minute);
+void Timer_saveAlarm(Timer *timerPtr) {
+    write_eeprom(timerPtr->addressAlarmHours, timerPtr->alarmTime.hour);
+    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);
+    write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second);
+}
+void Timer_saveAlarmHoursMinutes(Timer *timerPtr) {
+    write_eeprom(timerPtr->addressAlarmHours, timerPtr->alarmTime.hour);
+    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);    
+}
+
+void Timer_saveAlarmMinutesSeconds(Timer *timerPtr) {  
+    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);
+    write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second);
 }
 
 BOOLEAN Timer_isTimerFinished(Timer *timerPtr) {
@@ -233,7 +255,7 @@ BOOLEAN Timer_isTimerFinished(Timer *timerPtr) {
 }
 
 BOOLEAN Timer_isLimitTimeZero(Timer *timerPtr) {
-    return (timerPtr->limitTime.hour == 0)&& (timerPtr->limitTime.minute == 0);
+    return (timerPtr->alarmTime.hour == 0)&& (timerPtr->alarmTime.minute == 0);
 }
 
 void Timer_showHoursAndMinutesOfCountdownTime(Timer *timerPtr, BOOLEAN blink) {
@@ -254,7 +276,7 @@ void Timer_showHoursAndMinutesOfCountdownTime(Timer *timerPtr, BOOLEAN blink) {
 
     SevenSegmentDisplay_showArrayOfNumbers(
             timeToSend,
-            getArraySize(timeToSend),
+            Array_getArraySize(timeToSend),
             blink
             );
 }
@@ -263,9 +285,9 @@ void Timer_showMinutesAndSecondsOfCountdownTime(Timer *timerPtr) {
     int timeToSend[4] = {0};
     TimeInDigits timeInDigits;
     Time time;
-    
+
     time = timerPtr->countdownTime;
-    time.minute = time.minute + time.hour * 60;
+    time.minute = (time.minute + time.hour * 60) % 100;
     timeInDigits = Time_getTimeInDigits(&time, FALSE);
     //    timeInDigits = Time_getTimeInDigits(&timerPtr->countdownTime, FALSE);
     timeToSend[0] = timeInDigits.second[0];
@@ -275,7 +297,7 @@ void Timer_showMinutesAndSecondsOfCountdownTime(Timer *timerPtr) {
 
     SevenSegmentDisplay_showArrayOfNumbers(
             timeToSend,
-            getArraySize(timeToSend),
+            Array_getArraySize(timeToSend),
             TRUE
             );
 }
@@ -284,13 +306,13 @@ void Timer_hideHoursAndShowMinutesOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[0] = SevenSegmentDisplay_characters[displayableTime.minute[0]];
     numbersToSend[1] = SevenSegmentDisplay_characters[displayableTime.minute[1]] |
             SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
 
-    ShiftRegister_sendData(numbersToSend, getArraySize(numbersToSend));
+    ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend));
 
 }
 
@@ -298,20 +320,20 @@ void Timer_hideMinutesAndShowSecondsOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[0] = SevenSegmentDisplay_characters[displayableTime.second[0]];
     numbersToSend[1] = SevenSegmentDisplay_characters[displayableTime.second[1]] |
             SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
 
-    ShiftRegister_sendData(numbersToSend, getArraySize(numbersToSend));
+    ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend));
 }
 
 void Timer_showHoursAndMinutesOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[0] = displayableTime.minute[0];
     numbersToSend[1] = displayableTime.minute[1];
@@ -320,7 +342,7 @@ void Timer_showHoursAndMinutesOfLimitTime(Timer *timerPtr) {
 
     SevenSegmentDisplay_showArrayOfNumbers(
             numbersToSend,
-            getArraySize(numbersToSend),
+            Array_getArraySize(numbersToSend),
             TRUE);
 }
 
@@ -328,7 +350,7 @@ void Timer_showMinutesAndSecondsOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[0] = displayableTime.second[0];
     numbersToSend[1] = displayableTime.second[1];
@@ -337,7 +359,7 @@ void Timer_showMinutesAndSecondsOfLimitTime(Timer *timerPtr) {
 
     SevenSegmentDisplay_showArrayOfNumbers(
             numbersToSend,
-            getArraySize(numbersToSend),
+            Array_getArraySize(numbersToSend),
             TRUE);
 }
 
@@ -345,27 +367,27 @@ void Timer_hideMinutesAndShowHoursOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
     numbersToSend[2] = SevenSegmentDisplay_characters[displayableTime.hour[0]];
     numbersToSend[3] = SevenSegmentDisplay_characters[displayableTime.hour[1]];
 
-    ShiftRegister_sendData(numbersToSend, getArraySize(numbersToSend));
+    ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend));
 }
 
 void Timer_hideSecondsAndShowMinutesOfLimitTime(Timer *timerPtr) {
     int numbersToSend[4] = {0};
     TimeInDigits displayableTime;
 
-    displayableTime = Time_getTimeInDigits(&timerPtr->limitTime, FALSE);
+    displayableTime = Time_getTimeInDigits(&timerPtr->alarmTime, FALSE);
 
     numbersToSend[1] = SevenSegmentDisplay_characters[INDEX_SEVEN_SEGMENT_DOT];
     numbersToSend[2] = SevenSegmentDisplay_characters[displayableTime.minute[0]];
     numbersToSend[3] = SevenSegmentDisplay_characters[displayableTime.minute[1]];
 
 
-    ShiftRegister_sendData(numbersToSend, getArraySize(numbersToSend));
+    ShiftRegister_sendData(numbersToSend, Array_getArraySize(numbersToSend));
 }
 
 #endif	/* TIMER_H */

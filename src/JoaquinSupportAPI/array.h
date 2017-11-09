@@ -8,7 +8,7 @@
 #ifndef ARRAY_H
 #define	ARRAY_H
 
-#define getArraySize(array)(sizeof((array))/sizeof((array)[0]))
+#define Array_getArraySize(array)(sizeof((array))/sizeof((array)[0]))
 
 void Array_clearArray(int array[], int arraySize) {
     int i = 0;

@@ -6,7 +6,6 @@
                    projectFiles="true">
       <itemPath>src/polyonedisplay.h</itemPath>
       <itemPath>src/JoaquinSupportAPI/array.h</itemPath>
-      <itemPath>src/JoaquinSupportAPI/ascii.h</itemPath>
       <itemPath>src/JoaquinSupportAPI/buttons.h</itemPath>
       <itemPath>src/JoaquinSupportAPI/ds3231.h</itemPath>
       <itemPath>src/JoaquinSupportAPI/sevensegmentdisplay.h</itemPath>

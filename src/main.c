@@ -26,8 +26,10 @@
 #define DELAY_INCREASE_NUMBER_MILISECONDS 300
 
 // Buttons
-#define  BUTTON_START_STOP_RESET    PIN_B1
-#define  BUTTON_MENU                PIN_B0
+#define  PIN_BUTTON_START   PIN_B1
+#define  PIN_BUTTON_MENU    PIN_B0
+#define  PIN_BUZZER         PIN_C5
+#define PIN_LED PIN_B3
 
 typedef enum {
     EEPROM_CURRENT_STATE = 0,
@@ -38,13 +40,13 @@ typedef enum {
     EEPROM_RTC_HOURS,
     EEPROM_RTC_MINUTES,
     EEPROM_RTC_SECONDS,
+    EEPROM_BRIGHTNESS,
+    EEPROM_TYPE_OF_COUNT
 } EEPROM_ADDRESS;
-
-typedef void (*StateMachineFunction)(void);
-
 
 // -------------------------FUNCTION PROTOTYPE----------------------------------
 void setupHardware(void);
+void turnOnBuzzer(void);
 // -------------------------RTOS TASKS------------------------------------------
 #task(rate=50ms, max=1ms)
 void Task_checkIfStartStopResetButtonIsHeld(void);
@@ -71,39 +73,35 @@ int numberOfMenuButtonHasBeenReleased = 0;
 
 void main(void) {
     setupHardware();
-
     myPolyoneDisplay.currentState = STATE_INIT;
-
-
     rtos_run();
 }
 
 void x(void) {
     switch (myPolyoneDisplay.currentState) {
         case STATE_INIT:
-            myPolyoneDisplay = PolyoneDisplay_new(
-                    EEPROM_CURRENT_STATE,
+            myPolyoneDisplay = PolyoneDisplay_new(EEPROM_CURRENT_STATE,
                     EEPROM_PREVIOUS_STATE,
                     EEPROM_FORMAT,
                     EEPROM_FIRST_NUMBER,
                     EEPROM_SECOND_NUMBER,
                     EEPROM_RTC_HOURS,
                     EEPROM_RTC_MINUTES,
-                    EEPROM_RTC_SECONDS
+                    EEPROM_RTC_SECONDS,
+                    EEPROM_BRIGHTNESS,
+                    EEPROM_TYPE_OF_COUNT
                     );
             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
             break;
 
         case STATE_IDLE:
-            if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+            if (input(PIN_BUTTON_START) && (!startStopButtonState)) {
                 PolyoneDisplay_resume(&myPolyoneDisplay);
                 PolyoneDisplay_saveState(&myPolyoneDisplay);
                 PolyoneDisplay_updateRtc(&myPolyoneDisplay);
-
             }
             if (buttonStateStartStopReset == BUTTON_STATE_HELD) {
                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
-                //                myPolyoneDisplay.currentState = STATE_RESETTING;
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING);
             }
             break;
@@ -116,7 +114,7 @@ void x(void) {
                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING);
             }
-            if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+            if (input(PIN_BUTTON_START) && (!startStopButtonState)) {
                 PolyoneDisplay_stop(&myPolyoneDisplay);
                 PolyoneDisplay_saveRtcCurrentTime(&myPolyoneDisplay);
                 PolyoneDisplay_saveState(&myPolyoneDisplay);
@@ -124,14 +122,33 @@ void x(void) {
             }
             if (PolyoneDisplay_isTimerDone(&myPolyoneDisplay)) {
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_COUNTING_UP);
+                turnOnBuzzer();
+                myPolyoneDisplay.typeOfCount = COUNTUP;
+                PolyoneDisplay_saveTypeOfCount(&myPolyoneDisplay);
+                Time_clearRtcTime();
+                PolyoneDisplay_updateTimer(&myPolyoneDisplay);
             }
             break;
 
         case STATE_COUNTING_UP:
+            PolyoneDisplay_updateTimer(&myPolyoneDisplay);
+            PolyoneDisplay_showCount(&myPolyoneDisplay, TRUE);
+            if (input(PIN_BUTTON_START) && (!startStopButtonState)) {
+                PolyoneDisplay_stop(&myPolyoneDisplay);
+                PolyoneDisplay_saveRtcCurrentTime(&myPolyoneDisplay);
+                PolyoneDisplay_saveState(&myPolyoneDisplay);
+                PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
+            }
 
+            if (buttonStateStartStopReset == BUTTON_STATE_HELD) {
+                buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
+                PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING);
+            }
             break;
 
         case STATE_RESETTING:
+            myPolyoneDisplay.typeOfCount = COUNTDOWN;
+            PolyoneDisplay_saveTypeOfCount(&myPolyoneDisplay);
             Time_clearRtcTime();
             SeventSegmentDisplay_showHyphens();
             delay_ms(TIMEOUT_HYPHENS_MILISECONDS);
@@ -144,7 +161,7 @@ void x(void) {
             break;
 
         case STATE_WAITING_FOR_BUTTON_BEING_RELEASED:
-            if (input(BUTTON_START_STOP_RESET) && input(BUTTON_MENU)) {
+            if (input(PIN_BUTTON_START) && input(PIN_BUTTON_MENU)) {
                 PolyoneDisplay_setState(&myPolyoneDisplay, nextStateAfterWaitingForButtonBeingReleased);
             }
             break;
@@ -156,7 +173,7 @@ void Task_runStateMachine(void) {
     switch (myPolyoneDisplay.currentState) {
         case STATE_READY:
             PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
-            if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+            if (input(PIN_BUTTON_START) && (!startStopButtonState)) {
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_COUNTING_DOWN);
                 PolyoneDisplay_saveState(&myPolyoneDisplay);
                 Time_clearRtcTime();
@@ -170,20 +187,21 @@ void Task_runStateMachine(void) {
             break;
 
         case STATE_SETTING_FIRST_NUMBER:
+
             if (showDisplayCompletely) {
                 PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
             } else {
                 PolyoneDisplay_showSecondNumber(&myPolyoneDisplay);
             }
-            if (!input(BUTTON_START_STOP_RESET)) {
-                while (!input(BUTTON_START_STOP_RESET)) {
+            if (!input(PIN_BUTTON_START)) {
+                while (!input(PIN_BUTTON_START)) {
                     PolyoneDisplay_increaseFirstNumber(&myPolyoneDisplay);
                     PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
                 }
             }
 
-            if (!menuButtonState && input(BUTTON_MENU)) {
+            if (!menuButtonState && input(PIN_BUTTON_MENU)) {
                 if (myPolyoneDisplay.previousState == STATE_READY) {
                     numberOfMenuButtonHasBeenReleased++;
                 } else {
@@ -203,14 +221,14 @@ void Task_runStateMachine(void) {
             } else {
                 PolyoneDisplay_showFirstNumber(&myPolyoneDisplay);
             }
-            if (!input(BUTTON_START_STOP_RESET)) {
-                while (!input(BUTTON_START_STOP_RESET)) {
+            if (!input(PIN_BUTTON_START)) {
+                while (!input(PIN_BUTTON_START)) {
                     PolyoneDisplay_increaseSecondNumber(&myPolyoneDisplay);
                     PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
                 }
             }
-            if (!menuButtonState && input(BUTTON_MENU)) {
+            if (!menuButtonState && input(PIN_BUTTON_MENU)) {
                 if (PolyoneDisplay_isAlarmOkay(&myPolyoneDisplay)) {
                     PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_FORMAT);
                 } else {
@@ -222,29 +240,49 @@ void Task_runStateMachine(void) {
 
         case STATE_SETTING_FORMAT:
             PolyoneDisplay_showFormat(&myPolyoneDisplay);
-            if (input(BUTTON_START_STOP_RESET) && (!startStopButtonState)) {
+            if (input(PIN_BUTTON_START) && (!startStopButtonState)) {
                 PolyoneDisplay_swapFormat(&myPolyoneDisplay);
             }
-            if (!menuButtonState && input(BUTTON_MENU)) {
-                //                    Timer_saveLimitTime(&myTimer);
+            if (!menuButtonState && input(PIN_BUTTON_MENU)) {
+                PolyoneDisplay_saveAlarm(&myPolyoneDisplay);
+                PolyoneDisplay_saveFormat(&myPolyoneDisplay);
+                PolyoneDisplay_saveBrightness(&myPolyoneDisplay);
                 Time_clearRtcTime();
                 PolyoneDisplay_updateTimer(&myPolyoneDisplay);
+
+                PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS);
+            }
+            break;
+
+        case STATE_SETTING_BRIGHTNESS:
+            if (showDisplayCompletely) {
+                PolyoneDisplay_showBrightness(&myPolyoneDisplay);
+            } else {
+                PolyoneDisplay_hideBrightness();
+            }
+            if (!input(PIN_BUTTON_START)) {
+                while (!input(PIN_BUTTON_START)) {
+                    PolyoneDisplay_increaseBrightness(&myPolyoneDisplay);
+                    PolyoneDisplay_showBrightness(&myPolyoneDisplay);
+                    delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
+                }
+            }
+            if (!menuButtonState && input(PIN_BUTTON_MENU)) {
+                PolyoneDisplay_setState(&myPolyoneDisplay, STATE_READY);
                 rtos_enable(Task_checkIfMenuButtonIsHeld);
                 rtos_disable(Task_blinkDisplay);
-      
-                PolyoneDisplay_setState(&myPolyoneDisplay, STATE_READY);
             }
             break;
     }
 
-    startStopButtonState = input(BUTTON_START_STOP_RESET);
-    menuButtonState = input(BUTTON_MENU);
+    startStopButtonState = input(PIN_BUTTON_START);
+    menuButtonState = input(PIN_BUTTON_MENU);
     rtos_yield();
 }
 
 void Task_checkIfStartStopResetButtonIsHeld(void) {
     static int nextUpButtonCounter = 0;
-    if (!input(BUTTON_START_STOP_RESET)) {
+    if (!input(PIN_BUTTON_START)) {
         nextUpButtonCounter++;
     } else {
         nextUpButtonCounter = 0;
@@ -260,7 +298,7 @@ void Task_checkIfStartStopResetButtonIsHeld(void) {
 void Task_checkIfMenuButtonIsHeld(void) {
     static int menuButtonCounter = 0;
 
-    if (!input(BUTTON_MENU)) {
+    if (!input(PIN_BUTTON_MENU)) {
         menuButtonCounter++;
     } else {
         menuButtonCounter = 0;
@@ -287,3 +325,12 @@ void setupHardware(void) {
     WPUB = 0xFF;
 }
 
+void turnOnBuzzer(void) {
+    output_high(PIN_BUZZER);
+    delay_ms(200);
+    output_low(PIN_BUZZER);
+    delay_ms(100);
+    output_high(PIN_BUZZER);
+    delay_ms(200);
+    output_low(PIN_BUZZER);
+}
