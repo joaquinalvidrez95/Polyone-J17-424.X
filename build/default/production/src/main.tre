@@ -1,7 +1,7 @@
 ÀÄPolyone J17-424
-   ÃÄMAIN  1/197  Ram=0
+   ÃÄMAIN  1/193  Ram=0
    ³  ÃÄ@cinit1  (Inline)  Ram=0
-   ³  ÃÄsetupHardware  (Inline)  Ram=1
+   ³  ÃÄsetupHardware  (Inline)  Ram=0
    ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
    ³  ÃÄ@const1149  0/12  Ram=0
    ³  ÀÄ@const1149  0/12  Ram=0

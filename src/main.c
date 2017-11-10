@@ -57,10 +57,10 @@ void Task_checkIfStartStopResetButtonIsHeld(void);
 #task(rate=50ms, max=1ms)
 void Task_checkIfMenuButtonIsHeld(void);
 
-#task(rate=10ms, max=5ms)
+#task(rate=5ms, max=5ms)
 void Task_runStateMachine(void);
 
-#task(rate=50ms, max=1ms)
+#task(rate=25ms, max=1ms)
 void Task_blinkDisplay(void);
 
 // ----------------------------GLOBAL VARIABLES---------------------------------
@@ -349,7 +349,7 @@ void setupHardware(void) {
     setup_timer_2(T2_DIV_BY_16, 255, 1);
     setup_ccp1(CCP_PWM | CCP_PWM_L_H);
 
-    delay_ms(500);
+    delay_ms(200);
     port_b_pullups(0xFF);
     WPUB = 0xFF;
 }

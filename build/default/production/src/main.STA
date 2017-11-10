@@ -1,5 +1,5 @@
 
-ROM used:   7163/8192 (87%)
+ROM used:   7159/8192 (87%)
             8008/8192 (98%) including unused fragments
 
             2.8 Average locations per line
@@ -13,7 +13,7 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  377   233  34  src\main.c
+  376   233  34  src\main.c
   751     0   0  ..\..\..\..\Program Files (x86)\PICC\Devices\16F886.h
   375   178  26  src\polyonedisplay.h
   365   116  17  src\JoaquinSupportAPI\timer.h
@@ -24,7 +24,7 @@ Lines Stmts  %   Files
    46    13   2  src\JoaquinSupportAPI\shiftregister.h
    18     0   0  src\JoaquinSupportAPI\buttons.h
 ----- -----
- 2537   683 Total
+ 2536   683 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -107,7 +107,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
  Inline         5   202  4.3  PolyoneDisplay_resume
  Inline         4    48  2.9  PolyoneDisplay_isTimerDone
  Inline         3   426  4.2  PolyoneDisplay_isCountUpDone
-1    197   3    0    54  2.1  MAIN
+1    193   3    0    54  2.1  MAIN
 0     12   0    0             @const1149
 2   1525  21    4  3368  7.4  x
 2     18   0    0             @goto11655
@@ -116,7 +116,7 @@ Page ROM  %  RAM   Vol Diff  Functions:
 1     30   0    0   257  4.6  Task_checkIfStartStopResetButtonIsHeld
 1     30   0    0   257  4.6  Task_checkIfMenuButtonIsHeld
 1     17   0    0    37  2.0  Task_blinkDisplay
- Inline         1   129  2.6  setupHardware
+ Inline         0   129  2.6  setupHardware
  Inline         0   134  1.3  turnOnBuzzer
 1     42   1    0   156  2.2  blinkDisplay
  Inline         0             @cinit1
@@ -137,7 +137,7 @@ Program metrics:
 -----------  ----  ----
 00000-00003     4  0  
 00004-007FF  2034  10  
-00800-00FFF  1718  330  
+00800-00FFF  1714  334  
 01000-017FF  1543  505  
 01800-01FFF  1864  184  
 
