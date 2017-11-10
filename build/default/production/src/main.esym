@@ -1,7 +1,7 @@
 D G "__PCM__" 0 0 ""5.015""
 D G "__DEVICE__" 0 0 ""
 D G "__DATE__" 0 0 ""10-Nov-17""
-D G "__TIME__" 0 0 ""09:51:21""
+D G "__TIME__" 0 0 ""11:32:21""
 D G "__16F886" 0 0 "1" "* File:   main.c"
 C G "" 0 1 1 "*"
 C G "" 0 1 1 "*"
@@ -1118,115 +1118,113 @@ V L "hour" 3 40 "int32" `882
 V L "minute" 3 41 "int32" `886 
 V L "hoursUpperBound" 3 48 "int8" `888 
 V L "minutesUpperBound" 3 48 "int8" `889 
-V L "addressAlarmHour" 3 48 "__EEADDRESS__" `890 
+V L "addressAlarmHour" 3 49 "__EEADDRESS__" `890 
 V L "addressAlarmMinutes" 3 49 "__EEADDRESS__" `891 
-V L "addressRtcHour" 3 49 "__EEADDRESS__" `892 
+V L "addressRtcHour" 3 50 "__EEADDRESS__" `892 
 V L "addressRtcMinutes" 3 50 "__EEADDRESS__" `893 
-V L "addressRtcSeconds" 3 50 "__EEADDRESS__" `894 
-F G "Timer_newHoursMinutes" 3 50 "Timer(int8 hoursUpperBound,int8 minutesUpperBound,__EEADDRESS__ addressAlarmHour,__EEADDRESS__ addressAlarmMinutes,__EEADDRESS__ addressRtcHour,__EEADDRESS__ addressRtcMinutes,__EEADDRESS__ addressRtcSeconds)" `887 
-V L "newTimer" 3 51 "Timer" `895 
-C L "Timer_newHoursMinutes" 3 67 3 "FUNCTION"
-V L "minutesUpperBound" 3 74 "int8" `897 
-V L "addressAlarmMinutes" 3 75 "__EEADDRESS__" `898 
-V L "addressAlarmSeconds" 3 75 "__EEADDRESS__" `899 
-V L "addressRtcHour" 3 76 "__EEADDRESS__" `900 
-V L "addressRtcMinutes" 3 76 "__EEADDRESS__" `901 
-V L "addressRtcSeconds" 3 76 "__EEADDRESS__" `902 
-F G "Timer_newMinutesSeconds" 3 76 "Timer(int8 minutesUpperBound,__EEADDRESS__ addressAlarmMinutes,__EEADDRESS__ addressAlarmSeconds,__EEADDRESS__ addressRtcHour,__EEADDRESS__ addressRtcMinutes,__EEADDRESS__ addressRtcSeconds)" `896 
-V L "newTimer" 3 77 "Timer" `903 
-C L "Timer_newMinutesSeconds" 3 67 4 "FUNCTION"
-V L "maximumHours" 3 103 "int8" `905 
-V L "maximumMinutes" 3 103 "int8" `906 
-V L "alarmHourAddress" 3 103 "__EEADDRESS__" `907 
-V L "alarmMinutesAddress" 3 104 "__EEADDRESS__" `908 
-V L "isCounting" 3 104 "__EEADDRESS__" `909 
-V L "rtcHour" 3 105 "__EEADDRESS__" `910 
-V L "rtcMinutes" 3 105 "__EEADDRESS__" `911 
-V L "rtcSeconds" 3 105 "__EEADDRESS__" `912 
-F G "Timer_newHoursMinutes" 3 105 "Timer(int8 maximumHours,int8 maximumMinutes,__EEADDRESS__ alarmHourAddress,__EEADDRESS__ alarmMinutesAddress,__EEADDRESS__ isCounting,__EEADDRESS__ rtcHour,__EEADDRESS__ rtcMinutes,__EEADDRESS__ rtcSeconds)" `904 
-V L "newTimer" 3 106 "Timer" `913 
-V L "maximumMinutes" 3 121 "int8" `915 
-V L "alarmMinutesAddress" 3 122 "__EEADDRESS__" `916 
-V L "addressAlarmSeconds" 3 122 "__EEADDRESS__" `917 
-V L "isCounting" 3 123 "__EEADDRESS__" `918 
-V L "rtcHour" 3 123 "__EEADDRESS__" `919 
-V L "rtcMinutes" 3 124 "__EEADDRESS__" `920 
-V L "rtcSeconds" 3 124 "__EEADDRESS__" `921 
-F G "Timer_newMinutesSeconds" 3 124 "Timer(int8 maximumMinutes,__EEADDRESS__ alarmMinutesAddress,__EEADDRESS__ addressAlarmSeconds,__EEADDRESS__ isCounting,__EEADDRESS__ rtcHour,__EEADDRESS__ rtcMinutes,__EEADDRESS__ rtcSeconds)" `914 
-V L "newTimer" 3 125 "Timer" `922 
-V L "timerPtr" 3 140 "*Timer" `924 
-F G "Timer_setRtc" 3 140 "void(*Timer timerPtr)" `923 
-V L "timerPtr" 3 144 "*Timer" `926 
-F G "Timer_updateTimerFromEeprom" 3 144 "void(*Timer timerPtr)" `925 
-V L "timerPtr" 3 155 "*Timer" `928 
-F G "Timer_wasCounting" 3 155 "int8(*Timer timerPtr)" `927 
-V L "timerPtr" 3 159 "*Timer" `930 
-F G "Timer_updateTimer" 3 159 "void(*Timer timerPtr)" `929 
-V L "timerPtr" 3 164 "*Timer" `932 
-F G "Timer_hasTimerChanged" 3 164 "int8(*Timer timerPtr)" `931 
-V L "currentTime" 3 165 "time" `933 
-V L "timerPtr" 3 171 "*Timer" `935 
-F G "Timer_increaseTimerHours" 3 171 "void(*Timer timerPtr)" `934 
-V L "timerPtr" 3 177 "*Timer" `937 
-F G "Timer_decreaseTimerHours" 3 177 "void(*Timer timerPtr)" `936 
-V L "timerPtr" 3 183 "*Timer" `939 
-F G "Timer_increaseTimerMinutes" 3 183 "void(*Timer timerPtr)" `938 
-V L "timerPtr" 3 189 "*Timer" `941 
-F G "Timer_decreaseTimerMinutes" 3 189 "void(*Timer timerPtr)" `940 
-V L "timerPtr" 3 195 "*Timer" `943 
-F G "Timer_increaseTimerSeconds" 3 195 "void(*Timer timerPtr)" `942 
-V L "timerPtr" 3 201 "*Timer" `945 
-F G "Timer_decreaseTimerSeconds" 3 201 "void(*Timer timerPtr)" `944 
-V L "timerPtr" 3 207 "*Timer" `947 
-V L "isCounting" 3 207 "int8" `948 
-F G "Timer_saveStateCounting" 3 207 "void(*Timer timerPtr,int8 isCounting)" `946 
-V L "timerPtr" 3 211 "*Timer" `950 
-F G "Timer_saveRtcCurrentTime" 3 211 "void(*Timer timerPtr)" `949 
-V L "timerPtr" 3 217 "*Timer" `952 
-F G "Timer_saveAlarm" 3 217 "void(*Timer timerPtr)" `951 
-V L "timerPtr" 3 222 "*Timer" `954 
-F G "Timer_saveAlarmHoursMinutes" 3 222 "void(*Timer timerPtr)" `953 
-V L "timerPtr" 3 227 "*Timer" `956 
-F G "Timer_saveAlarmMinutesSeconds" 3 227 "void(*Timer timerPtr)" `955 
-V L "timerPtr" 3 232 "*Timer" `958 
-F G "Timer_isTimerFinished" 3 232 "int8(*Timer timerPtr)" `957 
-V L "timerPtr" 3 236 "*Timer" `960 
-F G "Timer_isLimitTimeZero" 3 236 "int8(*Timer timerPtr)" `959 
-V L "timerPtr" 3 240 "*Timer" `962 
-V L "blink" 3 240 "int8" `963 
-F G "Timer_showHoursAndMinutesOfCountdownTime" 3 240 "void(*Timer timerPtr,int8 blink)" `961 
-V L "timeToSend" 3 241 "int8[4]" `964 
-V L "TimeInDigits" 3 242 "TimeInDigits" `965 
-V L "timerPtr" 3 263 "*Timer" `967 
-F G "Timer_showMinutesAndSecondsOfCountdownTime" 3 263 "void(*Timer timerPtr)" `966 
-V L "timeToSend" 3 264 "int8[4]" `968 
-V L "TimeInDigits" 3 265 "TimeInDigits" `969 
-V L "time" 3 266 "time" `970 
-C L "Timer_showMinutesAndSecondsOfCountdownTime" 3 67 1 "FUNCTION"
-V L "timerPtr" 3 284 "*Timer" `972 
-F G "Timer_hideHoursAndShowMinutesOfLimitTime" 3 284 "void(*Timer timerPtr)" `971 
-V L "numbersToSend" 3 285 "int8[4]" `973 
-V L "displayableTime" 3 286 "TimeInDigits" `974 
-V L "timerPtr" 3 298 "*Timer" `976 
-F G "Timer_hideMinutesAndShowSecondsOfLimitTime" 3 298 "void(*Timer timerPtr)" `975 
-V L "numbersToSend" 3 299 "int8[4]" `977 
-V L "displayableTime" 3 300 "TimeInDigits" `978 
-V L "timerPtr" 3 311 "*Timer" `980 
-F G "Timer_showHoursAndMinutesOfLimitTime" 3 311 "void(*Timer timerPtr)" `979 
-V L "numbersToSend" 3 312 "int8[4]" `981 
-V L "displayableTime" 3 313 "TimeInDigits" `982 
-V L "timerPtr" 3 328 "*Timer" `984 
-F G "Timer_showMinutesAndSecondsOfLimitTime" 3 328 "void(*Timer timerPtr)" `983 
-V L "numbersToSend" 3 329 "int8[4]" `985 
-V L "displayableTime" 3 330 "TimeInDigits" `986 
-V L "timerPtr" 3 345 "*Timer" `988 
-F G "Timer_hideMinutesAndShowHoursOfLimitTime" 3 345 "void(*Timer timerPtr)" `987 
-V L "numbersToSend" 3 346 "int8[4]" `989 
-V L "displayableTime" 3 347 "TimeInDigits" `990 
-V L "timerPtr" 3 358 "*Timer" `992 
-F G "Timer_hideSecondsAndShowMinutesOfLimitTime" 3 358 "void(*Timer timerPtr)" `991 
-V L "numbersToSend" 3 359 "int8[4]" `993 
-V L "displayableTime" 3 360 "TimeInDigits" `994 
+V L "addressRtcSeconds" 3 51 "__EEADDRESS__" `894 
+F G "Timer_newHoursMinutes" 3 51 "Timer(int8 hoursUpperBound,int8 minutesUpperBound,__EEADDRESS__ addressAlarmHour,__EEADDRESS__ addressAlarmMinutes,__EEADDRESS__ addressRtcHour,__EEADDRESS__ addressRtcMinutes,__EEADDRESS__ addressRtcSeconds)" `887 
+V L "newTimer" 3 52 "Timer" `895 
+V L "minutesUpperBound" 3 70 "int8" `897 
+V L "addressAlarmMinutes" 3 71 "__EEADDRESS__" `898 
+V L "addressAlarmSeconds" 3 71 "__EEADDRESS__" `899 
+V L "addressRtcHour" 3 72 "__EEADDRESS__" `900 
+V L "addressRtcMinutes" 3 72 "__EEADDRESS__" `901 
+V L "addressRtcSeconds" 3 73 "__EEADDRESS__" `902 
+F G "Timer_newMinutesSeconds" 3 73 "Timer(int8 minutesUpperBound,__EEADDRESS__ addressAlarmMinutes,__EEADDRESS__ addressAlarmSeconds,__EEADDRESS__ addressRtcHour,__EEADDRESS__ addressRtcMinutes,__EEADDRESS__ addressRtcSeconds)" `896 
+V L "newTimer" 3 74 "Timer" `903 
+V L "maximumHours" 3 94 "int8" `905 
+V L "maximumMinutes" 3 94 "int8" `906 
+V L "alarmHourAddress" 3 94 "__EEADDRESS__" `907 
+V L "alarmMinutesAddress" 3 95 "__EEADDRESS__" `908 
+V L "isCounting" 3 95 "__EEADDRESS__" `909 
+V L "rtcHour" 3 96 "__EEADDRESS__" `910 
+V L "rtcMinutes" 3 96 "__EEADDRESS__" `911 
+V L "rtcSeconds" 3 96 "__EEADDRESS__" `912 
+F G "Timer_newHoursMinutes" 3 96 "Timer(int8 maximumHours,int8 maximumMinutes,__EEADDRESS__ alarmHourAddress,__EEADDRESS__ alarmMinutesAddress,__EEADDRESS__ isCounting,__EEADDRESS__ rtcHour,__EEADDRESS__ rtcMinutes,__EEADDRESS__ rtcSeconds)" `904 
+V L "newTimer" 3 97 "Timer" `913 
+V L "maximumMinutes" 3 112 "int8" `915 
+V L "alarmMinutesAddress" 3 113 "__EEADDRESS__" `916 
+V L "addressAlarmSeconds" 3 113 "__EEADDRESS__" `917 
+V L "isCounting" 3 114 "__EEADDRESS__" `918 
+V L "rtcHour" 3 114 "__EEADDRESS__" `919 
+V L "rtcMinutes" 3 115 "__EEADDRESS__" `920 
+V L "rtcSeconds" 3 115 "__EEADDRESS__" `921 
+F G "Timer_newMinutesSeconds" 3 115 "Timer(int8 maximumMinutes,__EEADDRESS__ alarmMinutesAddress,__EEADDRESS__ addressAlarmSeconds,__EEADDRESS__ isCounting,__EEADDRESS__ rtcHour,__EEADDRESS__ rtcMinutes,__EEADDRESS__ rtcSeconds)" `914 
+V L "newTimer" 3 116 "Timer" `922 
+V L "timerPtr" 3 131 "*Timer" `924 
+F G "Timer_setRtc" 3 131 "void(*Timer timerPtr)" `923 
+V L "timerPtr" 3 135 "*Timer" `926 
+F G "Timer_updateTimerFromEeprom" 3 135 "void(*Timer timerPtr)" `925 
+V L "timerPtr" 3 146 "*Timer" `928 
+F G "Timer_wasCounting" 3 146 "int8(*Timer timerPtr)" `927 
+V L "timerPtr" 3 150 "*Timer" `930 
+F G "Timer_updateTimer" 3 150 "void(*Timer timerPtr)" `929 
+V L "timerPtr" 3 155 "*Timer" `932 
+F G "Timer_hasTimerChanged" 3 155 "int8(*Timer timerPtr)" `931 
+V L "currentTime" 3 156 "time" `933 
+V L "timerPtr" 3 162 "*Timer" `935 
+F G "Timer_increaseTimerHours" 3 162 "void(*Timer timerPtr)" `934 
+V L "timerPtr" 3 168 "*Timer" `937 
+F G "Timer_decreaseTimerHours" 3 168 "void(*Timer timerPtr)" `936 
+V L "timerPtr" 3 174 "*Timer" `939 
+F G "Timer_increaseTimerMinutes" 3 174 "void(*Timer timerPtr)" `938 
+V L "timerPtr" 3 180 "*Timer" `941 
+F G "Timer_decreaseTimerMinutes" 3 180 "void(*Timer timerPtr)" `940 
+V L "timerPtr" 3 186 "*Timer" `943 
+F G "Timer_increaseTimerSeconds" 3 186 "void(*Timer timerPtr)" `942 
+V L "timerPtr" 3 192 "*Timer" `945 
+F G "Timer_decreaseTimerSeconds" 3 192 "void(*Timer timerPtr)" `944 
+V L "timerPtr" 3 198 "*Timer" `947 
+V L "isCounting" 3 198 "int8" `948 
+F G "Timer_saveStateCounting" 3 198 "void(*Timer timerPtr,int8 isCounting)" `946 
+V L "timerPtr" 3 202 "*Timer" `950 
+F G "Timer_saveRtcCurrentTime" 3 202 "void(*Timer timerPtr)" `949 
+V L "timerPtr" 3 208 "*Timer" `952 
+F G "Timer_saveAlarm" 3 208 "void(*Timer timerPtr)" `951 
+V L "timerPtr" 3 214 "*Timer" `954 
+F G "Timer_saveAlarmHoursMinutes" 3 214 "void(*Timer timerPtr)" `953 
+V L "timerPtr" 3 219 "*Timer" `956 
+F G "Timer_saveAlarmMinutesSeconds" 3 219 "void(*Timer timerPtr)" `955 
+V L "timerPtr" 3 224 "*Timer" `958 
+F G "Timer_isTimerFinished" 3 224 "int8(*Timer timerPtr)" `957 
+V L "timerPtr" 3 228 "*Timer" `960 
+F G "Timer_isLimitTimeZero" 3 228 "int8(*Timer timerPtr)" `959 
+V L "timerPtr" 3 232 "*Timer" `962 
+V L "blink" 3 232 "int8" `963 
+F G "Timer_showHoursAndMinutesOfCountdownTime" 3 232 "void(*Timer timerPtr,int8 blink)" `961 
+V L "timeToSend" 3 233 "int8[4]" `964 
+V L "TimeInDigits" 3 234 "TimeInDigits" `965 
+V L "timerPtr" 3 255 "*Timer" `967 
+F G "Timer_showMinutesAndSecondsOfCountdownTime" 3 255 "void(*Timer timerPtr)" `966 
+V L "timeToSend" 3 256 "int8[4]" `968 
+V L "TimeInDigits" 3 257 "TimeInDigits" `969 
+V L "time" 3 258 "time" `970 
+C L "Timer_showMinutesAndSecondsOfCountdownTime" 3 263 1 "FUNCTION"
+V L "timerPtr" 3 276 "*Timer" `972 
+F G "Timer_hideHoursAndShowMinutesOfLimitTime" 3 276 "void(*Timer timerPtr)" `971 
+V L "numbersToSend" 3 277 "int8[4]" `973 
+V L "displayableTime" 3 278 "TimeInDigits" `974 
+V L "timerPtr" 3 290 "*Timer" `976 
+F G "Timer_hideMinutesAndShowSecondsOfLimitTime" 3 290 "void(*Timer timerPtr)" `975 
+V L "numbersToSend" 3 291 "int8[4]" `977 
+V L "displayableTime" 3 292 "TimeInDigits" `978 
+V L "timerPtr" 3 303 "*Timer" `980 
+F G "Timer_showHoursAndMinutesOfLimitTime" 3 303 "void(*Timer timerPtr)" `979 
+V L "numbersToSend" 3 304 "int8[4]" `981 
+V L "displayableTime" 3 305 "TimeInDigits" `982 
+V L "timerPtr" 3 320 "*Timer" `984 
+F G "Timer_showMinutesAndSecondsOfLimitTime" 3 320 "void(*Timer timerPtr)" `983 
+V L "numbersToSend" 3 321 "int8[4]" `985 
+V L "displayableTime" 3 322 "TimeInDigits" `986 
+V L "timerPtr" 3 337 "*Timer" `988 
+F G "Timer_hideMinutesAndShowHoursOfLimitTime" 3 337 "void(*Timer timerPtr)" `987 
+V L "numbersToSend" 3 338 "int8[4]" `989 
+V L "displayableTime" 3 339 "TimeInDigits" `990 
+V L "timerPtr" 3 350 "*Timer" `992 
+F G "Timer_hideSecondsAndShowMinutesOfLimitTime" 3 350 "void(*Timer timerPtr)" `991 
+V L "numbersToSend" 3 351 "int8[4]" `993 
+V L "displayableTime" 3 352 "TimeInDigits" `994 
 C G "" 9 1 1 "*"
 C G "" 9 1 1 "*"
 D G "BUTTONS_H" 9 9 ""
@@ -1257,79 +1255,78 @@ E G "STATE_SETTING_BRIGHTNESS" 2 40 "9" `1017
 E G "STATE_WAITING_FOR_BUTTON_BEING_RELEASED" 2 41 "10" `1018 
 E G "NUMBER_OF_STATES" 2 42 "11" `1019 
 T G "PolyoneDisplayState" 2 42 "" `1020 
-T G "PolyoneDisplay" 2 58 "{Timer Timer,int1 Format,int1 TypeOfCount,PolyoneDisplayState currentState,PolyoneDisplayState previousState,int8 brightness,int8 numberOfDays,int8 addressCurrentState,int8 addressPreviousState,int8 addressFormat,int8 addressBrightness,int8 addressTypeOfCount,int8 addressNumberOfDays}" `1035 
+T G "PolyoneDisplay" 2 58 "{Timer Timer,int1 Format,int1 TypeOfCount,PolyoneDisplayState currentState,PolyoneDisplayState previousState,int8 brightness,int8 addressCurrentState,int8 addressPreviousState,int8 addressFormat,int8 addressBrightness,int8 addressTypeOfCount,int8 addressFirstNumber,int8 addressSecondNumber}" `1035 
 V G "brightnessLevels" 2 60 "[10]" `1036 
 V L "polyoneDisplayPtr" 2 62 "*PolyoneDisplay" `1040 
 F G "PolyoneDisplay_updateRtc" 2 62 "void(*PolyoneDisplay polyoneDisplayPtr)" `1039 
 V L "time" 2 63 "time" `1041 
-C L "PolyoneDisplay_updateRtc" 2 15 1 "FUNCTION"
-V L "polyoneDisplayPtr" 2 77 "*PolyoneDisplay" `1043 
-F G "PolyoneDisplay_updateTimer" 2 77 "void(*PolyoneDisplay polyoneDisplayPtr)" `1042 
-V L "dayOfMonth" 2 80 "int8" `1044 
-V L "month" 2 81 "int8" `1045 
-V L "year" 2 82 "int8" `1046 
-V L "dayOfWeek" 2 83 "int8" `1047 
-V L "addressCurrentState" 2 93 "int8" `1049 
-V L "addressPreviousState" 2 94 "int8" `1050 
-V L "addressFormat" 2 94 "int8" `1051 
-V L "addressFirstNumberAlarm" 2 95 "int8" `1052 
-V L "addressSecondNumberAlarm" 2 96 "int8" `1053 
-V L "addressRtcHours" 2 96 "int8" `1054 
-V L "addressRtcMinutes" 2 97 "int8" `1055 
-V L "addressRtcSeconds" 2 97 "int8" `1056 
-V L "addressBrightness" 2 98 "int8" `1057 
-V L "addressTypeOfCount" 2 98 "int8" `1058 
-V L "addressNumberOfDays" 2 98 "__EEADDRESS__" `1059 
-F G "PolyoneDisplay_new" 2 98 "PolyoneDisplay(int8 addressCurrentState,int8 addressPreviousState,int8 addressFormat,int8 addressFirstNumberAlarm,int8 addressSecondNumberAlarm,int8 addressRtcHours,int8 addressRtcMinutes,int8 addressRtcSeconds,int8 addressBrightness,int8 addressTypeOfCount,__EEADDRESS__ addressNumberOfDays)" `1048 
-V L "PolyoneDisplay" 2 99 "PolyoneDisplay" `1060 
-V L "polyoneDisplayPtr" 2 155 "*PolyoneDisplay" `1062 
-V L "withBlink" 2 155 "int8" `1063 
-F G "PolyoneDisplay_showCount" 2 155 "void(*PolyoneDisplay polyoneDisplayPtr,int8 withBlink)" `1061 
-V L "polyoneDisplayPtr" 2 171 "*PolyoneDisplay" `1065 
-F G "PolyoneDisplay_showLimitTime" 2 171 "void(*PolyoneDisplay polyoneDisplayPtr)" `1064 
-F G "PolyoneDisplay_hideBrightness" 2 179 "void()" `1066 
-V L "numbersToSend" 2 180 "int8[4]" `1067 
-V L "polyoneDisplayPtr" 2 186 "*PolyoneDisplay" `1069 
-F G "PolyoneDisplay_showBrightness" 2 186 "void(*PolyoneDisplay polyoneDisplayPtr)" `1068 
-V L "numbersToSend" 2 187 "int8[4]" `1070 
-V L "polyoneDisplayPtr" 2 198 "*PolyoneDisplay" `1072 
-F G "PolyoneDisplay_showFirstNumber" 2 198 "void(*PolyoneDisplay polyoneDisplayPtr)" `1071 
-V L "polyoneDisplayPtr" 2 206 "*PolyoneDisplay" `1074 
-F G "PolyoneDisplay_showSecondNumber" 2 206 "void(*PolyoneDisplay polyoneDisplayPtr)" `1073 
-V L "polyoneDisplayPtr" 2 214 "*PolyoneDisplay" `1076 
-F G "PolyoneDisplay_showFormat" 2 214 "void(*PolyoneDisplay polyoneDisplayPtr)" `1075 
-V L "numbersToSend" 2 215 "int8[4]" `1077 
-V L "polyoneDisplayPtr" 2 236 "*PolyoneDisplay" `1079 
-F G "PolyoneDisplay_increaseBrightness" 2 236 "void(*PolyoneDisplay polyoneDisplayPtr)" `1078 
-V L "polyoneDisplayPtr" 2 241 "*PolyoneDisplay" `1081 
-F G "PolyoneDisplay_increaseFirstNumber" 2 241 "void(*PolyoneDisplay polyoneDisplayPtr)" `1080 
-V L "polyoneDisplayPtr" 2 249 "*PolyoneDisplay" `1083 
-F G "PolyoneDisplay_increaseSecondNumber" 2 249 "void(*PolyoneDisplay polyoneDisplayPtr)" `1082 
-V L "polyoneDisplayPtr" 2 257 "*PolyoneDisplay" `1085 
-F G "PolyoneDisplay_swapFormat" 2 257 "void(*PolyoneDisplay polyoneDisplayPtr)" `1084 
-V L "polyoneDisplayPtr" 2 278 "*PolyoneDisplay" `1087 
-F G "PolyoneDisplay_isAlarmOkay" 2 278 "int8(*PolyoneDisplay polyoneDisplayPtr)" `1086 
-V L "polyoneDisplayPtr" 2 287 "*PolyoneDisplay" `1089 
-F G "PolyoneDisplay_saveRtcCurrentTime" 2 287 "void(*PolyoneDisplay polyoneDisplayPtr)" `1088 
-V L "polyoneDisplayPtr" 2 291 "*PolyoneDisplay" `1091 
-F G "PolyoneDisplay_saveTypeOfCount" 2 291 "void(*PolyoneDisplay polyoneDisplayPtr)" `1090 
-V L "polyoneDisplayPtr" 2 295 "*PolyoneDisplay" `1093 
-F G "PolyoneDisplay_saveBrightness" 2 295 "void(*PolyoneDisplay polyoneDisplayPtr)" `1092 
-V L "polyoneDisplayPtr" 2 299 "*PolyoneDisplay" `1095 
-V L "PolyoneDisplayState" 2 299 "PolyoneDisplayState" `1096 
-F G "PolyoneDisplay_setState" 2 299 "void(*PolyoneDisplay polyoneDisplayPtr,PolyoneDisplayState PolyoneDisplayState)" `1094 
-V L "polyoneDisplayPtr" 2 304 "*PolyoneDisplay" `1098 
-F G "PolyoneDisplay_stop" 2 304 "void(*PolyoneDisplay polyoneDisplayPtr)" `1097 
-V L "polyoneDisplayPtr" 2 310 "*PolyoneDisplay" `1100 
-F G "PolyoneDisplay_saveState" 2 310 "void(*PolyoneDisplay polyoneDisplayPtr)" `1099 
-V L "polyoneDisplayPtr" 2 315 "*PolyoneDisplay" `1102 
-F G "PolyoneDisplay_saveFormat" 2 315 "void(*PolyoneDisplay polyoneDisplayPtr)" `1101 
-V L "polyoneDisplayPtr" 2 319 "*PolyoneDisplay" `1104 
-F G "PolyoneDisplay_saveAlarm" 2 319 "void(*PolyoneDisplay polyoneDisplayPtr)" `1103 
-V L "polyoneDisplayPtr" 2 327 "*PolyoneDisplay" `1106 
-F G "PolyoneDisplay_resume" 2 327 "void(*PolyoneDisplay polyoneDisplayPtr)" `1105 
-V L "polyoneDisplayPtr" 2 336 "*PolyoneDisplay" `1108 
-F G "PolyoneDisplay_isTimerDone" 2 336 "int8(*PolyoneDisplay polyoneDisplayPtr)" `1107 
+V L "polyoneDisplayPtr" 2 75 "*PolyoneDisplay" `1043 
+F G "PolyoneDisplay_updateTimer" 2 75 "void(*PolyoneDisplay polyoneDisplayPtr)" `1042 
+V L "dayOfMonth" 2 78 "int8" `1044 
+V L "month" 2 79 "int8" `1045 
+V L "year" 2 80 "int8" `1046 
+V L "dayOfWeek" 2 81 "int8" `1047 
+V L "addressCurrentState" 2 91 "int8" `1049 
+V L "addressPreviousState" 2 92 "int8" `1050 
+V L "addressFormat" 2 92 "int8" `1051 
+V L "addressFirstNumberAlarm" 2 93 "int8" `1052 
+V L "addressSecondNumberAlarm" 2 94 "int8" `1053 
+V L "addressRtcHours" 2 94 "int8" `1054 
+V L "addressRtcMinutes" 2 95 "int8" `1055 
+V L "addressRtcSeconds" 2 95 "int8" `1056 
+V L "addressBrightness" 2 96 "int8" `1057 
+V L "addressTypeOfCount" 2 96 "int8" `1058 
+F G "PolyoneDisplay_new" 2 96 "PolyoneDisplay(int8 addressCurrentState,int8 addressPreviousState,int8 addressFormat,int8 addressFirstNumberAlarm,int8 addressSecondNumberAlarm,int8 addressRtcHours,int8 addressRtcMinutes,int8 addressRtcSeconds,int8 addressBrightness,int8 addressTypeOfCount)" `1048 
+V L "PolyoneDisplay" 2 97 "PolyoneDisplay" `1059 
+V L "polyoneDisplayPtr" 2 166 "*PolyoneDisplay" `1061 
+V L "withBlink" 2 166 "int8" `1062 
+F G "PolyoneDisplay_showCount" 2 166 "void(*PolyoneDisplay polyoneDisplayPtr,int8 withBlink)" `1060 
+V L "polyoneDisplayPtr" 2 182 "*PolyoneDisplay" `1064 
+F G "PolyoneDisplay_showLimitTime" 2 182 "void(*PolyoneDisplay polyoneDisplayPtr)" `1063 
+F G "PolyoneDisplay_hideBrightness" 2 190 "void()" `1065 
+V L "numbersToSend" 2 191 "int8[4]" `1066 
+V L "polyoneDisplayPtr" 2 197 "*PolyoneDisplay" `1068 
+F G "PolyoneDisplay_showBrightness" 2 197 "void(*PolyoneDisplay polyoneDisplayPtr)" `1067 
+V L "numbersToSend" 2 198 "int8[4]" `1069 
+V L "polyoneDisplayPtr" 2 209 "*PolyoneDisplay" `1071 
+F G "PolyoneDisplay_showFirstNumber" 2 209 "void(*PolyoneDisplay polyoneDisplayPtr)" `1070 
+V L "polyoneDisplayPtr" 2 217 "*PolyoneDisplay" `1073 
+F G "PolyoneDisplay_showSecondNumber" 2 217 "void(*PolyoneDisplay polyoneDisplayPtr)" `1072 
+V L "polyoneDisplayPtr" 2 225 "*PolyoneDisplay" `1075 
+F G "PolyoneDisplay_showFormat" 2 225 "void(*PolyoneDisplay polyoneDisplayPtr)" `1074 
+V L "numbersToSend" 2 226 "int8[4]" `1076 
+V L "polyoneDisplayPtr" 2 247 "*PolyoneDisplay" `1078 
+F G "PolyoneDisplay_increaseBrightness" 2 247 "void(*PolyoneDisplay polyoneDisplayPtr)" `1077 
+V L "polyoneDisplayPtr" 2 252 "*PolyoneDisplay" `1080 
+F G "PolyoneDisplay_increaseFirstNumber" 2 252 "void(*PolyoneDisplay polyoneDisplayPtr)" `1079 
+V L "polyoneDisplayPtr" 2 260 "*PolyoneDisplay" `1082 
+F G "PolyoneDisplay_increaseSecondNumber" 2 260 "void(*PolyoneDisplay polyoneDisplayPtr)" `1081 
+V L "polyoneDisplayPtr" 2 268 "*PolyoneDisplay" `1084 
+F G "PolyoneDisplay_swapFormat" 2 268 "void(*PolyoneDisplay polyoneDisplayPtr)" `1083 
+V L "polyoneDisplayPtr" 2 294 "*PolyoneDisplay" `1086 
+F G "PolyoneDisplay_isAlarmOkay" 2 294 "int8(*PolyoneDisplay polyoneDisplayPtr)" `1085 
+V L "polyoneDisplayPtr" 2 303 "*PolyoneDisplay" `1088 
+F G "PolyoneDisplay_saveRtcCurrentTime" 2 303 "void(*PolyoneDisplay polyoneDisplayPtr)" `1087 
+V L "polyoneDisplayPtr" 2 307 "*PolyoneDisplay" `1090 
+F G "PolyoneDisplay_saveTypeOfCount" 2 307 "void(*PolyoneDisplay polyoneDisplayPtr)" `1089 
+V L "polyoneDisplayPtr" 2 311 "*PolyoneDisplay" `1092 
+F G "PolyoneDisplay_saveBrightness" 2 311 "void(*PolyoneDisplay polyoneDisplayPtr)" `1091 
+V L "polyoneDisplayPtr" 2 315 "*PolyoneDisplay" `1094 
+V L "PolyoneDisplayState" 2 315 "PolyoneDisplayState" `1095 
+F G "PolyoneDisplay_setState" 2 315 "void(*PolyoneDisplay polyoneDisplayPtr,PolyoneDisplayState PolyoneDisplayState)" `1093 
+V L "polyoneDisplayPtr" 2 320 "*PolyoneDisplay" `1097 
+F G "PolyoneDisplay_stop" 2 320 "void(*PolyoneDisplay polyoneDisplayPtr)" `1096 
+V L "polyoneDisplayPtr" 2 326 "*PolyoneDisplay" `1099 
+F G "PolyoneDisplay_saveState" 2 326 "void(*PolyoneDisplay polyoneDisplayPtr)" `1098 
+V L "polyoneDisplayPtr" 2 331 "*PolyoneDisplay" `1101 
+F G "PolyoneDisplay_saveFormat" 2 331 "void(*PolyoneDisplay polyoneDisplayPtr)" `1100 
+V L "polyoneDisplayPtr" 2 335 "*PolyoneDisplay" `1103 
+F G "PolyoneDisplay_saveAlarm" 2 335 "void(*PolyoneDisplay polyoneDisplayPtr)" `1102 
+C L "PolyoneDisplay_saveAlarm" 2 15 4 "FUNCTION"
+V L "polyoneDisplayPtr" 2 351 "*PolyoneDisplay" `1105 
+F G "PolyoneDisplay_resume" 2 351 "void(*PolyoneDisplay polyoneDisplayPtr)" `1104 
+V L "polyoneDisplayPtr" 2 360 "*PolyoneDisplay" `1107 
+F G "PolyoneDisplay_isTimerDone" 2 360 "int8(*PolyoneDisplay polyoneDisplayPtr)" `1106 
 D G "TIMEOUT_MENU_BUTTON_MILISECONDS" 0 22 "2000"
 D G "TIMEOUT_RESET_TIMER_MILISECONDS" 0 23 "3000"
 D G "TIMEOUT_HYPHENS_MILISECONDS" 0 24 "2000"
@@ -1338,45 +1335,44 @@ D G "PIN_BUTTON_START" 0 30 "PIN_B1"
 D G "PIN_BUTTON_MENU" 0 31 "PIN_B0"
 D G "PIN_BUZZER" 0 32 "PIN_C5"
 D G "PIN_LED" 0 33 "PIN_B3"
-E G "EEPROM_CURRENT_STATE" 0 37 "0" `1110 
-E G "EEPROM_PREVIOUS_STATE" 0 38 "1" `1111 
-E G "EEPROM_FORMAT" 0 39 "2" `1112 
-E G "EEPROM_FIRST_NUMBER" 0 40 "3" `1113 
-E G "EEPROM_SECOND_NUMBER" 0 41 "4" `1114 
-E G "EEPROM_RTC_HOURS" 0 42 "5" `1115 
-E G "EEPROM_RTC_MINUTES" 0 43 "6" `1116 
-E G "EEPROM_RTC_SECONDS" 0 44 "7" `1117 
-E G "EEPROM_BRIGHTNESS" 0 45 "8" `1118 
-E G "EEPROM_TYPE_OF_COUNT" 0 46 "9" `1119 
-E G "EEPROM_NUMBER_OF_DAYS" 0 47 "10" `1120 
-T G "EEPROM_ADDRESS" 0 47 "" `1121  "-------------------------FUNCTION PROTOTYPE----------------------------------"
-f G "setupHardware" 0 50 "void()" `1122 
-f G "turnOnBuzzer" 0 51 "void()" `1123  "-------------------------RTOS TASKS------------------------------------------"
-f G "Task_checkIfStartStopResetButtonIsHeld" 0 54 "void()" `1125 
-f G "Task_checkIfMenuButtonIsHeld" 0 57 "void()" `1127 
-f G "Task_runStateMachine" 0 60 "void()" `1129 
-f G "Task_blinkDisplay" 0 63 "void()" `1131  "----------------------------GLOBAL VARIABLES---------------------------------"
-V G "showDisplayCompletely" 0 66 "int1" `1132 
-V G "buttonStateStartStopReset" 0 67 "ButtonState" `1133 
-V G "buttonStateMenu" 0 68 "ButtonState" `1134 
-V G "myPolyoneDisplay" 0 69 "PolyoneDisplay" `1135 
-V G "startStopButtonState" 0 71 "int1" `1136 
-V G "menuButtonState" 0 72 "int1" `1137 
-V G "nextStateAfterWaitingForButtonBeingReleased" 0 73 "PolyoneDisplayState" `1138 
-V G "numberOfMenuButtonHasBeenReleased" 0 74 "int8" `1139 
-F G "MAIN" 0 76 "void()" `1140 
-F G "x" 0 82 "void()" `1144 
+E G "EEPROM_CURRENT_STATE" 0 37 "0" `1109 
+E G "EEPROM_PREVIOUS_STATE" 0 38 "1" `1110 
+E G "EEPROM_FORMAT" 0 39 "2" `1111 
+E G "EEPROM_FIRST_NUMBER" 0 40 "3" `1112 
+E G "EEPROM_SECOND_NUMBER" 0 41 "4" `1113 
+E G "EEPROM_RTC_HOURS" 0 42 "5" `1114 
+E G "EEPROM_RTC_MINUTES" 0 43 "6" `1115 
+E G "EEPROM_RTC_SECONDS" 0 44 "7" `1116 
+E G "EEPROM_BRIGHTNESS" 0 45 "8" `1117 
+E G "EEPROM_TYPE_OF_COUNT" 0 46 "9" `1118 
+E G "EEPROM_NUMBER_OF_DAYS" 0 47 "10" `1119 
+T G "EEPROM_ADDRESS" 0 47 "" `1120  "-------------------------FUNCTION PROTOTYPE----------------------------------"
+f G "setupHardware" 0 50 "void()" `1121 
+f G "turnOnBuzzer" 0 51 "void()" `1122  "-------------------------RTOS TASKS------------------------------------------"
+f G "Task_checkIfStartStopResetButtonIsHeld" 0 54 "void()" `1124 
+f G "Task_checkIfMenuButtonIsHeld" 0 57 "void()" `1126 
+f G "Task_runStateMachine" 0 60 "void()" `1128 
+f G "Task_blinkDisplay" 0 63 "void()" `1130  "----------------------------GLOBAL VARIABLES---------------------------------"
+V G "showDisplayCompletely" 0 66 "int1" `1131 
+V G "buttonStateStartStopReset" 0 67 "ButtonState" `1132 
+V G "buttonStateMenu" 0 68 "ButtonState" `1133 
+V G "myPolyoneDisplay" 0 69 "PolyoneDisplay" `1134 
+V G "startStopButtonState" 0 71 "int1" `1135 
+V G "menuButtonState" 0 72 "int1" `1136 
+V G "nextStateAfterWaitingForButtonBeingReleased" 0 73 "PolyoneDisplayState" `1137 
+V G "numberOfMenuButtonHasBeenReleased" 0 74 "int8" `1138 
+F G "MAIN" 0 76 "void()" `1139 
+F G "x" 0 82 "void()" `1143 
 C L "x" 0 21 4 "FUNCTION"
 C L "x" 0 21 1 "FUNCTION"
-C L "x" 0 21 1 "FUNCTION"
-F G "Task_runStateMachine" 0 190 "void()" `1129 
-F G "Task_checkIfStartStopResetButtonIsHeld" 0 307 "void()" `1125 
-V L "nextUpButtonCounter" 0 308 "int8" `1147 
-F G "Task_checkIfMenuButtonIsHeld" 0 322 "void()" `1127 
-V L "menuButtonCounter" 0 323 "int8" `1148 
-F G "Task_blinkDisplay" 0 338 "void()" `1131 
-F G "setupHardware" 0 343 "void()" `1122 
-F G "turnOnBuzzer" 0 352 "void()" `1123 
+F G "Task_runStateMachine" 0 192 "void()" `1128 
+F G "Task_checkIfStartStopResetButtonIsHeld" 0 310 "void()" `1124 
+V L "nextUpButtonCounter" 0 311 "int8" `1146 
+F G "Task_checkIfMenuButtonIsHeld" 0 325 "void()" `1126 
+V L "menuButtonCounter" 0 326 "int8" `1147 
+F G "Task_blinkDisplay" 0 341 "void()" `1130 
+F G "setupHardware" 0 346 "void()" `1121 
+F G "turnOnBuzzer" 0 355 "void()" `1122 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

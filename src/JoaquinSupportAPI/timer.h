@@ -45,9 +45,10 @@ void Timer_updateCountdownTime(Timer *timerPtr) {
     timerPtr->countdownTime.minute = minute;
 }
 
-Timer Timer_newHoursMinutes(int hoursUpperBound, int minutesUpperBound, __EEADDRESS__ addressAlarmHour,
-        __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressRtcHour,
-        __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
+Timer Timer_newHoursMinutes(int hoursUpperBound, int minutesUpperBound,
+        __EEADDRESS__ addressAlarmHour, __EEADDRESS__ addressAlarmMinutes,
+        __EEADDRESS__ addressRtcHour, __EEADDRESS__ addressRtcMinutes,
+        __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
 
     newTimer.addressAlarmHours = addressAlarmHour;
@@ -63,17 +64,13 @@ Timer Timer_newHoursMinutes(int hoursUpperBound, int minutesUpperBound, __EEADDR
     newTimer.hoursUpperBound = hoursUpperBound;
     newTimer.minutesUpperBound = minutesUpperBound;
     newTimer.secondsUpperBound = 59;
-
-//    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 100;
-//    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (minutesUpperBound + 1);
-//    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
-
     return newTimer;
 }
 
 Timer Timer_newMinutesSeconds(int minutesUpperBound,
         __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressAlarmSeconds,
-        __EEADDRESS__ addressRtcHour, __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
+        __EEADDRESS__ addressRtcHour, __EEADDRESS__ addressRtcMinutes,
+        __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
 
     newTimer.addressAlarmMinutes = addressAlarmMinutes;
@@ -90,12 +87,6 @@ Timer Timer_newMinutesSeconds(int minutesUpperBound,
     newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (minutesUpperBound + 1);
     newTimer.alarmTime.second =
             read_eeprom(addressAlarmSeconds) % (newTimer.secondsUpperBound + 1);
-
-
-//    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 2;
-//    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (minutesUpperBound + 1);
-//    newTimer.currentTime.minute = (newTimer.currentTime.minute + newTimer.currentTime.hour * 60) % 100;
-//    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
 
     return newTimer;
 }
@@ -219,12 +210,13 @@ void Timer_saveAlarm(Timer *timerPtr) {
     write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);
     write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second);
 }
+
 void Timer_saveAlarmHoursMinutes(Timer *timerPtr) {
     write_eeprom(timerPtr->addressAlarmHours, timerPtr->alarmTime.hour);
-    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);    
+    write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);
 }
 
-void Timer_saveAlarmMinutesSeconds(Timer *timerPtr) {  
+void Timer_saveAlarmMinutesSeconds(Timer *timerPtr) {
     write_eeprom(timerPtr->addressAlarmMinutes, timerPtr->alarmTime.minute);
     write_eeprom(timerPtr->addressAlarmSeconds, timerPtr->alarmTime.second);
 }
