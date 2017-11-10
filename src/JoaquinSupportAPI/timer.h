@@ -28,7 +28,6 @@ typedef struct {
 } Timer;
 
 void Timer_updateCountdownTime(Timer *timerPtr) {
-
     signed int32 currentTimeInSeconds;
     signed int32 limitTimeInSeconds;
     signed int32 countdownTimeInSeconds;
@@ -46,7 +45,7 @@ void Timer_updateCountdownTime(Timer *timerPtr) {
     timerPtr->countdownTime.minute = minute;
 }
 
-Timer Timer_newHoursMinutes(int maximumHours, int maximumMinutes, __EEADDRESS__ addressAlarmHour,
+Timer Timer_newHoursMinutes(int hoursUpperBound, int minutesUpperBound, __EEADDRESS__ addressAlarmHour,
         __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressRtcHour,
         __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
@@ -57,22 +56,22 @@ Timer Timer_newHoursMinutes(int maximumHours, int maximumMinutes, __EEADDRESS__ 
     newTimer.addressRtcMinutes = addressRtcMinutes;
     newTimer.addressRtcSeconds = addressRtcSeconds;
 
-    newTimer.alarmTime.hour = read_eeprom(addressAlarmHour) % (maximumHours + 1);
-    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (maximumMinutes + 1);
+    newTimer.alarmTime.hour = read_eeprom(addressAlarmHour) % (hoursUpperBound + 1);
+    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (minutesUpperBound + 1);
     newTimer.alarmTime.second = 0;
 
-    newTimer.hoursUpperBound = maximumHours;
-    newTimer.minutesUpperBound = maximumMinutes;
+    newTimer.hoursUpperBound = hoursUpperBound;
+    newTimer.minutesUpperBound = minutesUpperBound;
     newTimer.secondsUpperBound = 59;
 
-    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 100;
-    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (maximumMinutes + 1);
-    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
+//    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 100;
+//    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (minutesUpperBound + 1);
+//    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
 
     return newTimer;
 }
 
-Timer Timer_newMinutesSeconds(int maximumMinutes,
+Timer Timer_newMinutesSeconds(int minutesUpperBound,
         __EEADDRESS__ addressAlarmMinutes, __EEADDRESS__ addressAlarmSeconds,
         __EEADDRESS__ addressRtcHour, __EEADDRESS__ addressRtcMinutes, __EEADDRESS__ addressRtcSeconds) {
     Timer newTimer;
@@ -84,19 +83,19 @@ Timer Timer_newMinutesSeconds(int maximumMinutes,
     newTimer.addressRtcSeconds = addressRtcSeconds;
 
     newTimer.hoursUpperBound = 0;
-    newTimer.minutesUpperBound = maximumMinutes;
+    newTimer.minutesUpperBound = minutesUpperBound;
     newTimer.secondsUpperBound = 59;
 
     newTimer.alarmTime.hour = 0;
-    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (maximumMinutes + 1);
+    newTimer.alarmTime.minute = read_eeprom(addressAlarmMinutes) % (minutesUpperBound + 1);
     newTimer.alarmTime.second =
             read_eeprom(addressAlarmSeconds) % (newTimer.secondsUpperBound + 1);
 
 
-    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 2;
-    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (maximumMinutes + 1);
-    newTimer.currentTime.minute = (newTimer.currentTime.minute + newTimer.currentTime.hour * 60) % 100;
-    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
+//    newTimer.currentTime.hour = read_eeprom(addressRtcHour) % 2;
+//    newTimer.currentTime.minute = read_eeprom(addressRtcMinutes) % (minutesUpperBound + 1);
+//    newTimer.currentTime.minute = (newTimer.currentTime.minute + newTimer.currentTime.hour * 60) % 100;
+//    newTimer.currentTime.second = read_eeprom(addressRtcSeconds) % 60;
 
     return newTimer;
 }
@@ -141,26 +140,6 @@ Timer Timer_newMinutesSeconds(int maximumMinutes,
 void Timer_setRtc(Timer *timerPtr) {
     Time_setClockTime(&timerPtr->currentTime);
 }
-
-
-
-//void Timer_updateCountdownTimeMinutesSeconds(Timer *timerPtr) {
-//    signed int32 currentTimeInSeconds;
-//    signed int32 limitTimeInSeconds;
-//    signed int32 countdownTimeInSeconds;
-//    currentTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->currentTime);
-//    limitTimeInSeconds = Time_changeTimeToSeconds(&timerPtr->alarmTime);
-//    countdownTimeInSeconds = limitTimeInSeconds - currentTimeInSeconds;
-//
-//    countdownTimeInSeconds = countdownTimeInSeconds < 0 ? 0 : countdownTimeInSeconds;
-//
-//    int32 hour = (countdownTimeInSeconds / 3600);
-//    int32 minute = (countdownTimeInSeconds % 3600) / 60;
-//    timerPtr->countdownTime.second = (countdownTimeInSeconds % 3600) % 60;
-//
-//    timerPtr->countdownTime.hour = hour;
-//    timerPtr->countdownTime.minute = minute;
-//}
 
 void Timer_updateTimerFromEeprom(Timer *timerPtr) {
 

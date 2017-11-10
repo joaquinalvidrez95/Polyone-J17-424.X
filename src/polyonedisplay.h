@@ -17,8 +17,8 @@
 #define SECOND_NUMBER_UPPER_BOUND   59
 
 typedef enum {
-    FORMAT_MINUTES_SECONDS = 0,
-    FORMAT_HOURS_MINUTES
+    FORMAT_HOURS_MINUTES = 0,
+    FORMAT_MINUTES_SECONDS
 } PolyoneDisplayFormat;
 
 typedef enum {
@@ -47,22 +47,33 @@ typedef struct {
     TypeOfCount typeOfCount;
     PolyoneDisplayState currentState;
     PolyoneDisplayState previousState;
-    char brightness;
+    int brightness;   
     char addressCurrentState;
     char addressPreviousState;
     char addressFormat;
     char addressBrightness;
-    char addressTypeOfCount;
+    char addressTypeOfCount; 
 } PolyoneDisplay;
 
 const int brightnessLevels[10] = {10, 34, 58, 82, 106, 130, 154, 178, 202, 255};
 
 void PolyoneDisplay_updateRtc(PolyoneDisplay *polyoneDisplayPtr) {
-    Timer_setRtc(&polyoneDisplayPtr->timer);
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        Time time;
+        time = polyoneDisplayPtr->timer.currentTime;
+        time.hour %= 24;
+        Time_setClockTime(&time);
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        Timer_setRtc(&polyoneDisplayPtr->timer);
+    }
 }
 
 void PolyoneDisplay_updateTimer(PolyoneDisplay *polyoneDisplayPtr) {
-    Timer_updateTimer(&polyoneDisplayPtr->timer);
+    //    Timer_updateTimer(&polyoneDisplayPtr->timer);
+
+    polyoneDisplayPtr->timer.currentTime = Time_getCurrentTime();
+//    polyoneDisplayPtr->timer.currentTime.hour += polyoneDisplayPtr->numberOfDays * 24;
+    Timer_updateCountdownTime(&polyoneDisplayPtr->timer);
 }
 
 PolyoneDisplay PolyoneDisplay_new(char addressCurrentState,
@@ -73,17 +84,18 @@ PolyoneDisplay PolyoneDisplay_new(char addressCurrentState,
         char addressBrightness, char addressTypeOfCount) {
     PolyoneDisplay polyoneDisplay;
 
+    setDate(1, 1, 1, 1);
     polyoneDisplay.addressCurrentState = addressCurrentState;
     polyoneDisplay.addressPreviousState = addressPreviousState;
     polyoneDisplay.addressFormat = addressFormat;
     polyoneDisplay.addressBrightness = addressBrightness;
-    polyoneDisplay.addressTypeOfCount = addressTypeOfCount;
+    polyoneDisplay.addressTypeOfCount = addressTypeOfCount;   
 
     polyoneDisplay.format = read_eeprom(addressFormat) % 2;
     polyoneDisplay.currentState = read_eeprom(addressCurrentState) % 3;
     polyoneDisplay.previousState = read_eeprom(addressPreviousState) % 3;
     polyoneDisplay.brightness = read_eeprom(addressBrightness) % 10;
-    polyoneDisplay.typeOfCount = read_eeprom(addressTypeOfCount) % 2;
+    polyoneDisplay.typeOfCount = read_eeprom(addressTypeOfCount) % 2;  
 
     if ((polyoneDisplay.previousState == STATE_IDLE)
             && (polyoneDisplay.currentState == STATE_IDLE)) {
@@ -117,7 +129,7 @@ PolyoneDisplay PolyoneDisplay_new(char addressCurrentState,
 
     if (polyoneDisplay.currentState == STATE_IDLE) {
         //        PolyoneDisplay_updateTimer(&polyoneDisplay);
-        //        Timer_updateTimerFromEeprom(&polyoneDisplay.timer);
+        Timer_updateTimerFromEeprom(&polyoneDisplay.timer);
         PolyoneDisplay_updateRtc(&polyoneDisplay);
         Timer_updateCountdownTime(&polyoneDisplay);
     } else {
@@ -141,7 +153,6 @@ void PolyoneDisplay_showCount(PolyoneDisplay *polyoneDisplayPtr, BOOLEAN withBli
             Timer_showMinutesAndSecondsOfCountdownTime(&polyoneDisplayPtr->timer);
         }
     }
-
 }
 
 void PolyoneDisplay_showLimitTime(PolyoneDisplay *polyoneDisplayPtr) {
@@ -300,10 +311,12 @@ void PolyoneDisplay_saveAlarm(PolyoneDisplay *polyoneDisplayPtr) {
 }
 
 void PolyoneDisplay_resume(PolyoneDisplay *polyoneDisplayPtr) {
-    PolyoneDisplayState currentState;
-    currentState = polyoneDisplayPtr->currentState;
-    polyoneDisplayPtr->currentState = polyoneDisplayPtr->previousState;
-    polyoneDisplayPtr->previousState = currentState;
+    polyoneDisplayPtr->previousState = polyoneDisplayPtr->currentState;
+    if (polyoneDisplayPtr->typeOfCount == COUNTUP) {
+        polyoneDisplayPtr->currentState = STATE_COUNTING_UP;
+    } else if (polyoneDisplayPtr->typeOfCount == COUNTDOWN) {
+        polyoneDisplayPtr->currentState = STATE_COUNTING_DOWN;
+    }
 }
 
 BOOLEAN PolyoneDisplay_isTimerDone(PolyoneDisplay *polyoneDisplayPtr) {

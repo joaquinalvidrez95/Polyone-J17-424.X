@@ -12,6 +12,10 @@
 #include "array.h"
 #include "sevensegmentdisplay.h"
 
+#define UPPER_BOUND_HOURS 23
+#define UPPER_BOUND_MINUTES 59
+#define UPPER_BOUND_SECONDS 59
+
 typedef enum {
     FORMAT_24 = 0,
     FORMAT_12
@@ -22,7 +26,7 @@ typedef struct {
     int hour;
     int minute;
     int second;
-//    char formatAddress;
+    //    char formatAddress;
 } Time;
 
 typedef struct {
@@ -31,7 +35,7 @@ typedef struct {
     int second[2];
 } TimeInDigits;
 
-Time createTime(int hour, int minute, int second) {
+Time Time_new(int hour, int minute, int second) {
     Time time;
 
     time.hour = hour;
@@ -47,7 +51,7 @@ Time Time_getCurrentTime() {
     int currentSecond = 0;
 
     ds3231_get_Time(currentHour, currentMinute, currentSecond);
-    currentTime = createTime(currentHour, currentMinute, currentSecond);
+    currentTime = Time_new(currentHour, currentMinute, currentSecond);
 
     return currentTime;
 }
@@ -55,7 +59,7 @@ Time Time_getCurrentTime() {
 Time Time_new(__EEADDRESS__ formatAddress) {
     Time newTime;
     newTime = Time_getCurrentTime();
-//    newTime.formatAddress = formatAddress;
+    //    newTime.formatAddress = formatAddress;
     newTime.format = read_eeprom(formatAddress) % 2;
 
     return newTime;
@@ -70,7 +74,7 @@ void Time_updateTime(Time *timePtr) {
 }
 
 void Time_saveFormat(Time *timePtr) {
-//    write_eeprom(timePtr->formatAddress, timePtr->format);
+    //    write_eeprom(timePtr->formatAddress, timePtr->format);
 }
 
 void Time_changeTimeFormat(Time *timePtr) {
@@ -130,11 +134,11 @@ BOOLEAN Time_isTimeZero(Time *timePtr) {
     return (timePtr->hour == 0)&&(timePtr->minute == 0)&&(timePtr->second == 0);
 }
 
-Time getInitialTime() {
-    return createTime(0, 0, 0);
+Time Time_getInitialTime() {
+    return Time_new(0, 0, 0);
 }
 
-Time getCountdownTime(Time *limitTimePtr, Time *currentTimePtr) {
+Time Time_getCountdownTime(Time *limitTimePtr, Time *currentTimePtr) {
     Time time;
     signed int16 hoursInSeconds;
     signed int16 minutesInSeconds;
@@ -175,9 +179,17 @@ void Time_resetSeconds(Time *timePtr) {
 
 void Time_setClockTime(Time *timePtr) {
     setTime(
-            timePtr->hour,
-            timePtr->minute,
-            timePtr->second
+            timePtr->hour % (UPPER_BOUND_HOURS + 1),
+            timePtr->minute % (UPPER_BOUND_MINUTES + 1),
+            timePtr->second % (UPPER_BOUND_SECONDS + 1)
+            );
+}
+
+void Time_setClockTime(int hour, int minutes, int seconds) {
+    setTime(
+            hour % (UPPER_BOUND_HOURS + 1),
+            minutes % (UPPER_BOUND_MINUTES + 1),
+            seconds % (UPPER_BOUND_SECONDS + 1)
             );
 }
 
@@ -207,7 +219,7 @@ void Time_saveRtcCurrentTime(int hourAddress,
     write_eeprom(secondAddress, currentTime.second);
 }
 
-void saveLimitTime(Time *limitTimePtr, int limitHourAddress,
+void Time_saveLimitTime(Time *limitTimePtr, int limitHourAddress,
         int limitMinuteAddress, int limitSecondAddress) {
 
     write_eeprom(limitHourAddress, limitTimePtr->hour);
@@ -215,7 +227,7 @@ void saveLimitTime(Time *limitTimePtr, int limitHourAddress,
     write_eeprom(limitSecondAddress, limitTimePtr->second);
 }
 
-int getYear(void) {
+int Time_getYear(void) {
     int date, month, year, dow;
     DS3231_get_Date(date, month, year, dow);
 
@@ -255,7 +267,7 @@ void Time_showHoursMinutesRtc(BOOLEAN blink) {
     } else {
         blink = TRUE;
     }
-    
+
     SevenSegmentDisplay_showArrayOfNumbers(
             timeToSend,
             Array_getArraySize(timeToSend),
