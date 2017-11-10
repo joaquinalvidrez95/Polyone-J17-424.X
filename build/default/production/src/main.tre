@@ -3,32 +3,12 @@
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄsetupHardware  (Inline)  Ram=1
    ³  ³  ÀÄ@delay_ms1  1/20  Ram=1
-   ³  ÃÄ@const1139  0/12  Ram=0
-   ³  ÀÄ@const1139  0/12  Ram=0
-   ÃÄTask_runStateMachine  3/1738  Ram=1
-   ³  ÃÄx  2/1380  Ram=4
-   ³  ³  ÃÄ@goto11612  2/15  Ram=0
+   ³  ÃÄ@const1143  0/12  Ram=0
+   ³  ÀÄ@const1143  0/12  Ram=0
+   ÃÄTask_runStateMachine  3/1748  Ram=1
+   ³  ÃÄx  2/1311  Ram=4
+   ³  ³  ÃÄ@goto11620  2/15  Ram=0
    ³  ³  ÃÄPolyoneDisplay_new  (Inline)  Ram=53
-   ³  ³  ³  ÃÄsetDate  (Inline)  Ram=5
-   ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
-   ³  ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
-   ³  ³  ³  ³  ³  ÀÄ@DIV88  0/25  Ram=3
-   ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
-   ³  ³  ³  ³  ³  ÃÄ@I2C_WRITE_1  0/76  Ram=1
-   ³  ³  ³  ³  ³  ÃÄ@I2C_WRITE_1  0/76  Ram=1
-   ³  ³  ³  ³  ³  ÀÄ@I2C_WRITE_1  0/76  Ram=1
-   ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
-   ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
-   ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
-   ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
-   ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
-   ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÀÄDS3231_Write  0/63  Ram=2
-   ³  ³  ³  ³     ÀÄ*
    ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
@@ -54,7 +34,7 @@
    ³  ³  ³  ³     ÃÄ@DIVS3232  0/126  Ram=14
    ³  ³  ³  ³     ÃÄ@DIVS3232  0/126  Ram=14
    ³  ³  ³  ³     ÀÄ@DIVS3232  0/126  Ram=14
-   ³  ³  ³  ÃÄPolyoneDisplay_updateRtc  0/97  Ram=4
+   ³  ³  ³  ÃÄPolyoneDisplay_updateRtc  0/115  Ram=7
    ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ³  ÃÄTime_setClockTime  0/61  Ram=5
    ³  ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
@@ -62,9 +42,12 @@
    ³  ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ³  ³  ÀÄsetTime  0/43  Ram=4
    ³  ³  ³  ³  ³     ÃÄdecimal_to_bcd  0/32  Ram=3
-   ³  ³  ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³  ³  ³     ³  ÃÄ@DIV88  0/25  Ram=3
+   ³  ³  ³  ³  ³     ³  ÀÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ³  ³     ÃÄDS3231_Write  0/63  Ram=2
-   ³  ³  ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³  ³  ³     ³  ÃÄ@I2C_WRITE_1  0/76  Ram=1
+   ³  ³  ³  ³  ³     ³  ÃÄ@I2C_WRITE_1  0/76  Ram=1
+   ³  ³  ³  ³  ³     ³  ÀÄ@I2C_WRITE_1  0/76  Ram=1
    ³  ³  ³  ³  ³     ÃÄdecimal_to_bcd  0/32  Ram=3
    ³  ³  ³  ³  ³     ³  ÀÄ*
    ³  ³  ³  ³  ³     ÃÄDS3231_Write  0/63  Ram=2
@@ -73,12 +56,30 @@
    ³  ³  ³  ³  ³     ³  ÀÄ*
    ³  ³  ³  ³  ³     ÀÄDS3231_Write  0/63  Ram=2
    ³  ³  ³  ³  ³        ÀÄ*
-   ³  ³  ³  ³  ÀÄTimer_setRtc  (Inline)  Ram=4
-   ³  ³  ³  ³     ÀÄTime_setClockTime  0/61  Ram=5
-   ³  ³  ³  ³        ÀÄ*
+   ³  ³  ³  ³  ÃÄsetDate  0/57  Ram=5
+   ³  ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄDS3231_Write  0/63  Ram=2
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÃÄdecimal_to_bcd  0/32  Ram=3
+   ³  ³  ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ³  ³  ÀÄDS3231_Write  0/63  Ram=2
+   ³  ³  ³  ³  ³     ÀÄ*
+   ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
+   ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
+   ³  ³  ³  ³  ÀÄTime_setClockTime  0/61  Ram=5
+   ³  ³  ³  ³     ÀÄ*
    ³  ³  ³  ÃÄTimer_updateCountdownTime  0/339  Ram=32
    ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ÀÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ³  ³  ÀÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ³     ÃÄTime_getCurrentTime  0/84  Ram=7
    ³  ³  ³     ³  ÃÄds3231_get_Time  (Inline)  Ram=3
    ³  ³  ³     ³  ³  ÃÄDS3231_Read  0/178  Ram=2
@@ -97,6 +98,25 @@
    ³  ³  ³     ³  ³  ÀÄbcd_to_decimal  0/23  Ram=4
    ³  ³  ³     ³  ³     ÀÄ*
    ³  ³  ³     ³  ÀÄTime_new  (Inline)  Ram=7
+   ³  ³  ³     ÃÄDS3231_get_Date  (Inline)  Ram=4
+   ³  ³  ³     ³  ÃÄDS3231_Read  0/178  Ram=2
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄbcd_to_decimal  0/23  Ram=4
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄDS3231_Read  0/178  Ram=2
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄbcd_to_decimal  0/23  Ram=4
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄDS3231_Read  0/178  Ram=2
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄbcd_to_decimal  0/23  Ram=4
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÃÄDS3231_Read  0/178  Ram=2
+   ³  ³  ³     ³  ³  ÀÄ*
+   ³  ³  ³     ³  ÀÄbcd_to_decimal  0/23  Ram=4
+   ³  ³  ³     ³     ÀÄ*
+   ³  ³  ³     ÃÄ@DIV88  0/25  Ram=3
+   ³  ³  ³     ÃÄ@MUL88  0/39  Ram=2
    ³  ³  ³     ÃÄ@MUL88  0/39  Ram=2
    ³  ³  ³     ÀÄTimer_updateCountdownTime  0/339  Ram=32
    ³  ³  ³        ÀÄ*
@@ -113,7 +133,7 @@
    ³  ³  ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ³  ³  ÀÄArray_splitNumberIntoDigits  0/67  Ram=7
    ³  ³  ³  ³  ³     ÀÄ*
-   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³  ³  ³     ÃÄSevenSegmentDisplay_changeNumbersIntoDisplayableNumbersWithDot  (Inline)  Ram=7
    ³  ³  ³  ³     ³  ÀÄ@const714  0/31  Ram=0
    ³  ³  ³  ³     ÃÄSevenSegmentDisplay_changeNumbersIntoDisplayableNumbers  (Inline)  Ram=7
@@ -127,36 +147,35 @@
    ³  ³  ³  ³  ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³  ³  ÃÄTime_getTimeInDigits  0/109  Ram=11
    ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³  ³  ³     ÀÄ*
    ³  ³  ³  ÃÄTimer_showHoursAndMinutesOfCountdownTime  (Inline)  Ram=17
    ³  ³  ³  ³  ÃÄTime_getTimeInDigits  0/109  Ram=11
    ³  ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³  ³  ³     ÀÄ*
    ³  ³  ³  ÀÄTimer_showMinutesAndSecondsOfCountdownTime  (Inline)  Ram=20
    ³  ³  ³     ÃÄ@MUL88  0/39  Ram=2
    ³  ³  ³     ÃÄ@DIV88  0/25  Ram=3
    ³  ³  ³     ÃÄTime_getTimeInDigits  0/109  Ram=11
    ³  ³  ³     ³  ÀÄ*
-   ³  ³  ³     ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³  ³     ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³  ³        ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_resume  (Inline)  Ram=5
-   ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
-   ³  ³  ÃÄPolyoneDisplay_updateRtc  0/97  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveState  1/83  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_updateRtc  0/115  Ram=7
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
    ³  ³  ÃÄPolyoneDisplay_stop  1/32  Ram=5
-   ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/188  Ram=4
-   ³  ³  ³  ÃÄTimer_saveRtcCurrentTime  (Inline)  Ram=4
-   ³  ³  ³  ÀÄ@DIV88  0/25  Ram=3
-   ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/136  Ram=4
+   ³  ³  ³  ÀÄTimer_saveRtcCurrentTime  (Inline)  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveState  1/83  Ram=4
    ³  ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_isTimerDone  (Inline)  Ram=4
@@ -167,22 +186,22 @@
    ³  ³  ³  ÃÄ@delay_ms1  1/20  Ram=1
    ³  ³  ³  ÀÄ@delay_ms1  1/20  Ram=1
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveState  1/83  Ram=4
    ³  ³  ÃÄPolyoneDisplay_saveTypeOfCount  1/43  Ram=4
    ³  ³  ÃÄTime_clearRtcTime  1/9  Ram=0
    ³  ³  ³  ÀÄsetTime  0/43  Ram=4
    ³  ³  ³     ÀÄ*
-   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_stop  1/32  Ram=5
-   ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/188  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveRtcCurrentTime  1/136  Ram=4
    ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
+   ³  ³  ÃÄPolyoneDisplay_saveState  1/83  Ram=4
    ³  ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
@@ -197,29 +216,29 @@
    ³  ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
    ³  ³  ÃÄTime_clearRtcTime  1/9  Ram=0
    ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ³  ÃÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ÃÄ@goto11745  3/9  Ram=0
+   ³  ÃÄ@goto11753  3/9  Ram=0
    ³  ÃÄPolyoneDisplay_showCount  1/498  Ram=5
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ÃÄPolyoneDisplay_saveState  0/83  Ram=4
+   ³  ÃÄPolyoneDisplay_saveState  1/83  Ram=4
    ³  ÃÄTime_clearRtcTime  1/9  Ram=0
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ÃÄPolyoneDisplay_showLimitTime  1/199  Ram=4
+   ³  ÃÄPolyoneDisplay_showLimitTime  1/195  Ram=4
    ³  ³  ÃÄTimer_showHoursAndMinutesOfLimitTime  (Inline)  Ram=16
    ³  ³  ³  ÃÄTime_getTimeInDigits  0/109  Ram=11
    ³  ³  ³  ³  ÀÄ*
-   ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³  ³  ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³  ³     ÀÄ*
    ³  ³  ÀÄTimer_showMinutesAndSecondsOfLimitTime  (Inline)  Ram=16
    ³  ³     ÃÄTime_getTimeInDigits  0/109  Ram=11
    ³  ³     ³  ÀÄ*
-   ³  ³     ÀÄSevenSegmentDisplay_showArrayOfNumbers  0/109  Ram=4
+   ³  ³     ÀÄSevenSegmentDisplay_showArrayOfNumbers  1/115  Ram=4
    ³  ³        ÀÄ*
    ³  ÃÄPolyoneDisplay_showSecondNumber  (Inline)  Ram=4
    ³  ³  ÃÄTimer_hideHoursAndShowMinutesOfLimitTime  (Inline)  Ram=16
@@ -239,12 +258,12 @@
    ³  ÃÄPolyoneDisplay_increaseFirstNumber  (Inline)  Ram=4
    ³  ³  ÃÄTimer_increaseTimerHours  (Inline)  Ram=5
    ³  ³  ÀÄTimer_increaseTimerMinutes  1/50  Ram=5
-   ³  ÃÄPolyoneDisplay_showLimitTime  1/199  Ram=4
+   ³  ÃÄPolyoneDisplay_showLimitTime  1/195  Ram=4
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  1/20  Ram=1
    ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
    ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
-   ³  ÃÄPolyoneDisplay_showLimitTime  1/199  Ram=4
+   ³  ÃÄPolyoneDisplay_showLimitTime  1/195  Ram=4
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_showFirstNumber  (Inline)  Ram=4
    ³  ³  ÃÄTimer_hideMinutesAndShowHoursOfLimitTime  (Inline)  Ram=16
@@ -264,7 +283,7 @@
    ³  ÃÄPolyoneDisplay_increaseSecondNumber  (Inline)  Ram=4
    ³  ³  ÃÄTimer_increaseTimerMinutes  1/50  Ram=5
    ³  ³  ÀÄTimer_increaseTimerSeconds  (Inline)  Ram=5
-   ³  ÃÄPolyoneDisplay_showLimitTime  1/199  Ram=4
+   ³  ÃÄPolyoneDisplay_showLimitTime  1/195  Ram=4
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  1/20  Ram=1
    ³  ÃÄPolyoneDisplay_isAlarmOkay  (Inline)  Ram=3
@@ -274,13 +293,15 @@
    ³  ³  ÀÄShiftRegister_sendData  0/71  Ram=5
    ³  ³     ÀÄ*
    ³  ÃÄPolyoneDisplay_swapFormat  (Inline)  Ram=5
+   ³  ³  ÀÄsetDate  0/57  Ram=5
+   ³  ³     ÀÄ*
    ³  ÃÄPolyoneDisplay_saveAlarm  (Inline)  Ram=4
    ³  ³  ÃÄTimer_saveAlarmHoursMinutes  (Inline)  Ram=4
    ³  ³  ÀÄTimer_saveAlarmMinutesSeconds  (Inline)  Ram=4
    ³  ÃÄPolyoneDisplay_saveFormat  (Inline)  Ram=4
    ³  ÃÄTime_clearRtcTime  1/9  Ram=0
    ³  ³  ÀÄ*
-   ³  ÃÄPolyoneDisplay_updateTimer  0/86  Ram=6
+   ³  ÃÄPolyoneDisplay_updateTimer  0/198  Ram=7
    ³  ³  ÀÄ*
    ³  ÃÄPolyoneDisplay_setState  0/33  Ram=6
    ³  ÃÄPolyoneDisplay_showBrightness  1/68  Ram=8

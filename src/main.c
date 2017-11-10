@@ -82,8 +82,7 @@ void main(void) {
 void x(void) {
     switch (myPolyoneDisplay.currentState) {
         case STATE_INIT:
-            myPolyoneDisplay = PolyoneDisplay_new(
-                    EEPROM_CURRENT_STATE,
+            myPolyoneDisplay = PolyoneDisplay_new(EEPROM_CURRENT_STATE,
                     EEPROM_PREVIOUS_STATE,
                     EEPROM_FORMAT,
                     EEPROM_FIRST_NUMBER,
@@ -92,8 +91,7 @@ void x(void) {
                     EEPROM_RTC_MINUTES,
                     EEPROM_RTC_SECONDS,
                     EEPROM_BRIGHTNESS,
-                    EEPROM_TYPE_OF_COUNT,              
-                    );
+                    EEPROM_TYPE_OF_COUNT, 0);
             //            setTime(0, 81, 23);
             //            Time time;
             //            time=Time_new(0,81,23);
@@ -120,7 +118,6 @@ void x(void) {
         case STATE_COUNTING_DOWN:
             PolyoneDisplay_updateTimer(&myPolyoneDisplay);
             PolyoneDisplay_showCount(&myPolyoneDisplay, TRUE);
-
             if (buttonStateStartStopReset == BUTTON_STATE_HELD) {
                 buttonStateStartStopReset = BUTTON_STATE_NOT_PUSHED;
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_RESETTING);
@@ -144,6 +141,7 @@ void x(void) {
                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED;
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_BRIGHTNESS);
             }
+            
             break;
 
         case STATE_COUNTING_UP:
@@ -153,8 +151,7 @@ void x(void) {
                 PolyoneDisplay_stop(&myPolyoneDisplay);
                 PolyoneDisplay_saveRtcCurrentTime(&myPolyoneDisplay);
                 PolyoneDisplay_saveState(&myPolyoneDisplay);
-                PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);
-                //                setTime(,39,56);
+                PolyoneDisplay_showCount(&myPolyoneDisplay, FALSE);                
             }
 
             if (buttonStateStartStopReset == BUTTON_STATE_HELD) {
@@ -202,12 +199,10 @@ void Task_runStateMachine(void) {
             if (buttonStateMenu == BUTTON_STATE_HELD) {
                 buttonStateMenu = BUTTON_STATE_NOT_PUSHED;
                 PolyoneDisplay_setState(&myPolyoneDisplay, STATE_SETTING_FIRST_NUMBER);
-                //                rtos_disable(Task_checkIfMenuButtonIsHeld);
             }
             break;
 
         case STATE_SETTING_FIRST_NUMBER:
-
             if (showDisplayCompletely) {
                 PolyoneDisplay_showLimitTime(&myPolyoneDisplay);
             } else {

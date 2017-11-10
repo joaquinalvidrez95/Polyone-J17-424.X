@@ -22,8 +22,8 @@ typedef enum {
 } PolyoneDisplayFormat;
 
 typedef enum {
-    COUNTDOWN = 0,
-    COUNTUP
+    COUNTUP = 0,
+    COUNTDOWN,
 } TypeOfCount;
 
 typedef enum {
@@ -47,32 +47,45 @@ typedef struct {
     TypeOfCount typeOfCount;
     PolyoneDisplayState currentState;
     PolyoneDisplayState previousState;
-    int brightness;   
+    int brightness;
+    int numberOfDays;
     char addressCurrentState;
     char addressPreviousState;
     char addressFormat;
     char addressBrightness;
-    char addressTypeOfCount; 
+    char addressTypeOfCount;
+    char addressNumberOfDays;
 } PolyoneDisplay;
 
 const int brightnessLevels[10] = {10, 34, 58, 82, 106, 130, 154, 178, 202, 255};
 
 void PolyoneDisplay_updateRtc(PolyoneDisplay *polyoneDisplayPtr) {
+    Time time;
+    time = polyoneDisplayPtr->timer.currentTime;
     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
-        Time time;
-        time = polyoneDisplayPtr->timer.currentTime;
         time.hour %= 24;
         Time_setClockTime(&time);
+        setDate(1, (time.hour / 4) + 1, 1, 1);
     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
-        Timer_setRtc(&polyoneDisplayPtr->timer);
+        time.hour = time.minute / 60;
+        time.minute %= 60;
+        Time_setClockTime(&time);
     }
 }
 
 void PolyoneDisplay_updateTimer(PolyoneDisplay *polyoneDisplayPtr) {
-    //    Timer_updateTimer(&polyoneDisplayPtr->timer);
-
     polyoneDisplayPtr->timer.currentTime = Time_getCurrentTime();
-//    polyoneDisplayPtr->timer.currentTime.hour += polyoneDisplayPtr->numberOfDays * 24;
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        int dayOfMonth;
+        int month;
+        int year;
+        int dayOfWeek;
+        DS3231_get_Date(dayOfMonth, month, year, dayOfWeek);
+        polyoneDisplayPtr->timer.currentTime.hour += ((dayOfMonth - 1) % 5) * 24;
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        polyoneDisplayPtr->timer.currentTime.minute += (polyoneDisplayPtr->timer.currentTime.hour % 2) * 60;
+    }
+
     Timer_updateCountdownTime(&polyoneDisplayPtr->timer);
 }
 
@@ -81,21 +94,22 @@ PolyoneDisplay PolyoneDisplay_new(char addressCurrentState,
         char addressFirstNumberAlarm,
         char addressSecondNumberAlarm, char addressRtcHours,
         char addressRtcMinutes, char addressRtcSeconds,
-        char addressBrightness, char addressTypeOfCount) {
+        char addressBrightness, char addressTypeOfCount, __EEADDRESS__ addressNumberOfDays) {
     PolyoneDisplay polyoneDisplay;
 
-    setDate(1, 1, 1, 1);
     polyoneDisplay.addressCurrentState = addressCurrentState;
     polyoneDisplay.addressPreviousState = addressPreviousState;
     polyoneDisplay.addressFormat = addressFormat;
     polyoneDisplay.addressBrightness = addressBrightness;
-    polyoneDisplay.addressTypeOfCount = addressTypeOfCount;   
+    polyoneDisplay.addressTypeOfCount = addressTypeOfCount;
+    polyoneDisplay.addressNumberOfDays = addressNumberOfDays;
 
     polyoneDisplay.format = read_eeprom(addressFormat) % 2;
     polyoneDisplay.currentState = read_eeprom(addressCurrentState) % 3;
     polyoneDisplay.previousState = read_eeprom(addressPreviousState) % 3;
     polyoneDisplay.brightness = read_eeprom(addressBrightness) % 10;
-    polyoneDisplay.typeOfCount = read_eeprom(addressTypeOfCount) % 2;  
+    polyoneDisplay.typeOfCount = read_eeprom(addressTypeOfCount) % 2;
+    polyoneDisplay.numberOfDays = read_eeprom(addressNumberOfDays) % 5;
 
     if ((polyoneDisplay.previousState == STATE_IDLE)
             && (polyoneDisplay.currentState == STATE_IDLE)) {
@@ -123,12 +137,10 @@ PolyoneDisplay PolyoneDisplay_new(char addressCurrentState,
                     addressRtcMinutes,
                     addressRtcSeconds
                     );
-
             break;
     }
 
     if (polyoneDisplay.currentState == STATE_IDLE) {
-        //        PolyoneDisplay_updateTimer(&polyoneDisplay);
         Timer_updateTimerFromEeprom(&polyoneDisplay.timer);
         PolyoneDisplay_updateRtc(&polyoneDisplay);
         Timer_updateCountdownTime(&polyoneDisplay);
@@ -252,6 +264,7 @@ void PolyoneDisplay_swapFormat(PolyoneDisplay *polyoneDisplayPtr) {
         polyoneDisplayPtr->timer.minutesUpperBound = SECOND_NUMBER_UPPER_BOUND;
 
     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        setDate(1, 1, 1, 1);
         polyoneDisplayPtr->timer.alarmTime.second = polyoneDisplayPtr->timer.alarmTime.minute;
         polyoneDisplayPtr->timer.alarmTime.minute = polyoneDisplayPtr->timer.alarmTime.hour;
         polyoneDisplayPtr->timer.alarmTime.hour = 0;
