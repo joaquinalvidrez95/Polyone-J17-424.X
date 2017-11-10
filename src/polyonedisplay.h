@@ -18,7 +18,7 @@
 
 typedef enum {
     FORMAT_HOURS_MINUTES = 0,
-    FORMAT_MINUTES_SECONDS
+    FORMAT_MINUTES_SECONDS,
 } PolyoneDisplayFormat;
 
 typedef enum {
@@ -335,7 +335,7 @@ void PolyoneDisplay_saveAlarm(PolyoneDisplay *polyoneDisplayPtr) {
 
     if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
         write_eeprom(polyoneDisplayPtr->addressFirstNumber, polyoneDisplayPtr->timer.alarmTime.hour);
-        write_eeprom(polyoneDisplayPtr->addressSecondNumber, polyoneDisplayPtr->timer.alarmTime.minute);       
+        write_eeprom(polyoneDisplayPtr->addressSecondNumber, polyoneDisplayPtr->timer.alarmTime.minute);
     } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
         write_eeprom(polyoneDisplayPtr->addressFirstNumber, polyoneDisplayPtr->timer.alarmTime.minute);
         write_eeprom(polyoneDisplayPtr->addressSecondNumber, polyoneDisplayPtr->timer.alarmTime.second);
@@ -358,6 +358,17 @@ void PolyoneDisplay_resume(PolyoneDisplay *polyoneDisplayPtr) {
 
 BOOLEAN PolyoneDisplay_isTimerDone(PolyoneDisplay *polyoneDisplayPtr) {
     return Timer_isTimerFinished(&polyoneDisplayPtr->timer);
+}
+
+BOOLEAN PolyoneDisplay_isCountUpDone(PolyoneDisplay *polyoneDisplayPtr) {
+    if (polyoneDisplayPtr->format == FORMAT_HOURS_MINUTES) {
+        return polyoneDisplayPtr->timer.currentTime.hour == 99 &&
+                polyoneDisplayPtr->timer.currentTime.minute == 59 &&
+                polyoneDisplayPtr->timer.currentTime.second == 59;
+    } else if (polyoneDisplayPtr->format == FORMAT_MINUTES_SECONDS) {
+        return polyoneDisplayPtr->timer.currentTime.minute == 99 &&
+                polyoneDisplayPtr->timer.currentTime.second == 59;
+    }
 }
 #endif	/* POLYONEDISPLAY_H */
 

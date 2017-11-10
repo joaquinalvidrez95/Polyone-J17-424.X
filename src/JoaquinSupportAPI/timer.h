@@ -231,7 +231,7 @@ BOOLEAN Timer_isLimitTimeZero(Timer *timerPtr) {
 
 void Timer_showHoursAndMinutesOfCountdownTime(Timer *timerPtr, BOOLEAN blink) {
     int timeToSend[4] = {0};
-    TimeInDigits timeInDigits;
+    TimeInDigits timeInDigits;   
 
     timeInDigits = Time_getTimeInDigits(&timerPtr->countdownTime, FALSE);
     timeToSend[0] = timeInDigits.minute[0];
@@ -259,8 +259,7 @@ void Timer_showMinutesAndSecondsOfCountdownTime(Timer *timerPtr) {
 
     time = timerPtr->countdownTime;
     time.minute = (time.minute + time.hour * 60) % 100;
-    timeInDigits = Time_getTimeInDigits(&time, FALSE);
-    //    timeInDigits = Time_getTimeInDigits(&timerPtr->countdownTime, FALSE);
+    timeInDigits = Time_getTimeInDigits(&time, FALSE);  
     timeToSend[0] = timeInDigits.second[0];
     timeToSend[1] = timeInDigits.second[1];
     timeToSend[2] = timeInDigits.minute[0];

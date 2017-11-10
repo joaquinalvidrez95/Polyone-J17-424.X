@@ -256,6 +256,14 @@ void Time_showHoursMinutesRtc(BOOLEAN blink) {
     Time currentTime;
     currentTime = Time_getCurrentTime();
 
+    int dayOfMonth;
+    int month;
+    int year;
+    int dayOfWeek;
+
+    DS3231_get_Date(dayOfMonth, month, year, dayOfWeek);
+    currentTime.hour += ((dayOfMonth - 1) % 5) * 24; 
+
     timeInDigits = Time_getTimeInDigits(&currentTime, FALSE);
     timeToSend[0] = timeInDigits.minute[0];
     timeToSend[1] = timeInDigits.minute[1];
