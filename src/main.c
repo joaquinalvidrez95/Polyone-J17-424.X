@@ -286,7 +286,6 @@ void Task_runStateMachine(void) {
                     delay_ms(DELAY_INCREASE_NUMBER_MILISECONDS);
                 }
             }
-
             if (!menuButtonState && input(PIN_BUTTON_MENU)) {
                 if (myPolyoneDisplay.previousState == STATE_SETTING_FORMAT) {
                     PolyoneDisplay_saveBrightness(&myPolyoneDisplay);
